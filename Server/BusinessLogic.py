@@ -29,7 +29,8 @@ def signUpUser(nikName: str, addr: tuple):
     user = db_access.create_new_user(nikName)
     
     if (isinstance(user, BE.User)):
-        registeredUsers[addr] = (user)
+        #registeredUsers[addr] = (user)
+        registeredUsers[addr] = user
         return user.token
     else:
         return -1
@@ -62,22 +63,16 @@ def unregisterUser(addr: tuple):
         registeredUsers.pop(addr)
 
 
-# not needed anymore
-
-# def exitTheGame(addr : tuple):
-#     """pop the user who exit the game from the dynamoc memory of users
-
-#     Args:
-#         addr (tuple): tuple of (IP address, port number)
-#     """
-#     if addr in registeredUsers:
-#         registeredUsers.pop(addr)
-
 
 # main page functions
 
-def startNewGame(token: str):
-    pass
+def registerNewGame(addr: tuple, num_of_participants: int):
+    game = db_access.create_new_game(num_of_participants)
+    if (isinstance(game, BE.Game)):
+        activeGames[game.game_ID] = (game, [addr]) # the key is the address of the first player, we save the game record and a list of sockets of players
+        return game
+    else:
+        return -1
 
 def joinExistingGame(game_ID: str, token: str):
     pass

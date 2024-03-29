@@ -8,7 +8,7 @@ import threading
 import DataServiceClient.libClient as messageChannel
 import DataServiceClient.socketComm as comm
 
-MEDIUMFONT = ("Verdana", 18)
+MEDIUMFONT = ("Verdana", 15)
 LARGEFONT = ("Verdana", 30)
 
 
@@ -227,6 +227,7 @@ class AuthPageToken(tk.Frame):
         token_label.grid(row=0, column=0, pady=(0, 20), sticky="e")
         self.token_entry = tk.Entry(detailsFrame, font=("Verdana", 18))
         self.token_entry.grid(row=0, column=1, pady=(0, 20), sticky="w")
+        self.token_entry.focus_set()
         
         # Create login button
         self.login_button = tk.Button(detailsFrame, text="Log in", command=self.authenticate, font=("Verdana", 18), bg='#4CAF50', fg='white')
@@ -352,6 +353,7 @@ class SignUpPage(tk.Frame):
         nikName_label.grid(row=0, column=0, pady=(0, 20), sticky="e")
         self.nikName_entry = tk.Entry(detailsFrame, font=("Verdana", 18))
         self.nikName_entry.grid(row=0, column=1, pady=(0, 20), sticky="w")
+        self.nikName_entry.focus_set()
 
         # 'Create User' button
         self.createUser_button = tk.Button(detailsFrame, text="Create New User", command=self.createUser, font=("Verdana", 18), bg='#4CAF50', fg='white')
@@ -469,24 +471,85 @@ class MainPage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        # # Headline label
+        # # headline_label = tk.Label(self, text="Main Menu", font=("Arial", 24, "bold"), bg="#f0f0f0")
+        # headline_label = tk.Label(self, text="Main Menu", font=LARGEFONT, bg="#f0f0f0")
+        # headline_label.pack(pady=10)
+
+        # # Buttons frame
+        # buttons_frame = tk.Frame(self, bg="#f0f0f0")
+        # buttons_frame.pack()
+
+        # # New Game button
+        # new_game_button = tk.Button(buttons_frame, text="New Game", width=15, font=MEDIUMFONT, bg="#4CAF50", fg="white", relief=tk.FLAT, command=self.new_game)
+        # new_game_button.grid(row=0, column=0, padx=10)
+
+        # # Join a Game button
+        # self.join_game_button = tk.Button(buttons_frame, text="Join a Game", width=15, font=MEDIUMFONT, bg="#FFC107", fg="white", relief=tk.FLAT, command=self.join_game)
+        # self.join_game_button.grid(row=0, column=1, padx=10)
+
+        # # View Leadership Games button
+        # view_games_button = tk.Button(buttons_frame, text="View Leadership Games", width=20, font=MEDIUMFONT, bg="#2196F3", fg="white", relief=tk.FLAT, command=self.view_leadership_games)
+        # view_games_button.grid(row=0, column=2, padx=10)
+
+        # # Games list frame (initially hidden)
+        # self.games_list_frame = tk.Frame(self, bg="#f0f0f0")
+        # self.games_list_frame.pack()
+
+        # # Listbox for games
+        # self.games_listbox = tk.Listbox(self.games_list_frame, width=50, height=10, font=("Arial", 12), bg="white", selectbackground="#FFC107")
+        # self.games_listbox.pack(side="left", fill="y", padx=5, pady=5)
+
+        # # Scrollbar for listbox
+        # scrollbar = tk.Scrollbar(self.games_list_frame, orient="vertical", command=self.games_listbox.yview)
+        # scrollbar.pack(side="right", fill="y")
+
+        # # Configure listbox to use scrollbar
+        # self.games_listbox.config(yscrollcommand=scrollbar.set)
+
+        # # Example games
+        # self.games_listbox.insert("end", "Game 1 (Owner: Alice, Participants: 3)")
+        # self.games_listbox.insert("end", "Game 2 (Owner: Bob, Participants: 2)")
+        # self.games_listbox.insert("end", "Game 3 (Owner: Charlie, Participants: 4)")
+
+        # # Bind click event to games listbox
+        # self.games_listbox.bind("<Double-Button-1>", self.on_game_select)
+
+        # # Logout and Exit buttons frame
+        # logout_exit_frame = tk.Frame(self, bg="#f0f0f0")
+        # logout_exit_frame.pack(side="bottom", fill="x")
+
+        # # Logout button
+        # logout_button = tk.Button(logout_exit_frame, text="Logout", width=10, font=("Arial", 12), bg="#FFC107", fg="white", relief=tk.FLAT, command=self.logout)
+        # logout_button.pack(side="left", padx=10, pady=10)
+
+        # # Exit button
+        # exit_button = tk.Button(logout_exit_frame, text="Exit", width=10, font=("Arial", 12), bg="#F44336", fg="white", relief=tk.FLAT, command=self.exit_app)
+        # exit_button.pack(side="right", padx=10, pady=10)
+
+        # # Hide the games list frame initially
+        # self.games_list_frame.pack_forget()
+
+
+
         # Headline label
-        headline_label = tk.Label(self, text="Game Center", font=("Arial", 24, "bold"), bg="#f0f0f0")
+        headline_label = tk.Label(self, text="Tic Tac Toe - Main menu", font=LARGEFONT, bg="#f0f0f0")
         headline_label.pack(pady=10)
 
         # Buttons frame
-        buttons_frame = tk.Frame(self, bg="#f0f0f0")
-        buttons_frame.pack()
+        self.buttons_frame = tk.Frame(self, bg="#f0f0f0")
+        self.buttons_frame.pack()
 
         # New Game button
-        new_game_button = tk.Button(buttons_frame, text="New Game", width=15, font=("Arial", 12), bg="#4CAF50", fg="white", relief=tk.FLAT, command=self.new_game)
-        new_game_button.grid(row=0, column=0, padx=10)
+        self.new_game_button = tk.Button(self.buttons_frame, text="New Game", width=15, font=MEDIUMFONT, bg="#4CAF50", fg="white", relief=tk.FLAT, command=self.new_game)
+        self.new_game_button.grid(row=0, column=0, padx=10)
 
         # Join a Game button
-        self.join_game_button = tk.Button(buttons_frame, text="Join a Game", width=15, font=("Arial", 12), bg="#FFC107", relief=tk.FLAT, command=self.join_game)
+        self.join_game_button = tk.Button(self.buttons_frame, text="Join a Game", width=15, font=MEDIUMFONT, bg="#FFC107", fg="white", relief=tk.FLAT, command=self.join_game)
         self.join_game_button.grid(row=0, column=1, padx=10)
 
         # View Leadership Games button
-        view_games_button = tk.Button(buttons_frame, text="View Leadership Games", width=20, font=("Arial", 12), bg="#2196F3", fg="white", relief=tk.FLAT, command=self.view_leadership_games)
+        view_games_button = tk.Button(self.buttons_frame, text="View Leadership Games", width=20, font=MEDIUMFONT, bg="#2196F3", fg="white", relief=tk.FLAT, command=self.view_leadership_games)
         view_games_button.grid(row=0, column=2, padx=10)
 
         # Games list frame (initially hidden)
@@ -512,6 +575,13 @@ class MainPage(tk.Frame):
         # Bind click event to games listbox
         self.games_listbox.bind("<Double-Button-1>", self.on_game_select)
 
+        # Text entry for number of players (initially hidden)
+        self.players_entry_frame = tk.Frame(self, bg="#f0f0f0")
+        self.players_entry_label = tk.Label(self.players_entry_frame, text="Number of Players:", font=("Arial", 12), bg="#f0f0f0")
+        self.players_entry_label.pack(side="left", padx=5, pady=5)
+        self.players_entry = tk.Entry(self.players_entry_frame, validate="key", validatecommand=(self.master.register(validate_numbers_entry), "%S") ,font=("Arial", 12), width=10)
+        self.players_entry.pack(side="left", padx=5, pady=5)
+
         # Logout and Exit buttons frame
         logout_exit_frame = tk.Frame(self, bg="#f0f0f0")
         logout_exit_frame.pack(side="bottom", fill="x")
@@ -524,17 +594,31 @@ class MainPage(tk.Frame):
         exit_button = tk.Button(logout_exit_frame, text="Exit", width=10, font=("Arial", 12), bg="#F44336", fg="white", relief=tk.FLAT, command=self.exit_app)
         exit_button.pack(side="right", padx=10, pady=10)
 
-        # Hide the games list frame initially
+        # Hide the games list frame and players entry initially
         self.games_list_frame.pack_forget()
+        self.players_entry_frame.pack_forget()
 
     def new_game(self):
+        if (self.new_game_button.cget('text') == "New Game"):
+            self.games_list_frame.pack_forget() # hide the listbox
+            self.players_entry_frame.pack()
+            self.new_game_button.config(text="start!")
+        else:
+            players_entry = self.players_entry.get()
+            if (players_entry == ""  or  int(players_entry) < 2  or  int(players_entry) > 8):
+                messagebox.showinfo("message", "please insert a valid number of players (2-8 allowed)")
+            else:
+                self.controller.messageChannel.setRequest("newGame", int(players_entry))
+                self.controller.show_frame(TicTacToeGamePage)
+
+
         # Function to handle New Game button click
         print("New Game button clicked")
 
     def join_game(self):
         # Function to handle Join a Game button click
+        self.players_entry_frame.pack_forget()
         self.games_list_frame.pack()
-        self.join_game_button.pack_forget()
         print("Join a Game button clicked")
 
     def view_leadership_games(self):
@@ -549,13 +633,15 @@ class MainPage(tk.Frame):
             print(f"Selected game: {selected_game}")
 
     def logout(self):
-        # Function to handle Logout button click
-        print("Logout button clicked")
+        self.controller.messageChannel.setRequest("logout", "a")
+        self.controller.show_frame(AuthPageToken)
+
 
     def exit_app(self):
-        # Function to handle Exit button click
-        print("Exit button clicked")
-        self.master.destroy()
+        """upon clicking the 'exit' button, handle exiting the game gracefully by sending a message
+            to the server
+        """
+        self.controller.messageChannel.setRequest("exit", "a")
 
 
 # below is old version of the page 'main page'
@@ -618,62 +704,6 @@ class MainPage(tk.Frame):
 #         pass
 
 
-class GamePage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-
-        # Create headline
-        headline_label = ttk.Label(self, text="Tic Tac Toe - Main menu", font=LARGEFONT, background='#F0F0F0', foreground='#333333')
-        headline_label.place(relx=0.5, rely=0.1, anchor="center")
-
-        # Group auth objects 
-        optionsFrame = tk.Frame(self, bg="#F0F0F0", highlightbackground="#F0F0F0", highlightthickness=0)
-        optionsFrame.place(relx=0.5, rely=0.5, anchor="center")
-        
-        # New Game button
-        create_button = tk.Button(optionsFrame, text="New Game", command=self.createUser, font=("Verdana", 18), bg='#4CAF50', fg='white')
-        create_button.grid(row=0, column=0, columnspan=2, pady=(20, 50))
-
-        # Join Game button
-        create_button = tk.Button(optionsFrame, text="Join A Game", command=self.createUser, font=("Verdana", 18), bg='#4CAF50', fg='white')
-        create_button.grid(row=1, column=0, columnspan=2, pady=(20, 50))
-
-        # View Leadership Table button
-        create_button = tk.Button(optionsFrame, text="View Leadership Table", command=self.createUser, font=("Verdana", 18), bg='#4CAF50', fg='white')
-        create_button.grid(row=2, column=0, columnspan=2, pady=(20, 50))
-
-
-
-
-        # Create Exit button
-        exit_button = tk.Button(self, text=" Exit ", command=self.exitTheGame, font=("Verdana", 18), bg='#4CAF50', fg='white')
-        exit_button.place(relx=0.6, rely=0.9)
-
-        
-        # Create Log out button
-        logout_button = tk.Button(self, text="Logout", command=self.signIn, font=("Verdana", 18), bg='#4CAF50', fg='white')
-        logout_button.place(relx=0.3, rely=0.9)
-
-
-
-    def createUser(self):
-        token = 123
-
-        # Replace this with your authentication logic
-        if token == "admin":
-            messagebox.showinfo("Login Successful", "Welcome, {}".format(token))
-            # Add code to navigate to the next page or perform further actions after authentication
-        else:
-            #messagebox.showerror("Login Failed", "Invalid username or password")
-            self.token_label1.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="w")
-            self.token_label2.grid(row=2, column=1, columnspan=2, pady=(20, 50), sticky="w")
-
-
-    def signIn(self):
-        pass
-
-    def exitTheGame(self):
-        pass
 
 
 
@@ -736,3 +766,6 @@ def schedule_check(tk : tk.Tk, t : threading.Thread, func_name):
     """
     func = getattr(tk,func_name)
     tk.after(500, func, t)
+
+def validate_numbers_entry(text):
+    return text.isdecimal()

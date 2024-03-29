@@ -32,8 +32,10 @@ class Message:
         self._send_buffer = b""
         self._jsonheader_len = None
         self.jsonheader = None
-        self.response_created = False
-        self.request_processed = False
+        
+        self.response_created = True
+        
+        self.need_response = True
         self.request = None
         self.response = None
         self.toExit = False
@@ -157,14 +159,29 @@ class Message:
                         self.response = { "response": "verified",
                                           "value" : result               
                                         }
+                case "newGame":
+                    result = BL.registerNewGame(self.request[1], self.addr)
+                    if (result == -1):
+                        self.response = { "response": "errorHasOccured",
+                                          "value" : -1
+                                        }
+                    else:
+                        self.response = { "response": "newRegisteredGame",
+                                          "value" : result               
+                                        }
+                case "logout":
+                    BL.unregisterUser(self.addr)
+                    self.need_response = False
+
                 case "exit": # exit the game
                     BL.unregisterUser(self.addr)
                     self.response = { "response": "exit",
                                           "value" : "a"
                                     }
                     self.toExit = True
-            self.request_processed = True
-            self.response_created = False
+            if (self.need_response):
+                self.response_created = False
+            self.need_response = True
         else:
             # Binary or unknown content-type
             self.request = data
@@ -200,7 +217,7 @@ class Message:
 
     def write(self):
         if self.request:
-            if not self.response_created and self.request_processed:
+            if not self.response_created:
                 self.create_response()
                 self.request = None
                 self.jsonheader = None
@@ -238,7 +255,6 @@ class Message:
             response = self._create_response_binary_content()
         message = self._create_message(**response)
         self.response_created = True
-        self.request_processed = False
         self._send_buffer += message
 
 
