@@ -9,20 +9,21 @@ class StateOfGame(Enum):
     TIE = 4
 
 
-class SignsOfBoard(Enum):
-    O = 1
-    X = 2
-    DOLLAR = 3
-    HASHTAG = 4
-    SHTRUDEL = 5
-    PLUS = 6
-    EQUALS = 7
-    PERCENT = 8
+class symbolsOfBoard(Enum):
+    nothing = 0     # a spectator (does not have any symbol)
+    O = 1           # 'O'
+    X = 2           # 'X'
+    DOLLAR = 3      # '$'
+    HASHTAG = 4     # '#'
+    SHTRUDEL = 5    # '@'
+    PLUS = 6        # '+'
+    PERCENT = 7     # '%'
+    EQUALS = 8      # '='
 
 
-class Game:
+class Game(dict):
 
-    def __init__(self, num_of_players):
+    def __init__(self, num_of_players, gameState = StateOfGame.INITIALIZED.name):
         """Constructor for Game class
 
         Args:
@@ -30,11 +31,13 @@ class Game:
         """
         self.game_ID = str(uuid.uuid4())
         self.num_of_players = num_of_players
-        self.game_state = StateOfGame.INITIALIZED.name
+        self.game_state = gameState
         self.board = [ [0 for i in range(self.num_of_players+1)] for j in range(self.num_of_players+1) ] # initiaze the (x+1)^2 board with zeros, where 'x' is the number of players
         self.winner_ID = ""
         self.duration = 0 # datetime.timedelta()
         self.creation_date = datetime.datetime.now()
+        
+        dict.__init__(self, gameID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
     
 
 

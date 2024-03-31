@@ -10,8 +10,24 @@ factory.register_DB_access('JSON', DA.JSON_db_access)
 
 
 db_access = DA.JSON_db_access()
-registeredUsers = {}
-activeGames = {}
+
+registeredUsers = {}            # each entry is a {user_socket_address : user_token}
+activeGames = {}                # each entry is a {gameID : (BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)])}
+
+class Participant:
+    """represents a participant in a game as an active player or a spectator
+    """
+    def __init__(self, addr: tuple, symbol: int, turn: int = -1):
+        """initialize the details of a participant in a game
+
+        Args:
+            addr (tuple): an address of the participant (IP address, Port number)
+            symbol (BE.symbolsOfBoard): which symbol should represent the player in the game (1-8 as a player, 0 as a spectator)
+            turn (int): which turn the participant has (1-8, 0 for a spectator, -1 before the beginning)
+        """
+        self.addr = addr
+        self.symbol = symbol
+        self.turn = turn
 
 
 # entry page functions
@@ -66,13 +82,18 @@ def unregisterUser(addr: tuple):
 
 # main page functions
 
-def registerNewGame(addr: tuple, num_of_participants: int):
+def registerNewGame(num_of_participants: int, addr: tuple):
     game = db_access.create_new_game(num_of_participants)
     if (isinstance(game, BE.Game)):
-        activeGames[game.game_ID] = (game, [addr]) # the key is the address of the first player, we save the game record and a list of sockets of players
+        newParticipant = Participant(addr, 1, BE.symbolsOfBoard.O.value)
+        activeGames[game.game_ID] = (game, [newParticipant],[]) # the key is the address of the first player, we save the game record and a list of sockets of players
         return game
     else:
         return -1
+
+def fetchAllActiveGames():
+    return activeGames
+
 
 def joinExistingGame(game_ID: str, token: str):
     pass

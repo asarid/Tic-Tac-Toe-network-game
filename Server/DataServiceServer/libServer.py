@@ -35,7 +35,6 @@ class Message:
         
         self.response_created = True
         
-        self.need_response = True
         self.request = None
         self.response = None
         self.toExit = False
@@ -137,7 +136,7 @@ class Message:
             
             print(f"Received request {self.request!r} from {self.addr}")
 
-            match self.request[0]: # swtich 'action'
+            match self.request[0]: # switch 'action'
 
                 case "veteranUser":  # 'not new' user request to sign in
                     result = BL.signInUser(self.request[1], self.addr)
@@ -167,11 +166,31 @@ class Message:
                                         }
                     else:
                         self.response = { "response": "newRegisteredGame",
-                                          "value" : result               
+                                          "value" : result.game_ID              
                                         }
+                case "fetchGames":
+                    games = BL.fetchAllActiveGames()
+                    gamesForSending = {}
+                    for item in games.items():
+                        print("item:", item)
+                        # send to the client only the information he should has, i.e.  (1) the Game as Dict, 
+                        # (2) number of active participants and (3) number of passive participants
+                        print("item[0]", item[0])
+                        print("item[1][0]", item[0])
+                        print("item[1][1][1]", item[1][1])
+                        print("item[1][1][2]", item[1][2])
+                        gamesForSending[item[0]] = (item[1][0], len(item[1][1]), len(item[1][2]))
+
+                    self.response = { "response": "allActiveGames",
+                                      "value" : gamesForSending              
+                                    }
+                    
                 case "logout":
                     BL.unregisterUser(self.addr)
-                    self.need_response = False
+                    
+                    self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
+                    self.jsonheader = None      
+                    self.request = None         # now the writing function won't execute, there is no need in this case.
 
                 case "exit": # exit the game
                     BL.unregisterUser(self.addr)
@@ -179,9 +198,8 @@ class Message:
                                           "value" : "a"
                                     }
                     self.toExit = True
-            if (self.need_response):
-                self.response_created = False
-            self.need_response = True
+            
+            self.response_created = False
         else:
             # Binary or unknown content-type
             self.request = data
@@ -272,7 +290,7 @@ class Message:
         #     content = {"result": f"Error: invalid action '{action}'."}
 
         content = self.response
-        
+        print("response: ", content)
         content_encoding = "utf-8"
         response = {
             "content_bytes": self._json_encode(content, content_encoding),
