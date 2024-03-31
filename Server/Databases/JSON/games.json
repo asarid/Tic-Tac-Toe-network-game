@@ -646,5 +646,55 @@
         "winner_ID": "",
         "duration": 0,
         "creation_date": "2024-03-31T14:59:50.984019"
+    },
+    "bd8a4941-5e9a-48b0-935b-c8b053af3cf2": {
+        "gameID": "bd8a4941-5e9a-48b0-935b-c8b053af3cf2",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0
+            ]
+        ],
+        "winner_ID": "",
+        "duration": 0,
+        "creation_date": "2024-03-31T15:35:14.755551"
+    },
+    "80971fa3-d621-477b-8c36-c3adea7a5137": {
+        "gameID": "80971fa3-d621-477b-8c36-c3adea7a5137",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0
+            ]
+        ],
+        "winner_ID": "",
+        "duration": 0,
+        "creation_date": "2024-03-31T15:35:34.578159"
     }
 }

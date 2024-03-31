@@ -28,44 +28,61 @@ class PresentationController:
         self.frames = {}  
   
         
-        # Iterating through a tuple consisting of the different page layouts
-        # For that, find the names of the classes within the file
-        frame = inspect.currentframe()
-        module = inspect.getmodule(frame)
-        members = inspect.getmembers(module)
-        class_names = [globals()[member[0]] for member in members if inspect.isclass(member[1]) and member[0] != self.__class__.__name__]
-        
-        #iterate all class names (the different pages) in the file except the first class, i.e. the root:
-        for F in class_names:
-            frame = F(self.container, self)
-  
-            # initializing frame of that object from startpage, page1, page2 respectively with for loop
-            self.frames[F] = frame
-
-            frame.grid(row = 0, column = 0, sticky ="nsew")
-
         self.currentPage = AuthPageToken
+        self.currentPageInstance = None
         self.show_frame(self.currentPage)
         self.message_buffer = []
 
+        # # Iterating through a tuple consisting of the different page layouts
+        # # For that, find the names of the classes within the file
+        # frame = inspect.currentframe()
+        # module = inspect.getmodule(frame)
+        # members = inspect.getmembers(module)
+        # class_names = [globals()[member[0]] for member in members if inspect.isclass(member[1]) and member[0] != self.__class__.__name__]
+        
+        # #iterate all class names (the different pages) in the file except the first class, i.e. the root:
+        # for F in class_names:
+        #     frame = F(self.container, self)
+  
+        #     # initializing frame of that object from startpage, page1, page2 respectively with for loop
+        #     self.frames[F] = frame
+
+        #     frame.grid(row = 0, column = 0, sticky ="nsew")
+
+        # self.currentPage = AuthPageToken
+        # self.show_frame(self.currentPage)
+        # self.message_buffer = []
+
+        
+
+    # # to display the current frame passed as
+    # # parameter
+    # def show_frame(self, cont, *rest, isNew: bool = False):
+    #     if isNew:
+    #         if (cont in self.frames):
+    #             self.frames.pop(cont)
+    #         newInstance = cont(self.container, self, *rest)
+    #         self.frames[cont] = newInstance
+        
+    #     print(self.frames[cont])
+    #     frame = self.frames[cont]
+    #     self.currentPage = cont
+    #     frame.tkraise()
+
+
     # to display the current frame passed as
     # parameter
-    def show_frame(self, cont, *rest, isNew: bool = False):
+    def show_frame(self, cont, *rest, isNew: bool = True):
         if isNew:
-            if (cont in self.frames):
-                self.frames.pop(cont)
+            if self.currentPageInstance != None:
+                self.currentPageInstance.destroy()
             newInstance = cont(self.container, self, *rest)
-            self.frames[cont] = newInstance
+            self.currentPageInstance = newInstance
         
-        print(self.frames[cont])
-        frame = self.frames[cont]
+        # frame = self.frames[cont]
         self.currentPage = cont
-        frame.tkraise()
-
-
-    # def messageChannel(self, comm : message.Message):
-    #     messageChannel = comm
-
+        self.currentPageInstance.grid(row = 0, column = 0, sticky ="nsew")
+        self.currentPageInstance.tkraise()
 
 
 
@@ -214,7 +231,7 @@ class AuthPageToken(tk.Frame):
             controller (presentationController): the backbone of the GUI
         """
         tk.Frame.__init__(self, parent)
-
+        print("2: ")
         self.parent = parent
         self.controller = controller
 
