@@ -47,12 +47,13 @@ class Message:
 
     def process_events(self, mask):
         if mask & selectors.EVENT_READ:
+            print(mask)
             self.read()
             self.between_read_to_write = True
+            print("read")
         if mask & selectors.EVENT_WRITE:
             self.write()
             self.between_read_to_write = False
-
 
     def read(self):
         isRead = self._read()
@@ -198,9 +199,10 @@ class Message:
                     self.toExit = True
                 
                 case "newJoined":
-                    self.response = { "response": "6_newJoinOK",
-                                        "value" : "a"
-                                    }
+                    # self.response = { "response": "6_newJoinOK",
+                    #                     "value" : "a"
+                    #                 }
+                    
                     # request is : { "newJoined" : (game_ID, type_of_user) }
                     BL.joinToExistingGame(self.request[1][1], self.request[1][0], self.addr)
                     
@@ -210,12 +212,12 @@ class Message:
                     # self.jsonheader      = None      
                     # self.request         = None # now the writing function won't execute, there is no need in this case.
                 
-                case "server_newPlayerJoined":
-                    print("notify 1")
-                    self.false_request = False
-                    self.response = { "response": "5_newPlayer",
-                                        "value" : self.request[1]
-                                    }
+                # case "server_newPlayerJoined":
+                #     print("notify 1")
+                #     self.false_request = False
+                #     self.response = { "response": "5_newPlayer",
+                #                         "value" : self.request[1]
+                #                     }
 
             self.response_created = False
         else:
@@ -252,19 +254,18 @@ class Message:
     
 
     def write(self):
-        # if we are occupied at a false request, then after the writing turn off this state
-        if (self.false_request == True): 
-            self.false_request = False
-
-        if self.request:
+       
+        if self.request  or  self.false_request == True: 
             if not self.response_created:
                 self.create_response()
-                self.request = None
+                self.request = None             # in order to re-read when new messges from the client arrive
                 self.jsonheader = None
                 self._jsonheader_len = None
 
         self._write()
-        # if 
+        
+        # if we are occupied at a false request, then after the writing turn off this state
+        self.false_request = False
 
     def _write(self):
         if self._send_buffer:
@@ -288,7 +289,7 @@ class Message:
 
 
     def create_response(self):
-        if self.jsonheader["content-type"] == "text/json":
+        if self.false_request == True  or  self.jsonheader["content-type"] == "text/json":
             response = self._create_response_json_content()
         else:
             # Binary or unknown content-type

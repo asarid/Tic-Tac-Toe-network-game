@@ -35,15 +35,20 @@ class Message:
 
     def process_events(self, mask):
         if mask & selectors.EVENT_READ:
+            print("bitwise: ", mask & selectors.EVENT_READ)
+            print(mask)
+            print(selectors.EVENT_READ)
             self.read()
             self.last_event = "read"
+            print("read")
         if mask & selectors.EVENT_WRITE:
             self.write()
-            self.last_event = "write"
+            
+
 
 
     def read(self):
-        #print("trying to read...")
+        print("trying to read...")
         isRead = self._read()
         if (isRead):
             if self._jsonheader_len is None:
@@ -54,9 +59,8 @@ class Message:
                     self.process_jsonheader()
 
             if self.jsonheader:
+                print("and condition")
                 if self.response is None  or  self.last_event == "read":
-                    if (self.response is not None and self.last_event == "read"):
-                        print("and condition")
                     self.process_response()
 
 
@@ -110,6 +114,7 @@ class Message:
 
 
     def process_response(self):
+        print("process_read")
         content_len = self.jsonheader["content-length"]
         if not len(self._recv_buffer) >= content_len:
             return
@@ -147,7 +152,7 @@ class Message:
             case "5_newPlayer": # we get the following false request: { "5_newPlayer" : <number of remaining num of players to join>}
                 print("join at client")
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "waiting for " + str(self.response["response"]) + " more players to join and then we start!"
+                    strForDisplay = "waiting for " + str(self.response["value"]) + " more players to join and then we start!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
         
         
@@ -203,8 +208,10 @@ class Message:
             if not self._send_buffer:
                 # Set selector to listen for read events, we're done writing.
                 
-                #self._set_selector_events_mask("r")
+                # self._set_selector_events_mask("r")
+                # self._set_selector_events_mask("rw")
                 pass
+
 
 
     def _write(self):
@@ -213,6 +220,7 @@ class Message:
             self.response = None
             self.jsonheader = None
             self._jsonheader_len = None
+            self.last_event = "write"
 
             print(f"Sending {self._send_buffer!r} to {self.addr}")
             try:

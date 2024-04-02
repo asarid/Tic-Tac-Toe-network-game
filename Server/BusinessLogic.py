@@ -124,13 +124,17 @@ def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
         newParticipant = Participant(addr, activeGames[game_ID][1][-1].symbol + 1)
         activeGames[game_ID][1].append(newParticipant) # add the active player user address to the list of players
         
-        # check if the number of connected players equals to the amount that the game should has
+        # compare the number of connected players to the amount that the game should has
         num_of_players = activeGames[game_ID][0].num_of_players
         num_of_active_players = len(activeGames[game_ID][1])
         if (num_of_players > num_of_active_players):
+            # message = {
+            #             "action": "server_newPlayerJoined",
+            #             "value": num_of_players-num_of_active_players
+            #         }
             message = {
-                        "action": "server_newPlayerJoined",
-                        "value": num_of_players-num_of_active_players
+                    "response": "5_newPlayer",
+                    "value": num_of_players-num_of_active_players
                     }
             notifyParticipants(game_ID, message)
             
@@ -145,15 +149,28 @@ def notifyParticipants(game_ID: str, message: dict, *rest):
     Args:
         game_ID (str): ID of the game that its participants should be notified
         message (dict): a message to be sent to the participants
+        rest (tuple): a tuple of addresses of users that should not get that message
     """
+    # iterate the list of active players, whose list contains Participants instances
     for player_Participant in activeGames[game_ID][1]:
         if player_Participant.addr not in rest:
             player_sock = registeredUsers[player_Participant.addr][1]
             player_Message = selector.get_key(player_sock).data
+            player_Message.response = message
             player_Message.false_request = True
-            falseRequest = prepareFalseRequest(message["action"], message["value"], "text/json", "utf-8")
-            player_Message._recv_buffer += falseRequest
-            threading.Thread(target=notify_helper, args=(player_Message,)).start()
+            player_Message.response_created = False
+    
+    # iterate the list of spectators, whose list contains only addresses, not Participants instances
+    for player_Participant in activeGames[game_ID][2]:
+        if player_Participant not in rest:
+            player_sock = registeredUsers[player_Participant][1]
+            player_Message = selector.get_key(player_sock).data
+            player_Message.response = message
+            player_Message.false_request = True
+            player_Message.response_created = False
+            # falseRequest = prepareFalseRequest(message["action"], message["value"], "text/json", "utf-8")
+            # player_Message._recv_buffer += falseRequest
+            # threading.Thread(target=notify_helper, args=(player_Message,)).start()
 
 def notify_helper(player_Message):
     while (player_Message.between_read_to_write == True):
@@ -174,6 +191,8 @@ def prepareFalseRequest(action, value, content_type, encoding) -> bytes:
     message_hdr = struct.pack(">H", len(jsonheader_bytes))
     
     return message_hdr + jsonheader_bytes + content_bytes
+
+
 
 # game management functions
 
