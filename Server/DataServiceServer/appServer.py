@@ -12,6 +12,9 @@ sys.path.insert(1, level_up)
 import BusinessLogic as BL
 
 sel = selectors.DefaultSelector()
+BL.selector = sel  # now the BL knows about the selector and can access it
+
+
 
 hostIP = "127.0.0.1"
 hostPort = 65432

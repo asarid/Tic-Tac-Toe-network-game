@@ -4,7 +4,7 @@ import uuid
 
 class StateOfGame(Enum):
     INITIALIZED = 1
-    OCCURRING = 2
+    STARTED = 2
     WON = 3
     TIE = 4
 
@@ -37,7 +37,7 @@ class Game(dict):
         self.duration = 0 # datetime.timedelta()
         self.creation_date = datetime.datetime.now()
         
-        dict.__init__(self, gameID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
     
 
 

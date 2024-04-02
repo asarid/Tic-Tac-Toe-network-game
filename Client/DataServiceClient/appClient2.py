@@ -1,8 +1,7 @@
 import sys
-import asyncio
 import tkinter as tk
-import threading
 import socketComm as scktComm
+
 
 
 import os
@@ -82,8 +81,8 @@ class AppController(tk.Tk):
     
     def configureRootWindow(self):
         # Center the window on the screen
-        window_width = 700
-        window_height = 400
+        window_width = 750
+        window_height = 500
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         x = (screen_width // 2) - (window_width // 2)
@@ -125,10 +124,12 @@ class AppController(tk.Tk):
     
 # Driver Code
         
+
+
+
 root = AppController()
 root.title("Tic Tac Toe Game")
 
 
 root.mainloop()
 os._exit(0)
-

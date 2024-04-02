@@ -14,6 +14,8 @@ sys.path.append(level_up)
 # import Presentation2 as ui
 
 
+gui = None
+
 
 class Message:
     def __init__(self, selector, sock : sckt.socket, addr):
@@ -28,13 +30,16 @@ class Message:
         self.jsonheader = None
         self.response = None
 
+        self.last_event = "read"
 
 
     def process_events(self, mask):
         if mask & selectors.EVENT_READ:
             self.read()
+            self.last_event = "read"
         if mask & selectors.EVENT_WRITE:
             self.write()
+            self.last_event = "write"
 
 
     def read(self):
@@ -49,7 +54,9 @@ class Message:
                     self.process_jsonheader()
 
             if self.jsonheader:
-                if self.response is None:
+                if self.response is None  or  self.last_event == "read":
+                    if (self.response is not None and self.last_event == "read"):
+                        print("and condition")
                     self.process_response()
 
 
@@ -122,6 +129,9 @@ class Message:
             )
             self._process_response_binary_content()
         
+        self.jsonheader = None
+        self._jsonheader_len = None
+        
         # my revision - close only upon user exit
             
         # # Close when response has been processed
@@ -131,8 +141,14 @@ class Message:
     def _process_response_json_content(self):
         
         match self.response["response"]:
-            case "exit":
+            case "4_exit":
                 self.close()
+
+            case "5_newPlayer": # we get the following false request: { "5_newPlayer" : <number of remaining num of players to join>}
+                print("join at client")
+                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                    strForDisplay = "waiting for " + str(self.response["response"]) + " more players to join and then we start!"
+                    gui.currentPageInstance.message_buffer.append(strForDisplay)
         
         
         # result = content.get("result")
@@ -201,9 +217,8 @@ class Message:
             print(f"Sending {self._send_buffer!r} to {self.addr}")
             try:
                 
-                self.sock.connect_ex(self.addr)
-                #print(self.sock)
-
+                # self.sock.connect_ex(self.addr)
+                
                 # Should be ready to write
                 sent = self.sock.send(self._send_buffer)
             except BlockingIOError:
@@ -297,3 +312,7 @@ class Message:
         finally:
             # Delete reference to socket object for garbage collection
             self.sock = None
+
+    def updateAccessToGUI(self, presentation_instance):
+        global gui
+        gui = presentation_instance

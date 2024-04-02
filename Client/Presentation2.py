@@ -2,7 +2,6 @@ import tkinter as tk
 import time
 from tkinter import ttk
 from tkinter import messagebox
-import inspect
 import threading
 import DataServiceClient.libClient as messageChannel
 
@@ -14,8 +13,10 @@ class PresentationController:
  
     # __init__ function for class TicTacToePresentation 
     def __init__(self, parent, message_channel : messageChannel.Message): 
-         
+
+        message_channel.updateAccessToGUI(self) 
         self.messageChannel = message_channel
+
         self.root = parent
         # creating a container
         self.container = tk.Frame(parent)  
@@ -31,7 +32,8 @@ class PresentationController:
         self.currentPage = AuthPageToken
         self.currentPageInstance = None
         self.show_frame(self.currentPage)
-        self.message_buffer = []
+
+        
 
         # # Iterating through a tuple consisting of the different page layouts
         # # For that, find the names of the classes within the file
@@ -85,85 +87,9 @@ class PresentationController:
         self.currentPageInstance.tkraise()
 
 
-
-# # first window frame startpage
-# class StartPage(tk.Frame):
-#     def __init__(self, parent, controller): 
-#         tk.Frame.__init__(self, parent)
-         
-#         # label of frame Layout 2
-#         label = ttk.Label(self, text ="Startpage", font = LARGEFONT)
-         
-#         # putting the grid in its place by using grid
-#         label.grid(row = 0, column = 4, padx = 10, pady = 10) 
-  
-#         button1 = ttk.Button(self, text ="Page 1", command = lambda : controller.show_frame(Page1))
-     
-#         # putting the button in its place by
-#         # using grid
-#         button1.grid(row = 1, column = 1, padx = 10, pady = 10)
-  
-#         ## button to show frame 2 with text layout2
-#         button2 = ttk.Button(self, text ="Page 2", command = lambda : controller.show_frame(Page2))
-     
-#         # putting the button in its place by
-#         # using grid
-#         button2.grid(row = 2, column = 1, padx = 10, pady = 10)
-  
           
   
   
-# # second window frame page1 
-# class Page1(tk.Frame):
-     
-#     def __init__(self, parent, controller):
-         
-#         tk.Frame.__init__(self, parent)
-#         label = ttk.Label(self, text ="Page 1", font = LARGEFONT)
-#         label.grid(row = 0, column = 4, padx = 10, pady = 10)
-  
-#         # button to show frame 2 with text
-#         # layout2
-#         button1 = ttk.Button(self, text ="StartPage",
-#                             command = lambda : controller.show_frame(StartPage))
-     
-#         # putting the button in its place 
-#         # by using grid
-#         button1.grid(row = 1, column = 1, padx = 10, pady = 10)
-  
-#         # button to show frame 2 with text
-#         # layout2
-#         button2 = ttk.Button(self, text ="Page 2",
-#                             command = lambda : controller.show_frame(Page2))
-     
-#         # putting the button in its place by 
-#         # using grid
-#         button2.grid(row = 2, column = 1, padx = 10, pady = 10)
-  
-  
-  
-  
-# # third window frame page2
-# class Page2(tk.Frame): 
-#     def __init__(self, parent, controller):
-#         tk.Frame.__init__(self, parent)
-#         label = ttk.Label(self, text ="Page 2", font = LARGEFONT)
-#         label.grid(row = 0, column = 4, padx = 10, pady = 10)
-  
-#         # button to show frame 2 with text layout2
-#         button1 = ttk.Button(self, text ="Page 1", command = lambda : controller.show_frame(Page1))
-     
-#         # putting the button in its place by using grid
-#         button1.grid(row = 1, column = 1, padx = 10, pady = 10)
-  
-#         # button to show frame 3 with text layout3
-#         button2 = ttk.Button(self, text ="Startpage",
-#                             command = lambda : controller.show_frame(StartPage))
-
-#         # putting the button in its place by using grid
-#         button2.grid(row = 2, column = 1, padx = 10, pady = 10)
-
-
 
 # """ Page for authentication with username and password
 # """
@@ -305,10 +231,14 @@ class AuthPageToken(tk.Frame):
         
     
     def authenticate_helper(self):
-        """check if a response from the server about the auth request has arrived
+        """check if a response from the server about the 'auth' request has arrived.
+            At first we check if the response is None i.e. no response has arrived, and then we verify
+            that the response is what we expected to, i.e. "response" == "0_verified", else we continue looping.
         """
-        while (self.controller.messageChannel.response == None):
+        while (self.controller.messageChannel.response == None  or
+               self.controller.messageChannel.response["response"][0] != "0"):
             pass
+        
 
         # # Replace this with your authentication logic
         # if token == "admin":
@@ -327,11 +257,11 @@ class AuthPageToken(tk.Frame):
         if not t.is_alive():
             self.login_button["state"] = "normal"
             match self.controller.messageChannel.response["response"]:
-                case "verified":
+                case "0_verified":
                     if self.controller.currentPage is AuthPageToken:
                         self.controller.show_frame(MainPage)
-                        self.controller.message_buffer.append("registered successfully, " + self.controller.messageChannel.response["value"] + "!")
-                case "tokenNotFound":
+                        #self.controller.message_buffer.append("registered successfully, " + self.controller.messageChannel.response["value"] + "!")
+                case "0_tokenNotFound":
                     self.message_label.config(text = "this token was not found")
         else:
             # Otherwise check again after one second.
@@ -433,9 +363,12 @@ class SignUpPage(tk.Frame):
         
         
     def signUp_helper(self):
-        """check if a response from the server about the auth request has arrived
+        """check if a response from the server about the signUp request has arrived.
+            At first we check if the response is None i.e. no response has arrived, and then we verify
+            that the response is what we expected to, i.e. "response" == "1_newUser", else we continue looping.
         """
-        while (self.controller.messageChannel.response == None):
+        while (self.controller.messageChannel.response == None  or  
+               self.controller.messageChannel.response["response"][0] != "1"):
             pass
 
 
@@ -451,11 +384,11 @@ class SignUpPage(tk.Frame):
             self.createUser_button["state"] = "normal"
 
             match self.controller.messageChannel.response["response"]:
-                case "verified":
+                case "1_newUser":
                     if self.controller.currentPage is SignUpPage:
                         self.token_label1.config(text="Your unique token is " + str(self.controller.messageChannel.response["value"]))
                         self.token_label1.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="w")
-                case "errorHasOccured":
+                case "1_errorHasOccured":
                         self.token_label1.config(text="error has occured, try again")
                         self.token_label1.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="w")        
         else:
@@ -520,7 +453,10 @@ class MainPage(tk.Frame):
         # Listbox for games
         self.games_listbox = tk.Listbox(self.games_list_frame, width=50, height=10, font=("Arial", 12), bg="white", selectbackground="#FFC107")
         self.games_listbox.pack(side="left", fill="y", padx=5, pady=5)
-
+        
+        # Bind callback function to listbox selection event
+        self.games_listbox.bind("<Double-Button-1>", self.on_game_select)
+        
         # Scrollbar for listbox
         scrollbar = tk.Scrollbar(self.games_list_frame, orient="vertical", command=self.games_listbox.yview)
         scrollbar.pack(side="right", fill="y")
@@ -546,6 +482,8 @@ class MainPage(tk.Frame):
         self.player_type_label.pack(side="left", padx=5, pady=5)
 
         self.player_type_var = tk.StringVar(value="active_player")
+        self.player_last_type = "active_player" # used to verify that the user changed the radio button selection
+                                                # and not just clicked on the same button
 
         style = ttk.Style()
         style.configure("TRadiobutton", background="#f0f0f0", font=("Arial", 12))
@@ -574,7 +512,6 @@ class MainPage(tk.Frame):
         self.games_list_frame.pack_forget()
         self.players_entry_frame.pack_forget()
         self.player_type_frame.pack_forget()
-
     
     def new_game(self):
         self.games_list_frame.pack_forget()  # hide the listbox
@@ -597,9 +534,12 @@ class MainPage(tk.Frame):
         print("New Game button clicked")
 
     def newGame_helper(self):
-        """check if a response from the server about the auth request has arrived
+        """check if a response from the server about the auth request has arrived.
+            At first we check if the response is None i.e. no response has arrived, and then we verify
+            that the response is what we expected to, i.e. "response" == "2_newRegisteredGame", else we continue looping.
         """
-        while (self.controller.messageChannel.response == None):
+        while (self.controller.messageChannel.response == None  or  
+               self.controller.messageChannel.response["response"][0] != "2"):
             pass
 
         # # Replace this with your authentication logic
@@ -617,12 +557,13 @@ class MainPage(tk.Frame):
         """
         if not t.is_alive():
             match self.controller.messageChannel.response["response"]:
-                case "newRegisteredGame":
+                case "2_newRegisteredGame":
+                    game = self.controller.messageChannel.response["value"] # should be [ game_ID, numOfPlayers ]
                     print("check_new_game")
                     if self.controller.currentPage is MainPage:
-                        self.controller.show_frame(GamePage, self.controller.messageChannel.response["value"], isNew = True)
-                        # self.controller.message_buffer.append("registered successfully, " + self.controller.messageChannel.response["value"] + "!")
-                case "errorHasOccured":
+                        self.controller.show_frame(GamePage, game[1], game[0])
+                        self.controller.currentPageInstance.message_buffer.append(f"waiting for {game[1]-1} more players to join and then we start!")
+                case "2_errorHasOccured":
                     messagebox.showinfo("message", "an error has occured during a try to initiate a new game")
         else:
             # Otherwise check again after one second.
@@ -640,16 +581,19 @@ class MainPage(tk.Frame):
         
         self.controller.messageChannel.setRequest("fetchGames", "a")
 
+
         t = threading.Thread(target=self.fetchActiveGames_helper)
         t.start()
         schedule_check(self, t, self.check_if_fetchActiveGames_done.__name__)
 
-        
 
     def fetchActiveGames_helper(self):
-        """check if a response from the server about the auth request has arrived
+        """check if a response from the server about 'fetching the games' request has arrived.
+            At first we check if the response is None i.e. no response has arrived, and then we verify
+            that the response is what we expected to, i.e. "response" == "3_allActiveGames", else we continue looping.
         """
-        while (self.controller.messageChannel.response == None):
+        while (self.controller.messageChannel.response == None  or  
+               self.controller.messageChannel.response["response"][0] != "3"):
             pass
 
 
@@ -669,9 +613,10 @@ class MainPage(tk.Frame):
                 # we get the following format: key = gameID, game = ({Game as dict}, number of active participants, number of passive participants - spectators)
                 if (game[0]["game_state"] == "INITIALIZED"):
                     self.activeGames_initialized.append(game)
-                elif (game[0]["game_state"] == "OCCURRING"):
+                elif (game[0]["game_state"] == "STARTED"):
                     self.activeGames_occuring.append(game)
 
+            # building the list of games for displaying it to the user
             for index, game in enumerate(self.activeGames_initialized):
                 strForDisplay = f"Game {index+1} (opened for " + str(game[0]["num_of_players"]) + " players, waiting for " + str(game[0]["num_of_players"]-game[1]) + " more, " + str(game[2]) + " spectators" + ")"
                 self.games_listbox.insert("end", strForDisplay)
@@ -689,17 +634,53 @@ class MainPage(tk.Frame):
         # Function to handle clicking on a radio button
         player_type = self.player_type_var.get()
         print(f"Selected player type: {player_type}")
+        if (player_type != self.player_last_type):
+            if player_type == "active_player" and self.activeGames_occuring != []:
+                self.games_listbox.delete(len(self.activeGames_initialized),len(self.activeGames_initialized)+len(self.activeGames_occuring)-1)
+            elif player_type == "spectator":
+                self.games_listbox.insert("end", *self.activeGames_occuring)
 
+        self.player_last_type = player_type
 
     
 
 
     def on_game_select(self, event):
         # Function to handle clicking on a game entry
-        selected_index = self.games_listbox.curselection()
-        if selected_index:
-            selected_game = self.games_listbox.get(selected_index)
-            print(f"Selected game: {selected_game}")
+
+        selected_index = self.games_listbox.curselection()[0]
+        print("selected index: ", selected_index)        
+
+        # the user is a spectator in an occurring game
+        if (selected_index >= len(self.activeGames_initialized)): 
+            selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
+            numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
+            self.controller.show_frame(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], board = selectedGame["board"])
+
+        # the user is either an active player or a spectator in a game that has not yet started
+        else:
+            selectedGame = self.activeGames_initialized[selected_index][0]
+            numOfActivePlayers = self.activeGames_initialized[selected_index][1]
+            # print("selectedGame", selectedGame)
+            self.controller.show_frame(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
+        
+        
+        # send a message about how many more players nedd to join before we start, but only if
+        # the user is a spectator and he chose to spectate a game that has not yet started. else,
+        # a message will be sent by the server.
+        if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
+            strForDisplay = "waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
+            self.controller.currentPageInstance.message_buffer.append(strForDisplay)
+        
+
+        # send a message to the server that a new player has now joined the game
+        if self.player_type_var.get() == "active_player":
+            self.controller.messageChannel.setRequest("newJoined", ("player", selectedGame["game_ID"]))
+        
+        # self.player_type_var.get() == "spectator"
+        else: 
+            self.controller.messageChannel.setRequest("newJoined", ("spectator", selectedGame["game_ID"]))
+
 
     def view_leadership_games(self):
         # Function to handle View Leadership Games button click
@@ -708,7 +689,6 @@ class MainPage(tk.Frame):
     def logout(self):
         self.controller.messageChannel.setRequest("logout", "a")
         self.controller.show_frame(AuthPageToken)
-
 
     def exit_app(self):
         """upon clicking the 'exit' button, handle exiting the game gracefully by sending a message
@@ -1000,60 +980,217 @@ class MainPage(tk.Frame):
 
 
 
+##########################################################
+##########################################################
+##########################################################
 
 
+# class GamePage(tk.Frame):
+    
+#     def __init__(self, parent, controller, game_ID: str = ""):
+#         tk.Frame.__init__(self, parent)
+#         self.master = parent
+#         self.grid(row=0, column=0, sticky="nsew")
+#         self.timer_label = None  # Initialize timer_label attribute
+#         self.create_widgets()
+#         self.start_timer()
+
+#         self.game_ID = game_ID
+
+
+#     def create_widgets(self):
+#         # Create the grid for the Tic Tac Toe game
+#         self.buttons = []
+#         for i in range(3):
+#             row_buttons = []
+#             for j in range(3):
+#                 button = tk.Button(self, text="", width=5, height=2, font=("Helvetica", 20), command=lambda row=i, col=j: self.button_click(row, col))
+#                 button.grid(row=i, column=j, padx=5, pady=5)
+#                 row_buttons.append(button)
+#             self.buttons.append(row_buttons)
+
+#         # Create text view for messages
+#         self.message_label = tk.Label(self, text="Messages will appear here", font=("Helvetica", 12))
+#         self.message_label.grid(row=3, column=0, columnspan=3, pady=10)
+
+#         # Create timer label
+#         self.timer_label = tk.Label(self, text="Timer", font=("Helvetica", 12))
+#         self.timer_label.grid(row=0, column=3, rowspan=3, padx=10)
+
+#     def button_click(self, row, col):
+#         # Function to handle button clicks
+#         self.buttons[row][col].config(text="X", state=tk.DISABLED)  # Place X on the clicked button
+
+#         # You can implement more logic here for the game
+
+#     def start_timer(self):
+#         # Function to start the timer
+#         self.start_time = time.time()
+#         self.update_timer()
+
+#     def update_timer(self):
+#         # Function to update the timer label
+#         elapsed_time = time.time() - self.start_time
+#         self.timer_label.config(text=f"Timer: {int(elapsed_time)} sec")
+#         self.timer_label.after(1000, self.update_timer)
+
+
+##########################################################
+##########################################################
+##########################################################
 
 class GamePage(tk.Frame):
-    
-    def __init__(self, parent, controller, game_ID: str = ""):
+
+    def __init__(self, parent, controller, num_of_players : int,  game_ID: str = "", board = ""):
         tk.Frame.__init__(self, parent)
         self.master = parent
-        self.grid(row=0, column=0, sticky="nsew")
-        self.timer_label = None  # Initialize timer_label attribute
-        self.create_widgets()
-        self.start_timer()
-
         self.game_ID = game_ID
+        self.size = num_of_players + 1  # size of board in x and y axis
+        self.configure(bg="#f0f0f0")    # Set background color
+        if board != "":
+            self.board = board
+            self.joinedAfterStart = True
+        else:
+            self.board = [[' ' for _ in range(self.size)] for _ in range(self.size)]
+            self.joinedAfterStart = False
+        
+        self.current_player = 'X'
+        
 
+        self.isStarted = False
+        self.message_buffer = []
+        # self.message_read = 0
+
+        self.create_widgets()
+        self.start_time = time.time()
+        self.update_timer_and_messages()
 
     def create_widgets(self):
-        # Create the grid for the Tic Tac Toe game
-        self.buttons = []
-        for i in range(3):
-            row_buttons = []
-            for j in range(3):
-                button = tk.Button(self, text="", width=5, height=2, font=("Helvetica", 20), command=lambda row=i, col=j: self.button_click(row, col))
-                button.grid(row=i, column=j, padx=5, pady=5)
-                row_buttons.append(button)
-            self.buttons.append(row_buttons)
+        # Frame for the grid
+        self.grid_frame = tk.Frame(self, bg="#f0f0f0")
+        self.grid_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
-        # Create text view for messages
-        self.message_label = tk.Label(self, text="Messages will appear here", font=("Helvetica", 12))
-        self.message_label.grid(row=3, column=0, columnspan=3, pady=10)
+        self.buttons = [[None for _ in range(self.size)] for _ in range(self.size)]
+        for i in range(self.size):
+            self.grid_frame.grid_columnconfigure(i, weight=1)  # Expand columns equally
+            self.grid_frame.grid_rowconfigure(i, weight=1)     # Expand rows equally
+            for j in range(self.size):
+                self.buttons[i][j] = tk.Button(self.grid_frame, text='', font=('Arial', 16, 'bold'), width=3, height=1,
+                                                command=lambda i=i, j=j: self.on_button_click(i, j), bg="#ffffff", fg="#000000", bd=1, relief="solid")
+                self.buttons[i][j].grid(row=i, column=j, sticky="nsew")
+                
+        # if a spectator has joined in the middle of a game, we need to initialize his board
+        if (self.joinedAfterStart):
+            for i in range(self.size):
+                for j in range(self.size):
+                    self.buttons[i][j].config(text=self.board[i][j])
+        
+        # Frame for buttons and timer
+        self.bottom_frame = tk.Frame(self, bg="#f0f0f0")
+        self.bottom_frame.grid(row=0, column=1, padx=10, pady=10, sticky="n")
 
-        # Create timer label
-        self.timer_label = tk.Label(self, text="Timer", font=("Helvetica", 12))
-        self.timer_label.grid(row=0, column=3, rowspan=3, padx=10)
+        self.quit_button = tk.Button(self.bottom_frame, text="Quit Game", command=self.quit_game, font=('Arial', 12), bg="#d32f2f", fg="#ffffff", bd=1, relief="solid")
+        self.quit_button.grid(row=0, column=0, pady=5, padx=5, sticky="ew")
 
-    def button_click(self, row, col):
-        # Function to handle button clicks
-        self.buttons[row][col].config(text="X", state=tk.DISABLED)  # Place X on the clicked button
+        self.exit_button = tk.Button(self.bottom_frame, text="Exit", command=self.exit_app, font=('Arial', 12), bg="#303f9f", fg="#ffffff", bd=1, relief="solid")
+        self.exit_button.grid(row=1, column=0, pady=5, padx=5, sticky="ew")
 
-        # You can implement more logic here for the game
+        self.timer_label = tk.Label(self.bottom_frame, text="", font=('Arial', 12), bg="#f0f0f0")
+        self.timer_label.grid(row=2, column=0, pady=5, padx=5, sticky="ew")
 
-    def start_timer(self):
-        # Function to start the timer
-        self.start_time = time.time()
-        self.update_timer()
+        # Frame for messages with scrollable area
+        self.message_frame = tk.Frame(self, bg="#f0f0f0")
+        self.message_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
 
-    def update_timer(self):
-        # Function to update the timer label
-        elapsed_time = time.time() - self.start_time
-        self.timer_label.config(text=f"Timer: {int(elapsed_time)} sec")
-        self.timer_label.after(1000, self.update_timer)
+        self.message_scrollbar = tk.Scrollbar(self.message_frame)
+        self.message_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.message_text = tk.Text(self.message_frame, height=5, width=50, font=('Arial', 12), bg="#ffffff", fg="#000000", bd=1, relief="solid")
+        self.message_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        self.message_text.config(state=tk.DISABLED)  # Make text area read-only
+
+        self.message_scrollbar.config(command=self.message_text.yview)
+        self.message_text.config(yscrollcommand=self.message_scrollbar.set)
+
+        # Configure row and column weights to make the message frame stretchable
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
+    def on_button_click(self, row, col):
+        if self.isStarted:
+            if self.board[row][col] == ' ':
+                self.board[row][col] = self.current_player
+                self.buttons[row][col]['text'] = self.current_player
+                if self.check_winner(row, col):
+                    self.add_message(f"Player {self.current_player} wins!")
+                    self.disable_buttons()
+                elif self.check_draw():
+                    self.add_message("It's a draw!")
+                    self.disable_buttons()
+                else:
+                    self.current_player = 'O' if self.current_player == 'X' else 'X'
+                    self.start_time = time.time()  # Restart timer for next move
+                    self.update_timer()
+
+    def check_winner(self, row, col):
+        # Check row
+        if all(self.board[row][c] == self.current_player for c in range(self.size)):
+            return True
+        # Check column
+        if all(self.board[r][col] == self.current_player for r in range(self.size)):
+            return True
+        # Check diagonals if applicable
+        if row == col:
+            if all(self.board[i][i] == self.current_player for i in range(self.size)):
+                return True
+        if row + col == self.size - 1:
+            if all(self.board[i][self.size - 1 - i] == self.current_player for i in range(self.size)):
+                return True
+        return False
+
+    def check_draw(self):
+        return all(self.board[row][col] != ' ' for row in range(self.size) for col in range(self.size))
+
+    def disable_buttons(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                self.buttons[i][j].config(state=tk.DISABLED)
+
+    def update_timer_and_messages(self):
+        
+        if (len(self.message_buffer) != 0):
+            for message in self.message_buffer:
+                self.add_message(message)
+            self.message_buffer.clear()
+
+        if (self.isStarted):
+            elapsed_time = int(time.time() - self.start_time)
+            minutes = elapsed_time // 60
+            seconds = elapsed_time % 60
+            self.timer_label.config(text=f"Time: {minutes:02d}:{seconds:02d}")
+        
+        self.timer_label.after(1000, self.update_timer_and_messages)
+
+    def add_message(self, message):
+        self.message_text.config(state=tk.NORMAL)  # Enable editing temporarily
+        self.message_text.insert(tk.END, message + '\n')
+        self.message_text.config(state=tk.DISABLED)  # Make read-only again
+        self.message_text.see(tk.END)  # Scroll to the bottom
+
+    def quit_game(self):
+        if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):
+            self.destroy()
+
+    def exit_app(self):
+        if messagebox.askokcancel("Exit", "Are you sure you want to exit the application?"):
+            self.quit()
 
 
-
+##########################################################
+##########################################################
+##########################################################
 
 def schedule_check(tk : tk.Tk, t : threading.Thread, func_name):
     """
