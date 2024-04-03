@@ -1,7 +1,6 @@
 import sys
 import tkinter as tk
 import socketComm as scktComm
-import DataServiceClient.libClient as messChannel
 
 
 import os
@@ -119,17 +118,6 @@ class AppRoot(tk.Tk):
 #         # self.currentFrame = AuthPageToken
 #         # self.show_frame(self.currentFrame)
   
-
-    
-
-
-    
-
-
-
-
-
-
 
 
 # # if len(sys.argv) != 5:

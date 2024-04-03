@@ -1,7 +1,6 @@
 import sys
 import selectors
 import json
-import io
 import struct
 
 
@@ -246,10 +245,6 @@ class Message:
         self.selector.modify(self.sock, events, data=self)
 
     
-
-
-    
-
 
     
 

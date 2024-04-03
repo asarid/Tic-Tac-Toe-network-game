@@ -1044,12 +1044,14 @@ class GamePage(tk.Frame):
             self.board = [[' ' for _ in range(self.size)] for _ in range(self.size)]
             self.joinedAfterStart = False
         
-        self.current_player = 'X'
+        self.symbol_player = 'O'
         
 
         self.isStarted = False
+        self.yourTurn = False
+
         self.message_buffer = []
-        # self.message_read = 0
+
 
         self.create_widgets()
         self.start_time = time.time()
@@ -1107,22 +1109,42 @@ class GamePage(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(1, weight=1)
+    
+    def assignSymbol(self, num: int):
+        match num:
+            case 1:
+                self.symbol_player = 'O'
+            case 2:
+                self.symbol_player = 'X'
+            case 3:
+                self.symbol_player = '$'
+            case 4:
+                self.symbol_player = '#'
+            case 5:
+                self.symbol_player = '@'
+            case 6:
+                self.symbol_player = '+'
+            case 7:
+                self.symbol_player = '%'
+            case 8:
+                self.symbol_player = '='     
+    
 
     def on_button_click(self, row, col):
-        if self.isStarted:
+        if self.yourTurn:
             if self.board[row][col] == ' ':
-                self.board[row][col] = self.current_player
-                self.buttons[row][col]['text'] = self.current_player
-                if self.check_winner(row, col):
-                    self.add_message(f"Player {self.current_player} wins!")
-                    self.disable_buttons()
-                elif self.check_draw():
-                    self.add_message("It's a draw!")
-                    self.disable_buttons()
-                else:
-                    self.current_player = 'O' if self.current_player == 'X' else 'X'
-                    self.start_time = time.time()  # Restart timer for next move
-                    self.update_timer()
+                self.board[row][col] = self.symbol_player
+                self.buttons[row][col]['text'] = self.symbol_player
+                # if self.check_winner(row, col):
+                #     self.add_message(f"Player {self.current_player} wins!")
+                #     self.disable_buttons()
+                # elif self.check_draw():
+                #     self.add_message("It's a draw!")
+                #     self.disable_buttons()
+                # else:
+                #     self.current_player = 'O' if self.current_player == 'X' else 'X'
+                #     self.start_time = time.time()  # Restart timer for next move
+                #     self.update_timer()
 
     def check_winner(self, row, col):
         # Check row
