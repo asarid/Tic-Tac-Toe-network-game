@@ -23,7 +23,7 @@ class symbolsOfBoard(Enum):
 
 class Game(dict):
 
-    def __init__(self, num_of_players, gameState = StateOfGame.INITIALIZED.name):
+    def __init__(self, num_of_players, gameState = "INITIALIZED"):
         """Constructor for Game class
 
         Args:
@@ -39,6 +39,33 @@ class Game(dict):
         
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
     
+    def set_game_ID(self, game_ID: str):
+        self.game_ID = game_ID
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_game_state(self, game_state: str):
+        self.game_state = game_state
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_board(self, board: list):
+        self.board = board
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_num_of_players(self, num_of_players: int):
+        self.num_of_players = num_of_players
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_winner_ID(self, winner_ID: str):
+            self.winner_ID = winner_ID
+            dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_duration(self, duration: int):
+        self.duration = duration
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
+
+    def set_creation_date(self, creation_date: datetime):
+        self.creation_date = creation_date
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
 
 
 # class Board:

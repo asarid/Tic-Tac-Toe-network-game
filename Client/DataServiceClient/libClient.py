@@ -152,25 +152,25 @@ class Message:
             case "5_newPlayer": # we get the following false request: { "5_newPlayer" : <number of remaining num of players to join>}
                 print("join at client")
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "waiting for " + str(self.response["value"]) + " more players to join and then we start!"
+                    strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
 
             case "6_beforeStart":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "The game is about to begin, your turn is " + str(self.response["value"][0]) + " and your symbol is " + self.response["value"][1]
+                    strForDisplay = "## The game is about to begin, your turn is " + str(self.response["value"][0]) + " and your symbol is " + gui.currentPageInstance.assignSymbol(self.response["value"][1])
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
                     gui.currentPageInstance.assignSymbol(self.response["value"][1])
             
             case "7_start":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "Last player has joined, let the tournament begin! First to play is " + self.response["value"] + ". But remember, 30 seconds for a move, no excuse accepted!"
+                    strForDisplay = "## Last player has joined, let the tournament begin! First to play is " + self.response["value"] + ". But remember, 30 seconds for a move, no excuse accepted!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
                     gui.currentPageInstance.isStarted = True
 
 
             case "8_yourMove":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    gui.currentPageInstance.message_buffer.append("it's your turn to play, the clock is ticking!")
+                    gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
                     gui.currentPageInstance.yourTurn = True
 
         # result = content.get("result")

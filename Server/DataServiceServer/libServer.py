@@ -13,13 +13,7 @@ sys.path.insert(1, level_up)
 import BusinessLogic as BL
 import BusinessEntities as BE
 
-#from ..BusinessLogic import BusinessLogic as BL
 
-request_search = {
-    "morpheus": "Follow the white rabbit. \U0001f430",
-    "ring": "In the caves beneath the Misty Mountains. \U0001f48d",
-    "\U0001f436": "\U0001f43e Playing ball! \U0001f3d0",
-}
 
 
 class Message:
@@ -35,9 +29,11 @@ class Message:
         self.response_created = True
         
         self.request = None
-        self.false_request = False # false request is a request that the server itself "planted"
-                                     # into the receiving buffer, pretending the user did so.
-        self.response = None
+        self.false_request = False  # false request is a request that the server itself "planted"
+                                    # into the receiving buffer, pretending the user did so.
+        
+        self.responses = []         # each entry in the list now is a tuple: (response: dict, isFalseRequest: bool)
+                                    # 'isTrueRequest' is True if the response was created as a response to a real request
         self.toExit = False
 
         self.between_read_to_write = False
@@ -145,33 +141,33 @@ class Message:
                 case "veteranUser":  # 'not new' user request to sign in
                     result = BL.signInUser(self.request[1], self.addr, self.sock)
                     if (result == -1):
-                        self.response = { "response": "0_tokenNotFound",
-                                          "value" : -1
-                                        }
+                        self.responses.append(({ "response": "0_tokenNotFound",
+                                                    "value" : -1
+                                                }, True))
                     else:
-                        self.response = { "response": "0_verified",
-                                          "value" : result
-                                        }
+                        self.responses.append(({ "response": "0_verified",
+                                                    "value" : result
+                                                }, True))
                 case "newUser": # sign up request
                     result = BL.signUpUser(self.request[1], self.addr, self.sock)
                     if (result == -1):
-                        self.response = { "response": "1_errorHasOccured",
-                                          "value" : -1
-                                        }
+                        self.responses.append(({ "response": "1_errorHasOccured",
+                                                    "value" : -1
+                                                }, True))
                     else:
-                        self.response = { "response": "1_newUser",
-                                          "value" : result               
-                                        }
+                        self.responses.append(({ "response": "1_newUser",
+                                                "value" : result               
+                                                }, True))
                 case "newGame":
                     result = BL.registerNewGame(self.request[1], self.addr)
                     if (result == -1):
-                        self.response = { "response": "2_errorHasOccured",
-                                          "value" : -1
-                                        }
+                        self.responses.append(({ "response": "2_errorHasOccured",
+                                                  "value" : -1
+                                                }, True))
                     else:
-                        self.response = { "response": "2_newRegisteredGame",
-                                          "value" : [result.game_ID, result.num_of_players]             
-                                        }
+                        self.responses.append(({ "response": "2_newRegisteredGame",
+                                                "value" : [result.game_ID, result.num_of_players]             
+                                                }, True))
                 case "fetchGames":
                     games = BL.fetchAllActiveGames()
                     gamesForSending = {}
@@ -180,9 +176,9 @@ class Message:
                         # (2) number of active participants and (3) number of passive participants
                         gamesForSending[item[0]] = (item[1][0], len(item[1][1]), len(item[1][2]))
 
-                    self.response = { "response": "3_allActiveGames",
-                                      "value" : gamesForSending              
-                                    } 
+                    self.responses.append(({ "response": "3_allActiveGames",
+                                             "value" : gamesForSending              
+                                            }, True)) 
                 case "logout":
                     BL.unregisterUser(self.addr)
                     
@@ -192,24 +188,18 @@ class Message:
 
                 case "exit": # exit the game
                     BL.unregisterUser(self.addr)
-                    self.response = { "response": "4_exit",
-                                        "value" : "a"
-                                    }
+                    self.responses.append(({ "response": "4_exit",
+                                             "value" : "a"
+                                            }, True))
                     self.toExit = True
                 
                 case "newJoined":
-                    # self.response = { "response": "6_newJoinOK",
-                    #                     "value" : "a"
-                    #                 }
-                    
-                    # request is : { "newJoined" : (game_ID, type_of_user) }
                     BL.joinToExistingGame(self.request[1][1], self.request[1][0], self.addr)
                     
-                    
-                    
-                    # self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
-                    # self.jsonheader      = None      
-                    # self.request         = None # now the writing function won't execute, there is no need in this case.
+                    # the response to that request will be handled using the falseRequest mechanism, so we don't set a normal ersponse
+                    self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
+                    self.jsonheader      = None      
+                    self.request         = None # now the writing function won't execute, there is no need in this case.
                 
                 # case "server_newPlayerJoined":
                 #     print("notify 1")
@@ -249,18 +239,25 @@ class Message:
     
 
     def write(self):
-       
-        if self.request  or  self.false_request == True: 
-            if not self.response_created:
+        isThereFalseRequest = len(self.responses) > 0  and  self.responses[0][1] == False 
+        
+        # if there was a request or we have a response due to a falseRequest
+        if self.request  or  isThereFalseRequest:
+            if not self.response_created  or  isThereFalseRequest:
                 self.create_response()
-                self.request = None             # in order to re-read when new messges from the client arrive
-                self.jsonheader = None
-                self._jsonheader_len = None
+
+                # if we have a real request that demended a response, don't open the socket for reading
+                # unless the response is already in the list of responsese, or we loss the old request due to 
+                # new one.
+                if (not (self.request and isThereFalseRequest)):
+                    self.request = None             # in order to re-read when new messages from the client arrive
+                    self.jsonheader = None
+                    self._jsonheader_len = None
 
         self._write()
         
         # if we are occupied at a false request, then after the writing turn off this state
-        self.false_request = False
+        # self.false_request = False
 
     def _write(self):
         if self._send_buffer:
@@ -284,11 +281,12 @@ class Message:
 
 
     def create_response(self):
-        if self.false_request == True  or  self.jsonheader["content-type"] == "text/json":
-            response = self._create_response_json_content()
-        else:
-            # Binary or unknown content-type
-            response = self._create_response_binary_content()
+        # if self.false_request == True  or  self.jsonheader["content-type"] == "text/json":
+        response = self._create_response_json_content()
+        # else:
+        #     # Binary or unknown content-type
+        #     response = self._create_response_binary_content()
+
         message = self._create_message(**response)
         self.response_created = True
         self._send_buffer += message
@@ -299,15 +297,8 @@ class Message:
         
     def _create_response_json_content(self):
         
-        # action = self.request.get("action")
-        # if action == "search":
-        #     query = self.request.get("value")
-        #     answer = request_search.get(query) or f"No match for '{query}'."
-        #     content = {"result": answer}
-        # else:
-        #     content = {"result": f"Error: invalid action '{action}'."}
-
-        content = self.response
+        # return the first element in the first item in 'responses' list, which is the response itself
+        content = self.responses.pop(0)[0]
         print("response: ", content)
         content_encoding = "utf-8"
         response = {

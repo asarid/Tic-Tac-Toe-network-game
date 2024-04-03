@@ -552,7 +552,7 @@ class MainPage(tk.Frame):
                     print("check_new_game")
                     if self.controller.currentPage is MainPage:
                         self.controller.show_page(GamePage, game[1], game[0])
-                        self.controller.currentPageInstance.message_buffer.append(f"waiting for {game[1]-1} more players to join and then we start!")
+                        self.controller.currentPageInstance.message_buffer.append(f"## waiting for {game[1]-1} more players to join and then we start!")
                 case "2_errorHasOccured":
                     messagebox.showinfo("message", "an error has occured during a try to initiate a new game")
         else:
@@ -659,7 +659,7 @@ class MainPage(tk.Frame):
         # the user is a spectator and he chose to spectate a game that has not yet started. else,
         # a message will be sent by the server.
         if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
-            strForDisplay = "waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
+            strForDisplay = "## waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
             self.controller.currentPageInstance.message_buffer.append(strForDisplay)
         
 
@@ -1110,7 +1110,7 @@ class GamePage(tk.Frame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(1, weight=1)
     
-    def assignSymbol(self, num: int):
+    def assignSymbol(self, num: int) -> str:
         match num:
             case 1:
                 self.symbol_player = 'O'
@@ -1127,7 +1127,9 @@ class GamePage(tk.Frame):
             case 7:
                 self.symbol_player = '%'
             case 8:
-                self.symbol_player = '='     
+                self.symbol_player = '='
+        
+        return self.symbol_player     
     
 
     def on_button_click(self, row, col):
@@ -1187,9 +1189,9 @@ class GamePage(tk.Frame):
 
     def add_message(self, message):
         self.message_text.config(state=tk.NORMAL)  # Enable editing temporarily
-        self.message_text.insert('1.0', message + '\n')
+        self.message_text.insert(tk.END, message + '\n')
         self.message_text.config(state=tk.DISABLED)  # Make read-only again
-        self.message_text.see('1.0')  # Scroll to the bottom
+        self.message_text.see(tk.END)  # Scroll to the bottom
 
     def quit_game(self):
         if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):

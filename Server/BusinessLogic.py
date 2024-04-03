@@ -2,7 +2,6 @@ import DataAccess.DataAccess as DA
 import BusinessEntities as BE
 import socket
 import random
-import threading
 
 factory = DA.AccessFactory()
 factory.register_DB_access('JSON', DA.JSON_db_access)
@@ -13,7 +12,7 @@ factory.register_DB_access('JSON', DA.JSON_db_access)
 db_access = DA.JSON_db_access()
 
 registeredUsers = {}            # each entry is a { user_address 'addr' : [BE.User, socket, game_ID - if any] }
-activeGames = {}                # each entry is a {gameID : (BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)])}
+activeGames = {}                # each entry is a { gameID : (BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)])}
 
 selector = None
 
@@ -150,16 +149,17 @@ def notifyOneParticipant(addr: tuple, response: str, value):
         response (str): a headline to the message to the user
         value (var): the content of the message (could be a number, a text, etc.)
     """
-    message = {
+    message = ({
         "response": response,
         "value": value
-    }
+    }, False)
     
     player_sock = registeredUsers[addr][1]
     player_Message = selector.get_key(player_sock).data
-    player_Message.response = message
-    player_Message.false_request = True
+    player_Message.responses.append(message)
+    # player_Message.false_request = True
     player_Message.response_created = False
+
 
 def notifyParticipants(game_ID: str, response: str, value, *rest):
     """notify all the participants of a certain game with a message sent as an argument, 
@@ -171,18 +171,18 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
         value (var): the content of the message (could be a number, a text, etc.)
         rest (tuple): a tuple of addresses of users that should not get that message
     """
-    message = {
+    message = ({
         "response": response,
         "value": value
-    }
+    }, False)
 
     # iterate the list of active players, whose list contains Participants instances
     for player_Participant in activeGames[game_ID][1]:
         if player_Participant.addr not in rest:
             player_sock = registeredUsers[player_Participant.addr][1]
             player_Message = selector.get_key(player_sock).data
-            player_Message.response = message
-            player_Message.false_request = True
+            player_Message.responses.append(message)
+            # player_Message.false_request = True
             player_Message.response_created = False
            
     
@@ -191,8 +191,8 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
         if player_Participant not in rest:
             player_sock = registeredUsers[player_Participant][1]
             player_Message = selector.get_key(player_sock).data
-            player_Message.response = message
-            player_Message.false_request = True
+            player_Message.responses.append(message)
+            # player_Message.false_request = True
             player_Message.response_created = False
             
         
@@ -224,8 +224,11 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
 
 # game management functions
 
-def startTheGame(game_ID: str): 
-    activeGames[game_ID][0].game_state = "STARTED"
+def startTheGame(game_ID: str):
+    activeGames[game_ID][0].set_game_state("STARTED")
+    print("game that started: ", activeGames[game_ID][0])
+    db_access.update_game(activeGames[game_ID][0])
+    
     active_players = activeGames[game_ID][1]
 
     for player in active_players:
