@@ -3,8 +3,9 @@ import socket
 import selectors
 import traceback
 import libServer
-
+import time
 import os
+
 conf_path = os.getcwd()
 level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.insert(1, level_up)
@@ -55,6 +56,7 @@ try:
                 message = key.data
                 try:
                     message.process_events(mask)
+                    time.sleep(0.02)
                 except Exception:
                     print(
                         f"Main: Error: Exception for {message.addr}:\n"

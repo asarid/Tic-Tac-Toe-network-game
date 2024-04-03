@@ -321,6 +321,7 @@ class Message:
             # Delete reference to socket object for garbage collection
             self.sock = None
 
+
     def updateAccessToGUI(self, presentation_instance):
         global gui
         gui = presentation_instance

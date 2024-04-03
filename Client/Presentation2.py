@@ -12,16 +12,17 @@ LARGEFONT = ("Verdana", 30)
 class PresentationController:
  
     # __init__ function for class TicTacToePresentation 
-    def __init__(self, parent, message_channel : messageChannel.Message): 
+    def __init__(self, parent, message_channel : messageChannel.Message):
 
-        message_channel.updateAccessToGUI(self) 
+        
         self.messageChannel = message_channel
 
         self.root = parent
         # creating a container
-        self.container = tk.Frame(parent)  
+        self.container = tk.Frame(parent)
+        
         self.container.pack(side = "top", fill = "both", expand = True)
-  
+        
         self.container.grid_rowconfigure(0, weight = 1)
         self.container.grid_columnconfigure(0, weight = 1)
   
@@ -31,7 +32,7 @@ class PresentationController:
         
         self.currentPage = AuthPageToken
         self.currentPageInstance = None
-        self.show_frame(self.currentPage)
+        self.show_page(self.currentPage)
 
         
 
@@ -52,14 +53,14 @@ class PresentationController:
         #     frame.grid(row = 0, column = 0, sticky ="nsew")
 
         # self.currentPage = AuthPageToken
-        # self.show_frame(self.currentPage)
+        # self.show_page(self.currentPage)
         # self.message_buffer = []
 
         
 
     # # to display the current frame passed as
     # # parameter
-    # def show_frame(self, cont, *rest, isNew: bool = False):
+    # def show_page(self, cont, *rest, isNew: bool = False):
     #     if isNew:
     #         if (cont in self.frames):
     #             self.frames.pop(cont)
@@ -72,19 +73,6 @@ class PresentationController:
     #     frame.tkraise()
 
 
-    # to display the current frame passed as
-    # parameter
-    def show_frame(self, cont, *rest, isNew: bool = True):
-        if isNew:
-            if self.currentPageInstance != None:
-                self.currentPageInstance.destroy()
-            newInstance = cont(self.container, self, *rest)
-            self.currentPageInstance = newInstance
-        
-        # frame = self.frames[cont]
-        self.currentPage = cont
-        self.currentPageInstance.grid(row = 0, column = 0, sticky ="nsew")
-        self.currentPageInstance.tkraise()
 
 
           
@@ -156,14 +144,16 @@ class AuthPageToken(tk.Frame):
             parent (Frame): inherits from tk.Frame
             controller (presentationController): the backbone of the GUI
         """
-        tk.Frame.__init__(self, parent)
+        super().__init__(parent)
         print("2: ")
         self.parent = parent
         self.controller = controller
 
+
         # Create headline
         headline_label = ttk.Label(self, text="Tic Tac Toe", font=LARGEFONT, background='#F0F0F0', foreground='#333333')
         headline_label.place(relx=0.5, rely=0.1, anchor="center")
+        # headline_label.pack(padx=10, pady=10, anchor="center")
 
         # Group auth objects
         detailsFrame = tk.Frame(self, bg="#F0F0F0", highlightbackground="#F0F0F0", highlightthickness=0)
@@ -191,7 +181,7 @@ class AuthPageToken(tk.Frame):
 
         
         # Create Sign Up button
-        signup_button = tk.Button(self, text="Sign Up", command=lambda: controller.show_frame(SignUpPage), font=("Verdana", 18), bg='#4CAF50', fg='white')
+        signup_button = tk.Button(self, text="Sign Up", command=lambda: controller.show_page(SignUpPage), font=("Verdana", 18), bg='#4CAF50', fg='white')
         signup_button.place(relx=0.3, rely=0.9)
 
 
@@ -259,7 +249,7 @@ class AuthPageToken(tk.Frame):
             match self.controller.messageChannel.response["response"]:
                 case "0_verified":
                     if self.controller.currentPage is AuthPageToken:
-                        self.controller.show_frame(MainPage)
+                        self.controller.show_page(MainPage)
                         #self.controller.message_buffer.append("registered successfully, " + self.controller.messageChannel.response["value"] + "!")
                 case "0_tokenNotFound":
                     self.message_label.config(text = "this token was not found")
@@ -328,7 +318,7 @@ class SignUpPage(tk.Frame):
 
         
         # Create Sign In button
-        signIn_button = tk.Button(self, text="Sign In", command=lambda: controller.show_frame(AuthPageToken), font=("Verdana", 18), bg='#4CAF50', fg='white')
+        signIn_button = tk.Button(self, text="Sign In", command=lambda: controller.show_page(AuthPageToken), font=("Verdana", 18), bg='#4CAF50', fg='white')
         signIn_button.place(relx=0.3, rely=0.9)
 
 
@@ -351,7 +341,7 @@ class SignUpPage(tk.Frame):
                 schedule_check(self, t, self.check_if_signUp_done.__name__)
         
             else: # continue to the Main page
-                self.controller.show_frame(MainPage)
+                self.controller.show_page(MainPage)
 
         # if 
         # print(self.token_label1.winfo_ismapped())
@@ -561,7 +551,7 @@ class MainPage(tk.Frame):
                     game = self.controller.messageChannel.response["value"] # should be [ game_ID, numOfPlayers ]
                     print("check_new_game")
                     if self.controller.currentPage is MainPage:
-                        self.controller.show_frame(GamePage, game[1], game[0])
+                        self.controller.show_page(GamePage, game[1], game[0])
                         self.controller.currentPageInstance.message_buffer.append(f"waiting for {game[1]-1} more players to join and then we start!")
                 case "2_errorHasOccured":
                     messagebox.showinfo("message", "an error has occured during a try to initiate a new game")
@@ -655,14 +645,14 @@ class MainPage(tk.Frame):
         if (selected_index >= len(self.activeGames_initialized)): 
             selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
             numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
-            self.controller.show_frame(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], board = selectedGame["board"])
+            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], board = selectedGame["board"])
 
         # the user is either an active player or a spectator in a game that has not yet started
         else:
             selectedGame = self.activeGames_initialized[selected_index][0]
             numOfActivePlayers = self.activeGames_initialized[selected_index][1]
             # print("selectedGame", selectedGame)
-            self.controller.show_frame(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
+            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
         
         
         # send a message about how many more players nedd to join before we start, but only if
@@ -688,7 +678,7 @@ class MainPage(tk.Frame):
 
     def logout(self):
         self.controller.messageChannel.setRequest("logout", "a")
-        self.controller.show_frame(AuthPageToken)
+        self.controller.show_page(AuthPageToken)
 
     def exit_app(self):
         """upon clicking the 'exit' button, handle exiting the game gracefully by sending a message
@@ -875,7 +865,7 @@ class MainPage(tk.Frame):
     #             case "newRegisteredGame":
     #                 print("check_new_game")
     #                 if self.controller.currentPage is MainPage:
-    #                     self.controller.show_frame(GamePage, self.controller.messageChannel.response["value"], isNew = True)
+    #                     self.controller.show_page(GamePage, self.controller.messageChannel.response["value"], isNew = True)
     #                     # self.controller.message_buffer.append("registered successfully, " + self.controller.messageChannel.response["value"] + "!")
     #             case "errorHasOccured":
     #                 messagebox.showinfo("message", "an error has occured during a try to initiate a new game")
@@ -902,7 +892,7 @@ class MainPage(tk.Frame):
 
     # def logout(self):
     #     self.controller.messageChannel.setRequest("logout", "a")
-    #     self.controller.show_frame(AuthPageToken)
+    #     self.controller.show_page(AuthPageToken)
 
 
     # def exit_app(self):
@@ -1175,9 +1165,9 @@ class GamePage(tk.Frame):
 
     def add_message(self, message):
         self.message_text.config(state=tk.NORMAL)  # Enable editing temporarily
-        self.message_text.insert(tk.END, message + '\n')
+        self.message_text.insert('1.0', message + '\n')
         self.message_text.config(state=tk.DISABLED)  # Make read-only again
-        self.message_text.see(tk.END)  # Scroll to the bottom
+        self.message_text.see('1.0')  # Scroll to the bottom
 
     def quit_game(self):
         if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):

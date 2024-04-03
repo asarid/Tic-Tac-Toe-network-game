@@ -3,23 +3,21 @@ import selectors
 import traceback
 import libClient
 import threading
+import time
 
-
-
-sel = selectors.DefaultSelector()
 
 hostIP = "127.0.0.1"
 hostPort = 65432
 
 
+sel = selectors.DefaultSelector()
+
 
 class SocketCommunication:
     
-    def __init__(self, ip, port, tkRoot):
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.hostIP = ip
-        self.hostPort = port
-        self.addr = (self.hostIP, self.hostPort)
+    def __init__(self, tkRoot):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.addr = (hostIP, hostPort)
 
         self.tkRoot = tkRoot
         
@@ -32,26 +30,26 @@ class SocketCommunication:
         self.bind()
 
 
-    def load(self, ip_address, port, text, status, server_info):
-        self.ip_address = ip_address
-        self.port = port
-        self.history = text
-        self.status = status
-        self.server_info = server_info
-        print("[=] Loading attributes is completed")
-        return
+    # def load(self, ip_address, port, text, status, server_info):
+    #     self.ip_address = ip_address
+    #     self.port = port
+    #     self.history = text
+    #     self.status = status
+    #     self.server_info = server_info
+    #     print("[=] Loading attributes is completed")
+    #     return
 
 
     def bind(self):
         
         print("[=] Trying to bind")
-        self.s.setblocking(False)
-        self.s.connect_ex(self.addr)
+        self.sock.setblocking(False)
+        self.sock.connect_ex(self.addr)
         print("[+] Found connection to server")
         events = selectors.EVENT_READ | selectors.EVENT_WRITE
-        self.message = libClient.Message(sel, self.s, self.addr)
-        sel.register(self.s, events, data=self.message)
-        print("at beginning: ", self.s)
+        self.message = libClient.Message(sel, self.sock, self.addr)
+        sel.register(self.sock, events, data=self.message)
+        print("at beginning: ", self.sock)
         
         threading.Thread(target = self.processEvents).start()
     
@@ -65,6 +63,7 @@ class SocketCommunication:
                     message = key.data
                     try:
                         message.process_events(mask)
+                        time.sleep(0.02)
                     except Exception:
                         print(
                             f"Main: Error: Exception for {message.addr}:\n"
@@ -80,3 +79,60 @@ class SocketCommunication:
         finally:
             sel.close()
             self.tkRoot.exit()
+
+
+############################################################################
+############################################################################
+############################################################################
+
+
+# def load(self, ip_address, port, text, status, server_info):
+#     self.ip_address = ip_address
+#     self.port = port
+#     self.history = text
+#     self.status = status
+#     self.server_info = server_info
+#     print("[=] Loading attributes is completed")
+#     return
+
+
+# def bind():
+    
+#     print("[=] Trying to bind")
+#     sock.setblocking(False)
+#     sock.connect_ex(addr)
+#     print("[+] Found connection to server")
+#     events = selectors.EVENT_READ | selectors.EVENT_WRITE
+#     message = libClient.Message(sel, sock, addr)
+#     sel.register(sock, events, data=message)
+#     print("at beginning: ", sock)
+    
+#     threading.Thread(target = processEvents).start()
+    
+    
+
+# def processEvents():
+#     try:
+#         while True:
+#             events = sel.select(timeout=1)
+#             for key, mask in events:
+#                 message = key.data
+#                 try:
+#                     message.process_events(mask)
+#                     time.sleep(0.02)
+
+#                 except Exception:
+#                     print(
+#                         f"Main: Error: Exception for {message.addr}:\n"
+#                         f"{traceback.format_exc()}"
+#                     )
+#                     message.close()
+            
+#             # Check for a socket being monitored to continue.
+#             if not sel.get_map():
+#                 break
+#     except KeyboardInterrupt:
+#         print("Caught keyboard interrupt, exiting")
+#     finally:
+#         sel.close()
+#         tkRoot.exit()
