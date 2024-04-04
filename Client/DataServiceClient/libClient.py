@@ -4,8 +4,8 @@ import json
 import io
 import struct
 import socket as sckt
-
 import os
+
 conf_path = os.getcwd()
 sys.path.append(conf_path)
 level_up = conf_path[:conf_path.rfind("\\")]
@@ -146,11 +146,45 @@ class Message:
     def _process_response_json_content(self):
         
         match self.response["response"]:
+            case "9_afterOneMove":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.restartTimer()
+                    currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
+                    currentPage.message_buffer.append("## The next to play is: " + self.response["value"][1])
+
+            case "10_YourMoveArrived":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.restartTimer()
+                    currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    currentPage.message_buffer.append("## it's your turn to play!")
+                    currentPage.yourTurn = True
+            
+            case "11_victory":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
+                    currentPage.isStarted = False
+                    currentPage.message_buffer.append("## " + self.response["value"][1] + " has won the game, well done!")
+
+            case "12_youWon":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.isStarted = False
+                    currentPage.message_buffer.append("## you are the winner, congratulations!!!")
+
+            case "13_draw":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    currentPage.isStarted = False
+                    currentPage.message_buffer.append("## it's a draw, the game is over.")
+
             case "4_exit":
                 self.close()
 
             case "5_newPlayer": # we get the following false request: { "5_newPlayer" : <number of remaining num of players to join>}
-                print("join at client")
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
                     strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
@@ -163,12 +197,17 @@ class Message:
             
             case "7_start":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "## Last player has joined, let the tournament begin! First to play is " + self.response["value"] + ". But remember, 30 seconds for a move, no excuse accepted!"
-                    gui.currentPageInstance.message_buffer.append(strForDisplay)
-                    gui.currentPageInstance.isStarted = True
-
+                    print("7_start")
+                    strForDisplay1 = "## Last player has joined, let the tournament begin!"
+                    strForDisplay2 = "## First to play is " + self.response["value"] + ". And remember: 30 seconds for a move, no excuse accepted!"
+                    gamePage = gui.currentPageInstance
+                    gamePage.message_buffer.append(strForDisplay1)
+                    gamePage.message_buffer.append(strForDisplay2)
+                    gamePage.restartTimer()
+                    gamePage.isStarted = True
 
             case "8_yourMove":
+                print("8_yourMove")
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
                     gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
                     gui.currentPageInstance.yourTurn = True

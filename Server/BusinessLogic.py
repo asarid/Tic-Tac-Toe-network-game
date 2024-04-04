@@ -2,6 +2,7 @@ import DataAccess.DataAccess as DA
 import BusinessEntities as BE
 import socket
 import random
+import datetime
 
 factory = DA.AccessFactory()
 factory.register_DB_access('JSON', DA.JSON_db_access)
@@ -12,14 +13,27 @@ factory.register_DB_access('JSON', DA.JSON_db_access)
 db_access = DA.JSON_db_access()
 
 registeredUsers = {}            # each entry is a { user_address 'addr' : [BE.User, socket, game_ID - if any] }
-activeGames = {}                # each entry is a { gameID : (BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)])}
+activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)], numOfMovesDone: int = 0, turn = 0]}
 
 selector = None
+
+# dict with pairs: {symbolOfCurrentPlayer : symbolOfNextPlayer}
+symbols = {
+    'O': 'X',
+    'X': '$',
+    '$': '#',
+    '#': '@',
+    '@': '+',
+    '+': '%',
+    '%': '=',
+    '=': 'O'
+    }
+
 
 class Participant:
     """represents a participant in a game as an active player or a spectator
     """
-    def __init__(self, addr: tuple, nikName: str, symbol: int, turn: int = -1):
+    def __init__(self, addr: tuple, nikName: str, symbol: str, turn: int = -1):
         """initialize the details of a participant in a game
 
         Args:
@@ -99,9 +113,10 @@ def registerNewGame(num_of_participants: int, addr: tuple):
     """
     game = db_access.create_new_game(num_of_participants)
     if (isinstance(game, BE.Game)):
-        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, BE.symbolsOfBoard.O.value)
-        activeGames[game.game_ID] = (game, [newParticipant],[]) # the key is the address of the first player, we save the game record and a list of sockets of players
-        registeredUsers[addr].append(game.game_ID)              # add the game_ID to the new game the user just now started.
+        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, 'O')
+        activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
+                                                                      # of sockets of players and spectators and how many moves were done so far.
+        registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
         return game
     else:
         return -1
@@ -119,7 +134,8 @@ def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
     if type_of_joined_user == "spectator":
         activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
     else:
-        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, activeGames[game_ID][1][-1].symbol + 1)
+        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, symbols[activeGames[game_ID][1][-1].symbol])
+        print("symbol of second:", newParticipant.symbol)
         activeGames[game_ID][1].append(newParticipant) # add the active player user address to the list of players
         
         # compare the number of connected players to the amount that the game should has
@@ -159,7 +175,6 @@ def notifyOneParticipant(addr: tuple, response: str, value):
     player_Message.responses.append(message)
     # player_Message.false_request = True
     player_Message.response_created = False
-
 
 def notifyParticipants(game_ID: str, response: str, value, *rest):
     """notify all the participants of a certain game with a message sent as an argument, 
@@ -226,8 +241,8 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
 
 def startTheGame(game_ID: str):
     activeGames[game_ID][0].set_game_state("STARTED")
+    activeGames[game_ID][0].set_creation_date(datetime.datetime.now())
     print("game that started: ", activeGames[game_ID][0])
-    db_access.update_game(activeGames[game_ID][0])
     
     active_players = activeGames[game_ID][1]
 
@@ -239,17 +254,125 @@ def startTheGame(game_ID: str):
     notifyOneParticipant(active_players[0].addr, "8_yourMove", "")
 
 
-def moveOnBoard(game_ID: str, token: str, whichSquare: int):
-    pass
+def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
+    gameInQuestion = activeGames[game_ID][0]
+    gameInQuestion.set_square_on_board(squareChanged)
+    activeGames[game_ID][3] = activeGames[game_ID][3] + 1  # increase number of moves
 
-def checkStateOfGame(game_ID: str):
-    pass
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase 'turn' counter
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
 
+    result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3])
+    
+    if (result == 0): # the game is not finished
+        notifyParticipants(game_ID, "9_afterOneMove", (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
+        notifyOneParticipant(nextPlayer.addr, "10_YourMoveArrived", squareChanged)
+    
+    else: # game has finished, either by victory or by draw
+        gameHasFinished(game_ID, result, squareChanged, lastPlayer)
+
+
+
+def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
+    """check if after the move that was done the state of the game has changed
+
+    Args:
+        board (list): the board of game
+        squareChanged (tuple): (row changed, column changed, which symbol)
+        numOfMoves (int): number of moves done so far
+        
+    Returns:
+        int: 0 - continue, the game didn't finished
+             1 - the game was won
+             2 - it's a draw 
+    """
+    # if there were not enough moves so far, continue with the game
+    if numOfMoves <= 2*(len(board)-1):
+        return 0
+    
+    # then, check for a victory
+    symbol = squareChanged[2]
+    row = squareChanged[0]
+    col = squareChanged[1]
+    size = len(board)
+
+    # check victory in the column 
+    if (row > 0  and  board[row-1][col] == symbol):
+        if (row > 1 and board[row-2][col] == symbol):
+            return 1
+        elif (row < size - 1  and  board[row+1][col] == symbol):
+            return 1
+    elif (row < size - 2  and  board[row+1][col] == symbol  and  board[row+2][col] == symbol):
+        return 1
+    
+    # check victory in the row
+    if (col > 0  and  board[row][col-1] == symbol):
+        if (col > 1 and board[row][col-2] == symbol):
+            return 1
+        elif (col < size - 1  and  board[row][col+1] == symbol):
+            return 1
+    elif (col < size - 2  and  board[row][col+1] == symbol  and  board[row][col+2] == symbol):
+        return 1
+    
+    # check victory in the backward slash diagonal
+    if (row > 0  and  col > 0  and  board[row-1][col-1] == symbol):
+        if (row > 1  and  col > 1  and  board[row-2][col-2] == symbol):
+            return 1
+        elif (row < size - 1  and  col < size - 1  and  board[row+1][col+1] == symbol):
+            return 1
+    elif (row < size - 2  and  col < size - 2  and  board[row+1][col+1] == symbol  and  board[row+2][col+2] == symbol):
+        return 1
+    
+    # check victory in the forward slash diagonal
+    if (row > 0  and  col < size - 1  and  board[row-1][col+1] == symbol):
+        if (row > 2  and  col < size - 2  and  board[row-2][col+2] == symbol):
+            return 1
+        elif (row < size - 1  and  col > 0  and  board[row+1][col-1] == symbol):
+            return 1
+    elif (row < size - 2  and  col > 1  and  board[row+1][col-1] == symbol  and  board[row+2][col-2] == symbol):
+        return 1
+    
+    # finally, check for a draw
+    if (numOfMoves == size*size):
+        return 2
+    
 def timeout(token: str):
     pass
 
 def someoneExitedAbruptly(sock : socket):
     pass
 
-def gameHasFinished(game_ID: str):
-    pass
+def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
+    
+    game = activeGames[game_ID][0]
+    game.set_duration()
+
+    users_list = []
+
+    if (result == 1): # the game has won
+        notifyParticipants(game_ID, "11_victory", (squareChanged, lastPlayer.nik_name), lastPlayer.addr)
+        notifyOneParticipant(lastPlayer.addr, "12_youWon", "")
+
+        game.set_game_state("WON")
+        game.set_winner_ID(registeredUsers[lastPlayer.addr][0].token)
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            if player.addr != lastPlayer.addr:
+                user.userStat.updateStat()
+            else:
+                user.userStat.updateStat(1)
+
+    elif (result == 2):
+        notifyParticipants(game_ID, "13_draw", squareChanged)
+        game.set_game_state("TIE")
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            user.userStat.updateStat(2)
+
+    db_access.update_users(users_list)
+    db_access.update_game(game)

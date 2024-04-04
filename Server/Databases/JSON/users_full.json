@@ -4,21 +4,10 @@
         "nik_name": "dvir",
         "creation_date": "2024-03-27T15:21:15.801076",
         "user_stat": {
-            "games_participated": 0,
+            "games_participated": 1,
             "games_won": 0,
             "games_tie": 0,
-            "avg_time_for_move": 0
-        }
-    },
-    "5803": {
-        "token": "5803",
-        "nik_name": "efrat",
-        "creation_date": "2024-03-27T16:05:33.892636",
-        "user_stat": {
-            "games_participated": 0,
-            "games_won": 0,
-            "games_tie": 0,
-            "avg_time_for_move": 0
+            "avg_time_for_move": 0.0
         }
     },
     "9883": {
@@ -81,10 +70,43 @@
         "nik_name": "aba",
         "creation_date": "2024-03-29T14:51:56.997509",
         "user_stat": {
-            "games_participated": 0,
+            "games_participated": 1,
+            "games_won": 1,
+            "games_tie": 0,
+            "avg_time_for_move": 0.0
+        }
+    },
+    "4805": {
+        "token": 4805,
+        "nik_name": "aba",
+        "creation_date": "2024-03-29T14:51:56.997509",
+        "user_stat": {
+            "games_participated": 2,
+            "games_won": 2,
+            "games_tie": 0,
+            "avg_time_for_move": 0.0
+        }
+    },
+    "5803": {
+        "token": "5803",
+        "nik_name": "efrat",
+        "creation_date": "2024-03-27T16:05:33.892636",
+        "user_stat": {
+            "games_participated": 2,
             "games_won": 0,
             "games_tie": 0,
-            "avg_time_for_move": 0
+            "avg_time_for_move": 0.0
+        }
+    },
+    "631": {
+        "token": 631,
+        "nik_name": "dvir",
+        "creation_date": "2024-03-27T15:21:15.801076",
+        "user_stat": {
+            "games_participated": 2,
+            "games_won": 0,
+            "games_tie": 0,
+            "avg_time_for_move": 0.0
         }
     }
 }

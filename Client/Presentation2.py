@@ -632,8 +632,6 @@ class MainPage(tk.Frame):
 
         self.player_last_type = player_type
 
-    
-
 
     def on_game_select(self, event):
         # Function to handle clicking on a game entry
@@ -1034,27 +1032,26 @@ class GamePage(tk.Frame):
     def __init__(self, parent, controller, num_of_players : int,  game_ID: str = "", board = ""):
         tk.Frame.__init__(self, parent)
         self.master = parent
+        self.controller = controller
         self.game_ID = game_ID
         self.size = num_of_players + 1  # size of board in x and y axis
         self.configure(bg="#f0f0f0")    # Set background color
+        
+        # if a spectator has joined in the middle of a game, we need to initialize his board
         if board != "":
             self.board = board
-            self.joinedAfterStart = True
         else:
             self.board = [[' ' for _ in range(self.size)] for _ in range(self.size)]
-            self.joinedAfterStart = False
+
         
         self.symbol_player = 'O'
-        
 
         self.isStarted = False
         self.yourTurn = False
 
         self.message_buffer = []
 
-
         self.create_widgets()
-        self.start_time = time.time()
         self.update_timer_and_messages()
 
     def create_widgets(self):
@@ -1067,15 +1064,10 @@ class GamePage(tk.Frame):
             self.grid_frame.grid_columnconfigure(i, weight=1)  # Expand columns equally
             self.grid_frame.grid_rowconfigure(i, weight=1)     # Expand rows equally
             for j in range(self.size):
-                self.buttons[i][j] = tk.Button(self.grid_frame, text='', font=('Arial', 16, 'bold'), width=3, height=1,
+                self.buttons[i][j] = tk.Button(self.grid_frame, text=self.board[i][j], font=('Arial', 16, 'bold'), width=3, height=1,
                                                 command=lambda i=i, j=j: self.on_button_click(i, j), bg="#ffffff", fg="#000000", bd=1, relief="solid")
                 self.buttons[i][j].grid(row=i, column=j, sticky="nsew")
                 
-        # if a spectator has joined in the middle of a game, we need to initialize his board
-        if (self.joinedAfterStart):
-            for i in range(self.size):
-                for j in range(self.size):
-                    self.buttons[i][j].config(text=self.board[i][j])
         
         # Frame for buttons and timer
         self.bottom_frame = tk.Frame(self, bg="#f0f0f0")
@@ -1110,43 +1102,23 @@ class GamePage(tk.Frame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(1, weight=1)
     
-    def assignSymbol(self, num: int) -> str:
-        match num:
-            case 1:
-                self.symbol_player = 'O'
-            case 2:
-                self.symbol_player = 'X'
-            case 3:
-                self.symbol_player = '$'
-            case 4:
-                self.symbol_player = '#'
-            case 5:
-                self.symbol_player = '@'
-            case 6:
-                self.symbol_player = '+'
-            case 7:
-                self.symbol_player = '%'
-            case 8:
-                self.symbol_player = '='
-        
-        return self.symbol_player     
-    
+    def assignSymbol(self, symbol: int) -> str:
+        self.symbol_player = symbol
+        return symbol
+
+    def restartTimer(self):
+        self.start_time = time.time()
 
     def on_button_click(self, row, col):
-        if self.yourTurn:
-            if self.board[row][col] == ' ':
+        if self.yourTurn  and  self.board[row][col] == ' ':
                 self.board[row][col] = self.symbol_player
                 self.buttons[row][col]['text'] = self.symbol_player
-                # if self.check_winner(row, col):
-                #     self.add_message(f"Player {self.current_player} wins!")
-                #     self.disable_buttons()
-                # elif self.check_draw():
-                #     self.add_message("It's a draw!")
-                #     self.disable_buttons()
-                # else:
-                #     self.current_player = 'O' if self.current_player == 'X' else 'X'
-                #     self.start_time = time.time()  # Restart timer for next move
-                #     self.update_timer()
+                self.yourTurn = False
+                self.controller.messageChannel.setRequest("aMove", ((row, col, self.symbol_player), self.game_ID))
+
+    def updateBoardAndButton(self, row, col, symbol):
+        self.board[row][col] = symbol
+        self.buttons[row][col]['text'] = symbol
 
     def check_winner(self, row, col):
         # Check row
@@ -1174,11 +1146,13 @@ class GamePage(tk.Frame):
 
     def update_timer_and_messages(self):
         
-        if (len(self.message_buffer) != 0):
-            for message in self.message_buffer:
-                self.add_message(message)
-            self.message_buffer.clear()
-
+        if (len(self.message_buffer) > 0):
+            self.add_message(self.message_buffer.pop(0))
+            # for message in self.message_buffer:
+            #     self.add_message(message)
+            # self.message_buffer.clear()
+            
+            
         if (self.isStarted):
             elapsed_time = int(time.time() - self.start_time)
             minutes = elapsed_time // 60
@@ -1189,7 +1163,7 @@ class GamePage(tk.Frame):
 
     def add_message(self, message):
         self.message_text.config(state=tk.NORMAL)  # Enable editing temporarily
-        self.message_text.insert(tk.END, message + '\n')
+        self.message_text.insert(tk.END, message + '\n\n')
         self.message_text.config(state=tk.DISABLED)  # Make read-only again
         self.message_text.see(tk.END)  # Scroll to the bottom
 
@@ -1207,12 +1181,18 @@ class GamePage(tk.Frame):
 ##########################################################
 
 def schedule_check(tk : tk.Tk, t : threading.Thread, func_name):
-    """
-    Schedule the execution of the `check_if_done()` function after
-    one second.
+    """Schedule the execution of the 'check_if_done()' function after
+        one second.
+
+    Args:
+        tk (tk.Tk): the frame from which the function was called
+        t (threading.Thread): the thread that we monitor if it finished its work
+        func_name: the name (not 'str') of the function to call after some time defined in the argument to 'after' function
     """
     func = getattr(tk,func_name)
     tk.after(500, func, t)
 
 def validate_numbers_entry(text):
+    """function to help validate an entry text if it has numbers only
+    """
     return text.isdecimal()

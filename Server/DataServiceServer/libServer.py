@@ -11,7 +11,7 @@ level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.insert(1, level_up)
 
 import BusinessLogic as BL
-import BusinessEntities as BE
+# import BusinessEntities as BE
 
 
 
@@ -137,6 +137,13 @@ class Message:
             print(f"Received request {self.request!r} from {self.addr}")
 
             match self.request[0]: # switch 'action'
+                
+                case "aMove": # the request is as follows: {"aMove": ((row, col, symbol), self.game_ID)}
+                    BL.moveOnBoard(self.request[1][1], self.request[1][0], self.addr) 
+
+                    self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
+                    self.jsonheader = None      
+                    self.request = None         # now the writing function won't execute, there is no need in this case.
 
                 case "veteranUser":  # 'not new' user request to sign in
                     result = BL.signInUser(self.request[1], self.addr, self.sock)
@@ -193,7 +200,7 @@ class Message:
                                             }, True))
                     self.toExit = True
                 
-                case "newJoined":
+                case "newJoined": # request is as follows: {"newJoined": (typeOfPlayer, game_ID)}
                     BL.joinToExistingGame(self.request[1][1], self.request[1][0], self.addr)
                     
                     # the response to that request will be handled using the falseRequest mechanism, so we don't set a normal ersponse

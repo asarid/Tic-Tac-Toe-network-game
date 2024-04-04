@@ -47,8 +47,13 @@ class Game(dict):
         self.game_state = game_state
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
 
-    def set_board(self, board: list):
-        self.board = board
+    def set_square_on_board(self, square: tuple):
+        """set a certain square on board
+
+        Args:
+            square (tuple): consists of (row, column, symbol to put on board)
+        """
+        self.board[square[0]][square[1]] = square[2]
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_num_of_players(self, num_of_players: int):
@@ -59,8 +64,8 @@ class Game(dict):
             self.winner_ID = winner_ID
             dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
 
-    def set_duration(self, duration: int):
-        self.duration = duration
+    def set_duration(self):
+        self.duration = (datetime.datetime.now() - self.creation_date).total_seconds()
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_ID = self.winner_ID, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_creation_date(self, creation_date: datetime):
@@ -93,6 +98,17 @@ class UserStat:
         self.gamesWon = 0
         self.gamesInTie = 0
         self.avgTimeForMove = 0
-        
-
     
+    def updateStat(self, wonOrDrawOrLose: int = 0, avg_time_for_move: int = 0):
+        """update the statistics of a user, before updating the DB
+
+        Args:
+            wonOrDrawOrLose (int, optional): 0 - the user losed the game, 1 - the user won the last game, 2 - the user had a draw in the last game. Defauls to 0.
+            avg_time_for_move (int, optional): average time for moves in the last game. Defaults to 0.
+        """
+        if (wonOrDrawOrLose == 1):
+            self.gamesWon = self.gamesWon + 1
+        elif (wonOrDrawOrLose == 2):
+            self.gamesInTie = self.gamesInTie + 1
+        self.avgTimeForMove = (self.numOfGamesParticipated * self.avgTimeForMove + avg_time_for_move)/(self.numOfGamesParticipated + 1)
+        self.numOfGamesParticipated = self.numOfGamesParticipated + 1

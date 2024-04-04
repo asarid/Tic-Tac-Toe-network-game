@@ -270,7 +270,27 @@ class JSON_db_access(DataAccessInterface):
         except json.JSONDecodeError:
             print("update_user(): Seems like the file is empty")
         
-    
+
+    def update_users(self, users_list: list):
+        """update a list of users at once. the update is made only for the statistics, if anyone
+            wants to update its nik_name, it can be done through the function 'update_user'
+
+        Args:
+            users_list (list): a list of users to be updated in the DB
+        """
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsersFull = json.load(usersFile)
+            
+            for user in users_list:
+                dictUsersFull.pop(user.token, None)     
+                dictUsersFull[user.token] = user
+            
+            with open(self.users_full, 'w') as usersFile:
+                json.dump(dictUsersFull, usersFile, indent=4, separators=(',',': '), cls=UserEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print("update_users(): Seems like the file is empty")
 
     # ==============================
     # =========  DELETE  ===========

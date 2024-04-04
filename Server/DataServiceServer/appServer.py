@@ -56,7 +56,7 @@ try:
                 message = key.data
                 try:
                     message.process_events(mask)
-                    time.sleep(0.02)
+                    time.sleep(0.03)
                 except Exception:
                     print(
                         f"Main: Error: Exception for {message.addr}:\n"
