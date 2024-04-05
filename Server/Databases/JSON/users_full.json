@@ -4,9 +4,9 @@
         "nik_name": "dvir",
         "creation_date": "2024-03-27T15:21:15.801076",
         "user_stat": {
-            "games_participated": 1,
+            "games_participated": 3,
             "games_won": 0,
-            "games_tie": 0,
+            "games_tie": 1,
             "avg_time_for_move": 0.0
         }
     },
@@ -70,17 +70,6 @@
         "nik_name": "aba",
         "creation_date": "2024-03-29T14:51:56.997509",
         "user_stat": {
-            "games_participated": 1,
-            "games_won": 1,
-            "games_tie": 0,
-            "avg_time_for_move": 0.0
-        }
-    },
-    "4805": {
-        "token": 4805,
-        "nik_name": "aba",
-        "creation_date": "2024-03-29T14:51:56.997509",
-        "user_stat": {
             "games_participated": 2,
             "games_won": 2,
             "games_tie": 0,
@@ -92,9 +81,9 @@
         "nik_name": "efrat",
         "creation_date": "2024-03-27T16:05:33.892636",
         "user_stat": {
-            "games_participated": 2,
-            "games_won": 0,
-            "games_tie": 0,
+            "games_participated": 4,
+            "games_won": 1,
+            "games_tie": 1,
             "avg_time_for_move": 0.0
         }
     },
@@ -103,9 +92,9 @@
         "nik_name": "dvir",
         "creation_date": "2024-03-27T15:21:15.801076",
         "user_stat": {
-            "games_participated": 2,
+            "games_participated": 4,
             "games_won": 0,
-            "games_tie": 0,
+            "games_tie": 1,
             "avg_time_for_move": 0.0
         }
     }

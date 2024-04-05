@@ -184,10 +184,18 @@ class Message:
             case "4_exit":
                 self.close()
 
-            case "5_newPlayer": # we get the following false request: { "5_newPlayer" : <number of remaining num of players to join>}
+            case "5_newPlayer": # we get the following response due to false request: { "5_newPlayer" : <number of remaining num of players to join>}
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
                     strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
+            
+            case "14_newSpectator":  # we get the following response: { "14_newSpectator" : num_of_players-num_of_active_players }
+                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                    if (self.response["value"] == 0): # the game has already started
+                        gui.currentPageInstance.message_buffer.append("## The game has already started, have a seat and enjoy watching!")
+                    else: # num_of_players-num_of_active_players > 0, which means that the game has not yet started
+                        strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
+                        gui.currentPageInstance.message_buffer.append(strForDisplay)
 
             case "6_beforeStart":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":

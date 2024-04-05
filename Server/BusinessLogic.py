@@ -133,6 +133,9 @@ def fetchAllActiveGames():
 def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
     if type_of_joined_user == "spectator":
         activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
+        # send a response with value of the remaining number of players to start the game (0 or more)
+        notifyOneParticipant(addr, "14_newSpectator", activeGames[game_ID][0].num_of_players-len(activeGames[game_ID][1]))
+
     else:
         newParticipant = Participant(addr, registeredUsers[addr][0].nikName, symbols[activeGames[game_ID][1][-1].symbol])
         print("symbol of second:", newParticipant.symbol)
@@ -264,14 +267,14 @@ def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
     nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
 
     result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3])
-    
+    print(f"result of ({squareChanged[0]} {squareChanged[1]}) is {result}")
+
     if (result == 0): # the game is not finished
         notifyParticipants(game_ID, "9_afterOneMove", (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
         notifyOneParticipant(nextPlayer.addr, "10_YourMoveArrived", squareChanged)
     
     else: # game has finished, either by victory or by draw
         gameHasFinished(game_ID, result, squareChanged, lastPlayer)
-
 
 
 def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
@@ -287,6 +290,7 @@ def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
              1 - the game was won
              2 - it's a draw 
     """
+    print(f"check: ({squareChanged[0]} {squareChanged[1]})")
     # if there were not enough moves so far, continue with the game
     if numOfMoves <= 2*(len(board)-1):
         return 0
@@ -337,11 +341,16 @@ def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
     if (numOfMoves == size*size):
         return 2
     
+    # if al other options were not true, continue the game
+    return 0
+    
+
 def timeout(token: str):
     pass
 
 def someoneExitedAbruptly(sock : socket):
     pass
+
 
 def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
     

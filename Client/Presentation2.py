@@ -628,7 +628,10 @@ class MainPage(tk.Frame):
             if player_type == "active_player" and self.activeGames_occuring != []:
                 self.games_listbox.delete(len(self.activeGames_initialized),len(self.activeGames_initialized)+len(self.activeGames_occuring)-1)
             elif player_type == "spectator":
-                self.games_listbox.insert("end", *self.activeGames_occuring)
+                for index, game in enumerate(self.activeGames_occuring):
+                    strForDisplay = f"Game {len(self.activeGames_initialized)+index+1} (opened for " + str(game[0]["num_of_players"]) + " players, waiting for " + str(game[0]["num_of_players"]-game[1]) + " more, " + str(game[2]) + " spectators" + ")"
+                    self.games_listbox.insert("end", strForDisplay)
+                # self.games_listbox.insert("end", *self.activeGames_occuring)
 
         self.player_last_type = player_type
 
@@ -643,7 +646,7 @@ class MainPage(tk.Frame):
         if (selected_index >= len(self.activeGames_initialized)): 
             selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
             numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
-            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], board = selectedGame["board"])
+            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], selectedGame["board"])
 
         # the user is either an active player or a spectator in a game that has not yet started
         else:
@@ -653,12 +656,11 @@ class MainPage(tk.Frame):
             self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
         
         
-        # send a message about how many more players nedd to join before we start, but only if
-        # the user is a spectator and he chose to spectate a game that has not yet started. else,
-        # a message will be sent by the server.
-        if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
-            strForDisplay = "## waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
-            self.controller.currentPageInstance.message_buffer.append(strForDisplay)
+        
+        
+        # if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
+        #     strForDisplay = "## waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
+        #     self.controller.currentPageInstance.message_buffer.append(strForDisplay)
         
 
         # send a message to the server that a new player has now joined the game

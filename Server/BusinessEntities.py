@@ -32,7 +32,7 @@ class Game(dict):
         self.game_ID = str(uuid.uuid4())
         self.num_of_players = num_of_players
         self.game_state = gameState
-        self.board = [ [0 for i in range(self.num_of_players+1)] for j in range(self.num_of_players+1) ] # initiaze the (x+1)^2 board with zeros, where 'x' is the number of players
+        self.board = [ [' ' for i in range(self.num_of_players+1)] for j in range(self.num_of_players+1) ] # initiaze the (x+1)^2 board with zeros, where 'x' is the number of players
         self.winner_ID = ""
         self.duration = 0 # datetime.timedelta()
         self.creation_date = datetime.datetime.now()
