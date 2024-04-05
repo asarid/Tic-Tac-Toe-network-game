@@ -1054,6 +1054,7 @@ class GamePage(tk.Frame):
         self.message_buffer = []
 
         self.game_result = "waiting"
+        self.secondsForTimeout = 30  # no more than 59
 
         self.create_widgets()
         self.update_timer_and_messages()
@@ -1153,6 +1154,12 @@ class GamePage(tk.Frame):
             seconds = elapsed_time % 60
             self.timer_label.config(text=f"Time: {minutes:02d}:{seconds:02d}")
         
+            if (seconds == self.secondsForTimeout  and  self.yourTurn == True):
+                self.yourTurn = False
+                self.controller.messageChannel.setRequest("timeout", self.game_ID)
+
+
+
         self.timer_label.after(1000, self.update_timer_and_messages)
 
     def add_message(self, message):
@@ -1167,7 +1174,6 @@ class GamePage(tk.Frame):
                 self.controller.show_page(MainPage)
         else:
             self.controller.show_page(MainPage)
-
 
     def exit_app(self):
         """upon clicking the 'exit' button, handle exiting the game gracefully by sending a message

@@ -267,7 +267,6 @@ def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
     nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
 
     result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3])
-    print(f"result of ({squareChanged[0]} {squareChanged[1]}) is {result}")
 
     if (result == 0): # the game is not finished
         notifyParticipants(game_ID, "9_afterOneMove", (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
@@ -330,7 +329,7 @@ def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
     
     # check victory in the forward slash diagonal
     if (row > 0  and  col < size - 1  and  board[row-1][col+1] == symbol):
-        if (row > 2  and  col < size - 2  and  board[row-2][col+2] == symbol):
+        if (row > 1  and  col < size - 2  and  board[row-2][col+2] == symbol):
             return 1
         elif (row < size - 1  and  col > 0  and  board[row+1][col-1] == symbol):
             return 1
@@ -345,8 +344,14 @@ def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
     return 0
     
 
-def timeout(token: str):
-    pass
+def timeout(game_ID: str):
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase 'turn' counter
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+
+    notifyParticipants(game_ID, "15_timeout", (lastPlayer.nik_name, nextPlayer.nik_name), nextPlayer.addr)
+    notifyOneParticipant(nextPlayer.addr, "10_YourMoveArrived", (-1,-1, ''))
+
 
 def someoneExitedAbruptly(sock : socket):
     pass

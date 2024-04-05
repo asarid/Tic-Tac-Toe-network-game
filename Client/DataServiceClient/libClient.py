@@ -158,7 +158,10 @@ class Message:
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
-                    currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    if (self.response["value"][0] != -1):
+                        currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    else:
+                        currentPage.message_buffer.append("## timeout for last player")
                     currentPage.game_turn_label.config(text=" your turn! ", bg="#00cc00", fg="#ffffff")
                     currentPage.message_buffer.append("## it's your turn to play!")
                     currentPage.yourTurn = True
@@ -204,6 +207,13 @@ class Message:
                     else: # num_of_players-num_of_active_players > 0, which means that the game has not yet started
                         strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
                         gui.currentPageInstance.message_buffer.append(strForDisplay)
+            
+            case "15_timeout":
+                currentPage = gui.currentPageInstance
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.restartTimer()
+                    currentPage.game_turn_label.config(text="other's turn", bg="#0066cc", fg="#ffffff")
+                    currentPage.message_buffer.append("## timeout for " + self.response["value"][0] + ", the turn is passed to " + self.response["value"][1])
 
             case "6_beforeStart":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
@@ -218,7 +228,7 @@ class Message:
                     gamePage.game_turn_label.config(text="started", bg="#00cc00", fg="#ffffff")
                     gamePage.game_result = "started"
                     gamePage.message_buffer.append("## Last player has joined, let the tournament begin!")
-                    gamePage.message_buffer.append("## First to play is " + self.response["value"] + ". And remember: 30 seconds for a move, no excuse accepted!")
+                    gamePage.message_buffer.append("## First to play is " + self.response["value"] + ". And remember, "+ str(gamePage.secondsForTimeout) + " seconds for a move, no excuse accepted!")
                     gamePage.restartTimer()
                     gamePage.isStarted = True
 
@@ -228,7 +238,7 @@ class Message:
                     gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
                     gui.currentPageInstance.game_turn_label.config(text="your turn", bg="#00cc00", fg="#ffffff")
                     gui.currentPageInstance.yourTurn = True
-
+            
         # result = content.get("result")
         # print(f"Got result: {result}")
         

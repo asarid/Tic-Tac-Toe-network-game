@@ -199,7 +199,14 @@ class Message:
                                              "value" : "a"
                                             }, True))
                     self.toExit = True
-                
+
+                case "timeout":  # the time for the last move was over
+                    BL.timeout(self.request[1])
+
+                    self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
+                    self.jsonheader = None      
+                    self.request = None
+                    
                 case "newJoined": # request is as follows: {"newJoined": (typeOfPlayer, game_ID)}
                     BL.joinToExistingGame(self.request[1][1], self.request[1][0], self.addr)
                     

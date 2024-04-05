@@ -54,17 +54,6 @@
             "avg_time_for_move": 0.0
         }
     },
-    "5803": {
-        "token": "5803",
-        "nik_name": "efrat",
-        "creation_date": "2024-03-27T16:05:33.892636",
-        "user_stat": {
-            "games_participated": 10,
-            "games_won": 3,
-            "games_tie": 3,
-            "avg_time_for_move": 0.0
-        }
-    },
     "3038": {
         "token": 3038,
         "nik_name": "aviad",
@@ -81,9 +70,31 @@
         "nik_name": "dvir",
         "creation_date": "2024-03-27T15:21:15.801076",
         "user_stat": {
-            "games_participated": 10,
-            "games_won": 2,
-            "games_tie": 3,
+            "games_participated": 14,
+            "games_won": 3,
+            "games_tie": 5,
+            "avg_time_for_move": 0.0
+        }
+    },
+    "5803": {
+        "token": "5803",
+        "nik_name": "efrat",
+        "creation_date": "2024-03-27T16:05:33.892636",
+        "user_stat": {
+            "games_participated": 15,
+            "games_won": 5,
+            "games_tie": 5,
+            "avg_time_for_move": 0.0
+        }
+    },
+    "631": {
+        "token": 631,
+        "nik_name": "dvir",
+        "creation_date": "2024-03-27T15:21:15.801076",
+        "user_stat": {
+            "games_participated": 15,
+            "games_won": 3,
+            "games_tie": 5,
             "avg_time_for_move": 0.0
         }
     }
