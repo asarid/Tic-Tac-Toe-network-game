@@ -645,18 +645,17 @@ class MainPage(tk.Frame):
         # the user is a spectator in an occurring game
         if (selected_index >= len(self.activeGames_initialized)): 
             selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
-            numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
+            # numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
             self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], selectedGame["board"])
 
         # the user is either an active player or a spectator in a game that has not yet started
         else:
             selectedGame = self.activeGames_initialized[selected_index][0]
-            numOfActivePlayers = self.activeGames_initialized[selected_index][1]
+            # numOfActivePlayers = self.activeGames_initialized[selected_index][1]
             # print("selectedGame", selectedGame)
             self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
         
-        
-        
+    
         
         # if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
         #     strForDisplay = "## waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
@@ -668,7 +667,8 @@ class MainPage(tk.Frame):
             self.controller.messageChannel.setRequest("newJoined", ("player", selectedGame["game_ID"]))
         
         # self.player_type_var.get() == "spectator"
-        else: 
+        else:
+            self.controller.currentPageInstance.spectator_label.pack()
             self.controller.messageChannel.setRequest("newJoined", ("spectator", selectedGame["game_ID"]))
 
 
@@ -1053,6 +1053,8 @@ class GamePage(tk.Frame):
 
         self.message_buffer = []
 
+        self.game_result = "waiting"
+
         self.create_widgets()
         self.update_timer_and_messages()
 
@@ -1072,17 +1074,31 @@ class GamePage(tk.Frame):
                 
         
         # Frame for buttons and timer
-        self.bottom_frame = tk.Frame(self, bg="#f0f0f0")
-        self.bottom_frame.grid(row=0, column=1, padx=10, pady=10, sticky="n")
+        self.control_frame = tk.Frame(self, bg="#f0f0f0")
+        self.control_frame.grid(row=0, column=1, padx=0, pady=0, sticky="n")
+        self.control_frame.grid_propagate(False)
 
-        self.quit_button = tk.Button(self.bottom_frame, text="Quit Game", command=self.quit_game, font=('Arial', 12), bg="#d32f2f", fg="#ffffff", bd=1, relief="solid")
+        self.buttons_frame = tk.Frame(self.control_frame, bg="#f0f0f0")
+        self.buttons_frame.pack(side="top", fill="y", padx=0, pady=0)
+
+        self.quit_button = tk.Button(self.buttons_frame, text="Quit Game", command=self.quit_game, font=('Arial', 12), bg="#d32f2f", fg="#ffffff", bd=1, relief="solid")
         self.quit_button.grid(row=0, column=0, pady=5, padx=5, sticky="ew")
 
-        self.exit_button = tk.Button(self.bottom_frame, text="Exit", command=self.exit_app, font=('Arial', 12), bg="#303f9f", fg="#ffffff", bd=1, relief="solid")
+        self.exit_button = tk.Button(self.buttons_frame, text="Exit", command=self.exit_app, font=('Arial', 12), bg="#303f9f", fg="#ffffff", bd=1, relief="solid")
         self.exit_button.grid(row=1, column=0, pady=5, padx=5, sticky="ew")
 
-        self.timer_label = tk.Label(self.bottom_frame, text="", font=('Arial', 12), bg="#f0f0f0")
+        self.timer_label = tk.Label(self.buttons_frame, text="", font=('Arial', 12), bg="#f0f0f0")
         self.timer_label.grid(row=2, column=0, pady=5, padx=5, sticky="ew")
+
+        self.catchSpace_label = tk.Label(self.buttons_frame, text="", font=('Arial', 12), bg="#f0f0f0")
+        self.catchSpace_label.grid(row=3, column=0, pady=5, padx=5, sticky="ew")
+
+        self.game_turn_label = tk.Label(self.control_frame, text="  waiting  ", pady=10, padx=20, font=('Arial', 20), bg="#404040", fg="#ffffff")
+        self.game_turn_label.pack(side="bottom", fill="y", padx=0, pady=5)
+
+        self.spectator_label = tk.Label(self.control_frame, text="spectator", pady=10, padx=20, font=('Arial', 20), bg="#cc00cc", fg="#ffffff")
+        self.spectator_label.pack(side="bottom", fill="y", padx=0, pady=5)
+        self.spectator_label.pack_forget()
 
         # Frame for messages with scrollable area
         self.message_frame = tk.Frame(self, bg="#f0f0f0")
@@ -1122,30 +1138,6 @@ class GamePage(tk.Frame):
         self.board[row][col] = symbol
         self.buttons[row][col]['text'] = symbol
 
-    def check_winner(self, row, col):
-        # Check row
-        if all(self.board[row][c] == self.current_player for c in range(self.size)):
-            return True
-        # Check column
-        if all(self.board[r][col] == self.current_player for r in range(self.size)):
-            return True
-        # Check diagonals if applicable
-        if row == col:
-            if all(self.board[i][i] == self.current_player for i in range(self.size)):
-                return True
-        if row + col == self.size - 1:
-            if all(self.board[i][self.size - 1 - i] == self.current_player for i in range(self.size)):
-                return True
-        return False
-
-    def check_draw(self):
-        return all(self.board[row][col] != ' ' for row in range(self.size) for col in range(self.size))
-
-    def disable_buttons(self):
-        for i in range(self.size):
-            for j in range(self.size):
-                self.buttons[i][j].config(state=tk.DISABLED)
-
     def update_timer_and_messages(self):
         
         if (len(self.message_buffer) > 0):
@@ -1170,12 +1162,23 @@ class GamePage(tk.Frame):
         self.message_text.see(tk.END)  # Scroll to the bottom
 
     def quit_game(self):
-        if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):
-            self.destroy()
+        if self.game_result != "over":
+            if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):
+                self.controller.show_page(MainPage)
+        else:
+            self.controller.show_page(MainPage)
+
 
     def exit_app(self):
-        if messagebox.askokcancel("Exit", "Are you sure you want to exit the application?"):
-            self.quit()
+        """upon clicking the 'exit' button, handle exiting the game gracefully by sending a message
+            to the server
+        """
+        if self.game_result != "over":
+            if messagebox.askokcancel("Exit", "Are you sure you want to exit the application?"):
+                self.controller.messageChannel.setRequest("exit", "a")
+        else:
+            self.controller.messageChannel.setRequest("exit", "a")
+        
 
 
 ##########################################################

@@ -116,7 +116,7 @@ def registerNewGame(num_of_participants: int, addr: tuple):
         newParticipant = Participant(addr, registeredUsers[addr][0].nikName, 'O')
         activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
                                                                       # of sockets of players and spectators and how many moves were done so far.
-        registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
+        # registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
         return game
     else:
         return -1
@@ -385,3 +385,5 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
 
     db_access.update_users(users_list)
     db_access.update_game(game)
+
+    activeGames.pop(game_ID, None)

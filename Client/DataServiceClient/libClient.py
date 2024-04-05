@@ -151,6 +151,7 @@ class Message:
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
+                    currentPage.game_turn_label.config(text="other's turn", bg="#0066cc", fg="#ffffff")
                     currentPage.message_buffer.append("## The next to play is: " + self.response["value"][1])
 
             case "10_YourMoveArrived":
@@ -158,6 +159,7 @@ class Message:
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    currentPage.game_turn_label.config(text=" your turn! ", bg="#00cc00", fg="#ffffff")
                     currentPage.message_buffer.append("## it's your turn to play!")
                     currentPage.yourTurn = True
             
@@ -166,12 +168,16 @@ class Message:
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
                     currentPage.isStarted = False
+                    currentPage.game_result = "over"
+                    currentPage.game_turn_label.config(text=" game  over ", bg="#ff0000", fg="#ffffff")
                     currentPage.message_buffer.append("## " + self.response["value"][1] + " has won the game, well done!")
 
             case "12_youWon":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.isStarted = False
+                    currentPage.game_result = "over"
+                    currentPage.game_turn_label.config(text="  you won!  ", bg="#00cc00", fg="#ffffff")
                     currentPage.message_buffer.append("## you are the winner, congratulations!!!")
 
             case "13_draw":
@@ -179,6 +185,8 @@ class Message:
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
                     currentPage.isStarted = False
+                    currentPage.game_result = "over"
+                    currentPage.game_turn_label.config(text="    draw    ", bg="#ff8000", fg="#ffffff")
                     currentPage.message_buffer.append("## it's a draw, the game is over.")
 
             case "4_exit":
@@ -206,11 +214,11 @@ class Message:
             case "7_start":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
                     print("7_start")
-                    strForDisplay1 = "## Last player has joined, let the tournament begin!"
-                    strForDisplay2 = "## First to play is " + self.response["value"] + ". And remember: 30 seconds for a move, no excuse accepted!"
                     gamePage = gui.currentPageInstance
-                    gamePage.message_buffer.append(strForDisplay1)
-                    gamePage.message_buffer.append(strForDisplay2)
+                    gamePage.game_turn_label.config(text="started", bg="#00cc00", fg="#ffffff")
+                    gamePage.game_result = "started"
+                    gamePage.message_buffer.append("## Last player has joined, let the tournament begin!")
+                    gamePage.message_buffer.append("## First to play is " + self.response["value"] + ". And remember: 30 seconds for a move, no excuse accepted!")
                     gamePage.restartTimer()
                     gamePage.isStarted = True
 
@@ -218,6 +226,7 @@ class Message:
                 print("8_yourMove")
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
                     gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
+                    gui.currentPageInstance.game_turn_label.config(text="your turn", bg="#00cc00", fg="#ffffff")
                     gui.currentPageInstance.yourTurn = True
 
         # result = content.get("result")
