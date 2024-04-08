@@ -3,7 +3,6 @@ import json
 import random
 import sys
 import os
-import uuid
 import datetime
 
 conf_path = os.getcwd()
@@ -116,9 +115,7 @@ class JSON_db_access(DataAccessInterface):
             if os.path.exists(filePath) is False:
                 raise Exception("File not found")    
         
-        # with open(self.file_path, "w") as write_file:
-        #     json.dump(data, write_file)
-
+        self.lastDateGamesFetched = datetime.datetime.now()
 
 
     # ==============================
@@ -190,19 +187,54 @@ class JSON_db_access(DataAccessInterface):
             print("fetch_game_by_ID(): The key in the dictionary is not found")
     
 
-    def fetch_all_games(self) -> dict:
+    def fetch_all_games(self) -> list:
         try:
             with open(self.games) as gamesFile:
                 dictGames = json.load(gamesFile)
             
-            return dictGames
+            how_many_to_save = 30
+            sorted_games_by_creationDate = sorted(dictGames.items(), key=lambda x:datetime.datetime.fromisoformat(x[1]["creation_date"]))
+            lastDateGamesFetched = datetime.datetime.now()
+
+            # remove old games records (save only 'how_many_to_save' records or less), do it no more than once a day
+            if (len(sorted_games_by_creationDate) > how_many_to_save  and  (datetime.datetime.now()-lastDateGamesFetched).days >= 1):
+                sorted_games_by_creationDate = sorted_games_by_creationDate[-30:]
+                for index, game in enumerate(sorted_games_by_creationDate):
+                    if (index < len(dictGames.items()) - how_many_to_save):
+                        dictGames.pop(game[0]) # pop the game with game_ID 'game[0]'
+                    else:
+                        break
+            
+                with open(self.games, 'w') as gamesFile:
+                    json.dump(dictGames, gamesFile, indent=4, separators=(',',': '), cls=GameEncoderJSON)
+
+            return sorted_games_by_creationDate
         
         except json.JSONDecodeError:
-            print("fetch_game_by_ID(): Seems like the 'games' file is empty or corrupted")
+            print("fetch_all_games(): Seems like the 'games' file is empty or corrupted")
+            return []
         except KeyError:
-            print("fetch_game_by_ID(): The key in the dictionary is not found")
+            print("fetch_all_games(): The key in the dictionary is not found")
+            return []
                     
-                  
+    def fetch_users_stats(self) -> list:
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            users_list = []
+            for key, user in dictUsers.items():
+                users_list.append((user["nik_name"],user["user_stat"]))
+            
+            return users_list
+        
+        except json.JSONDecodeError:
+            print("fetch_users_stats(): Seems like the 'users' file is empty or corrupted")
+            return []
+        except KeyError:
+            print("fetch_users_stats(): The key in the dictionary is not found")
+            return []
+
     def fetch_user_by_ID(self, token: int) -> BE.User:
         try:
             with open(self.users_full) as usersFile:

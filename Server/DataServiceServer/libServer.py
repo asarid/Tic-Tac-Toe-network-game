@@ -134,7 +134,7 @@ class Message:
             print(self._recv_buffer)
             self.request = self._json_decode(data, encoding)
             
-            print(f"Received request {self.request!r} from {self.addr}")
+            # print(f"Received request {self.request!r} from {self.addr}")
 
             match self.request[0]: # switch 'action'
                 
@@ -149,6 +149,10 @@ class Message:
                     result = BL.signInUser(self.request[1], self.addr, self.sock)
                     if (result == -1):
                         self.responses.append(({ "response": "0_tokenNotFound",
+                                                    "value" : -1
+                                                }, True))
+                    elif (result == -2):
+                        self.responses.append(({ "response": "0_AlreadyRegistered",
                                                     "value" : -1
                                                 }, True))
                     else:
@@ -175,7 +179,7 @@ class Message:
                         self.responses.append(({ "response": "2_newRegisteredGame",
                                                 "value" : [result.game_ID, result.num_of_players]             
                                                 }, True))
-                case "fetchGames":
+                case "fetchActiveGames":
                     games = BL.fetchAllActiveGames()
                     gamesForSending = {}
                     for item in games.items():
@@ -215,12 +219,21 @@ class Message:
                     self.jsonheader      = None      
                     self.request         = None # now the writing function won't execute, there is no need in this case.
                 
-                # case "server_newPlayerJoined":
-                #     print("notify 1")
-                #     self.false_request = False
-                #     self.response = { "response": "5_newPlayer",
-                #                         "value" : self.request[1]
-                #                     }
+
+                case "fetchGamesHistory": # request is as follows: {"fetchGamesHistory": ""}
+                    result = BL.fetchGamesHistory()
+                
+                    self.responses.append(({ "response": "16_gamesHistory",
+                                                "value" : result
+                                        }, True))
+                    
+
+                case "fetchUsersStats": # request is as follows: {"fetchUsersStats": ""}  
+                    result = BL.fetchUsersStats()
+
+                    self.responses.append(({ "response": "17_usersStats",
+                                                "value" : result
+                                        }, True))
 
             self.response_created = False
         else:

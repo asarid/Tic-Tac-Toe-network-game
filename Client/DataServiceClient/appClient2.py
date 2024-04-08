@@ -67,7 +67,9 @@ class AppRoot(tk.Tk):
         # frame = self.frames[cont]
         self.currentPage = cont
         self.currentPageInstance.grid(row = 0, column = 0, sticky ="nsew")
+        print("before tkraise: ", self.currentPageInstance)
         self.currentPageInstance.tkraise()
+        
 
 
     def exit(self):

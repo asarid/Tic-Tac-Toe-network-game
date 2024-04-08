@@ -53,139 +53,8 @@
                 0
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "creation_date": "2024-03-27T16:02:00.427204",
-        "duration": 0
-    },
-    "52279f76-7f8d-4ede-b41f-d993444f67dd": {
-        "game_ID": "52279f76-7f8d-4ede-b41f-d993444f67dd",
-        "num_of_players": 5,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "creation_date": "2024-03-27T16:03:05.080146",
-        "duration": 0
-    },
-    "d2236a4f-aeed-469c-bd1b-6f7dd90b80c1": {
-        "game_ID": "d2236a4f-aeed-469c-bd1b-6f7dd90b80c1",
-        "num_of_players": 6,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "creation_date": "2024-03-27T16:04:10.451198",
         "duration": 0
     },
     "e2dd5aa0-0e8f-46dd-a23c-3faba14a6d2b": {
@@ -242,197 +111,9 @@
                 0
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "duration": 0,
         "creation_date": "2024-04-03T11:37:33.075818"
-    },
-    "dce728c8-29ff-4e05-9770-b0c39fa061d8": {
-        "game_ID": "dce728c8-29ff-4e05-9770-b0c39fa061d8",
-        "num_of_players": 4,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T12:12:06.807941"
-    },
-    "2d82ada2-27ef-4056-a791-44a6c54f4486": {
-        "game_ID": "2d82ada2-27ef-4056-a791-44a6c54f4486",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T13:36:20.384709"
-    },
-    "a81c5e60-bbb9-4401-aed9-f92732ccdf40": {
-        "game_ID": "a81c5e60-bbb9-4401-aed9-f92732ccdf40",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T13:36:59.623263"
-    },
-    "04e0fffc-7b31-4a65-9dd7-a0744409706b": {
-        "game_ID": "04e0fffc-7b31-4a65-9dd7-a0744409706b",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T13:39:10.348539"
-    },
-    "66afcda5-ee1b-4dc7-9ba7-5013bb2067cb": {
-        "game_ID": "66afcda5-ee1b-4dc7-9ba7-5013bb2067cb",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T13:43:28.205641"
-    },
-    "a2e22801-1624-4160-840d-5ec68b213649": {
-        "game_ID": "a2e22801-1624-4160-840d-5ec68b213649",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-04T16:53:51.189356"
     },
     "4d21d8f4-c033-4b1d-a21b-026da9f89488": {
         "game_ID": "4d21d8f4-c033-4b1d-a21b-026da9f89488",
@@ -464,84 +145,9 @@
                 "O"
             ]
         ],
-        "winner_ID": 4805,
+        "winner_name": "avraham",
         "duration": 48.014208,
         "creation_date": "2024-04-04T17:10:58.024390"
-    },
-    "972eec7e-c1da-4fd9-b94e-7cac6e09dfa1": {
-        "game_ID": "972eec7e-c1da-4fd9-b94e-7cac6e09dfa1",
-        "num_of_players": 2,
-        "game_state": "STARTED",
-        "board": [
-            [
-                0,
-                "O",
-                "X"
-            ],
-            [
-                0,
-                "X",
-                0
-            ],
-            [
-                "O",
-                0,
-                "X"
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 41.293424,
-        "creation_date": "2024-04-05T10:17:43.435580"
-    },
-    "0764fab3-9381-42b5-8741-2438076547f5": {
-        "game_ID": "0764fab3-9381-42b5-8741-2438076547f5",
-        "num_of_players": 2,
-        "game_state": "STARTED",
-        "board": [
-            [
-                0,
-                "O",
-                "X"
-            ],
-            [
-                0,
-                "X",
-                0
-            ],
-            [
-                "O",
-                0,
-                "X"
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 19.231926,
-        "creation_date": "2024-04-05T10:19:58.286321"
-    },
-    "3fd96010-44de-4111-9f5e-088f4ae9a038": {
-        "game_ID": "3fd96010-44de-4111-9f5e-088f4ae9a038",
-        "num_of_players": 2,
-        "game_state": "STARTED",
-        "board": [
-            [
-                0,
-                "X",
-                "O"
-            ],
-            [
-                0,
-                "O",
-                0
-            ],
-            [
-                "X",
-                0,
-                "O"
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 34.129394,
-        "creation_date": "2024-04-05T10:28:23.054345"
     },
     "db5967a9-0574-4188-acaa-eda30f1ad887": {
         "game_ID": "db5967a9-0574-4188-acaa-eda30f1ad887",
@@ -564,159 +170,9 @@
                 "O"
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "duration": 29.738392,
         "creation_date": "2024-04-05T10:30:46.905219"
-    },
-    "3aabb16e-4fa9-4f4a-9993-136744abc181": {
-        "game_ID": "3aabb16e-4fa9-4f4a-9993-136744abc181",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T10:32:04.454638"
-    },
-    "d160a89b-00c2-40e7-a993-fbcc804d5cd9": {
-        "game_ID": "d160a89b-00c2-40e7-a993-fbcc804d5cd9",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T10:59:47.676836"
-    },
-    "50c8a127-20b0-48c0-819a-46f3e8a7441c": {
-        "game_ID": "50c8a127-20b0-48c0-819a-46f3e8a7441c",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:21:50.327993"
-    },
-    "5b3e0125-d00e-4b0b-b3f5-53bef1ec29fd": {
-        "game_ID": "5b3e0125-d00e-4b0b-b3f5-53bef1ec29fd",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:22:13.137582"
-    },
-    "6e62cd8b-0c20-4876-8a3c-f2f09ceae839": {
-        "game_ID": "6e62cd8b-0c20-4876-8a3c-f2f09ceae839",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:25:31.094791"
-    },
-    "d7d8d3fd-d8b6-4a74-88b9-c57322efd928": {
-        "game_ID": "d7d8d3fd-d8b6-4a74-88b9-c57322efd928",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:30:55.623310"
     },
     "6017cd0b-34d5-413f-a552-92dc58427a29": {
         "game_ID": "6017cd0b-34d5-413f-a552-92dc58427a29",
@@ -739,1211 +195,9 @@
                 "O"
             ]
         ],
-        "winner_ID": "5803",
+        "winner_name": "efrat",
         "duration": 86.573047,
         "creation_date": "2024-04-05T11:30:32.959610"
-    },
-    "19065934-3139-47b9-8bca-e25e43b47f7d": {
-        "game_ID": "19065934-3139-47b9-8bca-e25e43b47f7d",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:33:26.861599"
-    },
-    "3a67e055-5a6b-44e6-b8dd-00981f8715ae": {
-        "game_ID": "3a67e055-5a6b-44e6-b8dd-00981f8715ae",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:42:49.977936"
-    },
-    "c6b13a79-2026-4806-8893-12665d4a9725": {
-        "game_ID": "c6b13a79-2026-4806-8893-12665d4a9725",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:43:12.087403"
-    },
-    "d55429a3-fd4a-4922-a574-0160e11d2ed9": {
-        "game_ID": "d55429a3-fd4a-4922-a574-0160e11d2ed9",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:52:34.787830"
-    },
-    "67632bd4-3914-4df9-9d0b-2125cc392a5d": {
-        "game_ID": "67632bd4-3914-4df9-9d0b-2125cc392a5d",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:53:17.502440"
-    },
-    "6d008dd4-da26-449d-8dfb-40f6091c1c99": {
-        "game_ID": "6d008dd4-da26-449d-8dfb-40f6091c1c99",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:54:55.601080"
-    },
-    "b9bd79af-a7b0-4cf3-8d69-1ade08e43b77": {
-        "game_ID": "b9bd79af-a7b0-4cf3-8d69-1ade08e43b77",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:56:05.576796"
-    },
-    "2bd81ade-d22f-4689-9c6f-f4e128a0f556": {
-        "game_ID": "2bd81ade-d22f-4689-9c6f-f4e128a0f556",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:56:52.367517"
-    },
-    "e3eed1bf-7d24-4d9b-b8b4-29f81d7f11c4": {
-        "game_ID": "e3eed1bf-7d24-4d9b-b8b4-29f81d7f11c4",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T11:58:01.105222"
-    },
-    "cdc30f60-779b-4d24-8aaa-6185d45a1637": {
-        "game_ID": "cdc30f60-779b-4d24-8aaa-6185d45a1637",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:04:12.786065"
-    },
-    "89b30d9b-5f19-41d5-a8f4-1c1f816bc9b3": {
-        "game_ID": "89b30d9b-5f19-41d5-a8f4-1c1f816bc9b3",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:05:24.948189"
-    },
-    "bf2ebf97-db32-4ceb-9986-8554fc66d977": {
-        "game_ID": "bf2ebf97-db32-4ceb-9986-8554fc66d977",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:06:55.177748"
-    },
-    "3281a9da-26b9-48e3-97c8-0326c587695c": {
-        "game_ID": "3281a9da-26b9-48e3-97c8-0326c587695c",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:08:18.881722"
-    },
-    "ec43b6e1-b202-4e96-ae43-9a46e3ef7630": {
-        "game_ID": "ec43b6e1-b202-4e96-ae43-9a46e3ef7630",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:09:13.448944"
-    },
-    "c660a231-4a10-4296-a002-019aed40b7ac": {
-        "game_ID": "c660a231-4a10-4296-a002-019aed40b7ac",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:11:05.079602"
-    },
-    "3b333294-d7ae-4777-86dc-28a08f4acd10": {
-        "game_ID": "3b333294-d7ae-4777-86dc-28a08f4acd10",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:16:57.354020"
-    },
-    "7e26d8a1-18e7-430d-84e4-7745e30576ac": {
-        "game_ID": "7e26d8a1-18e7-430d-84e4-7745e30576ac",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:18:17.307225"
-    },
-    "7e5d09aa-650b-44c6-aa21-03698d618e7f": {
-        "game_ID": "7e5d09aa-650b-44c6-aa21-03698d618e7f",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:18:59.798250"
-    },
-    "cd3e7f83-b5f9-4fea-aca1-d2d81c71d2c2": {
-        "game_ID": "cd3e7f83-b5f9-4fea-aca1-d2d81c71d2c2",
-        "num_of_players": 8,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:19:27.199165"
-    },
-    "fa2c0e27-1a3b-4e51-8eb3-c621b1b6a73e": {
-        "game_ID": "fa2c0e27-1a3b-4e51-8eb3-c621b1b6a73e",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:20:12.697635"
-    },
-    "a3d02c5d-db3c-4bcd-9c89-a79e6ec19e54": {
-        "game_ID": "a3d02c5d-db3c-4bcd-9c89-a79e6ec19e54",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:20:52.003898"
-    },
-    "13ff0d8e-3532-4a4f-8680-9867c908f527": {
-        "game_ID": "13ff0d8e-3532-4a4f-8680-9867c908f527",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:21:38.928877"
-    },
-    "83d9af97-f343-4959-a532-3bea25eca70b": {
-        "game_ID": "83d9af97-f343-4959-a532-3bea25eca70b",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:22:46.065793"
-    },
-    "e0841400-3e68-4bd3-813e-c1d312eb130d": {
-        "game_ID": "e0841400-3e68-4bd3-813e-c1d312eb130d",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:26:32.517597"
-    },
-    "aa31144f-d45d-45df-82c0-5759b69b5333": {
-        "game_ID": "aa31144f-d45d-45df-82c0-5759b69b5333",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:27:26.733090"
-    },
-    "77033cad-8c1e-4dad-b7e1-22880f7bba54": {
-        "game_ID": "77033cad-8c1e-4dad-b7e1-22880f7bba54",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:28:57.104552"
-    },
-    "dc2548fd-785c-46a5-924d-704ccafee2c9": {
-        "game_ID": "dc2548fd-785c-46a5-924d-704ccafee2c9",
-        "num_of_players": 5,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:29:57.007350"
-    },
-    "b59387b1-15f8-4ae6-be72-18c2dadbd201": {
-        "game_ID": "b59387b1-15f8-4ae6-be72-18c2dadbd201",
-        "num_of_players": 5,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:30:24.803971"
-    },
-    "3ef2164f-03de-4990-9617-4506aa3d39b6": {
-        "game_ID": "3ef2164f-03de-4990-9617-4506aa3d39b6",
-        "num_of_players": 6,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:31:27.663437"
-    },
-    "d96b35d5-e0e2-4806-9b56-243446668a1e": {
-        "game_ID": "d96b35d5-e0e2-4806-9b56-243446668a1e",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:38:46.541955"
-    },
-    "4f739d45-241a-4ea0-bcb7-fd784727f529": {
-        "game_ID": "4f739d45-241a-4ea0-bcb7-fd784727f529",
-        "num_of_players": 3,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:40:49.744073"
-    },
-    "90fa2676-bfb0-4caa-b332-a839e46b8db4": {
-        "game_ID": "90fa2676-bfb0-4caa-b332-a839e46b8db4",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:41:26.373228"
-    },
-    "d841a767-9637-4142-a1b9-34da80005c3b": {
-        "game_ID": "d841a767-9637-4142-a1b9-34da80005c3b",
-        "num_of_players": 8,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:42:18.753312"
-    },
-    "1cd78eca-9152-4252-86f2-327fb9616ba2": {
-        "game_ID": "1cd78eca-9152-4252-86f2-327fb9616ba2",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T12:52:46.296114"
-    },
-    "1b7d309f-9fa7-4cf5-bd84-8ae1ef721335": {
-        "game_ID": "1b7d309f-9fa7-4cf5-bd84-8ae1ef721335",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T13:04:58.372377"
     },
     "fa66fe97-bcc8-4f8d-83a1-ec204a43f845": {
         "game_ID": "fa66fe97-bcc8-4f8d-83a1-ec204a43f845",
@@ -1966,84 +220,9 @@
                 " "
             ]
         ],
-        "winner_ID": "5803",
+        "winner_name": "efrat",
         "duration": 56.703905,
         "creation_date": "2024-04-05T13:07:58.199567"
-    },
-    "7db3307d-c5e5-4306-9741-852a6037b791": {
-        "game_ID": "7db3307d-c5e5-4306-9741-852a6037b791",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T13:18:11.735382"
-    },
-    "247fa10b-52d0-4721-8877-b9a423580ca6": {
-        "game_ID": "247fa10b-52d0-4721-8877-b9a423580ca6",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T13:19:58.965314"
-    },
-    "227afdc5-8f0d-403b-9261-d209cf3acf4e": {
-        "game_ID": "227afdc5-8f0d-403b-9261-d209cf3acf4e",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T13:22:51.521966"
     },
     "c0d39508-8140-45f2-8db8-c6fc9655cc17": {
         "game_ID": "c0d39508-8140-45f2-8db8-c6fc9655cc17",
@@ -2066,7 +245,7 @@
                 "X"
             ]
         ],
-        "winner_ID": 631,
+        "winner_name": "dvir",
         "duration": 12.389288,
         "creation_date": "2024-04-05T13:26:19.247711"
     },
@@ -2091,7 +270,7 @@
                 "X"
             ]
         ],
-        "winner_ID": 631,
+        "winner_name": "dvir",
         "duration": 25.59668,
         "creation_date": "2024-04-05T13:30:18.176576"
     },
@@ -2116,7 +295,7 @@
                 "O"
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "duration": 40.187684,
         "creation_date": "2024-04-05T13:42:24.712437"
     },
@@ -2141,409 +320,9 @@
                 "O"
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "duration": 37.117861,
         "creation_date": "2024-04-05T13:45:30.378232"
-    },
-    "3a8150f3-d898-482c-95cd-b46220a8cc0f": {
-        "game_ID": "3a8150f3-d898-482c-95cd-b46220a8cc0f",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T14:02:25.686666"
-    },
-    "abd94fe4-d0c0-4218-9a52-e576f5147663": {
-        "game_ID": "abd94fe4-d0c0-4218-9a52-e576f5147663",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T14:04:24.042929"
-    },
-    "e708b31f-248a-491f-8dc3-dd92ac2c4a20": {
-        "game_ID": "e708b31f-248a-491f-8dc3-dd92ac2c4a20",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T14:05:17.679000"
-    },
-    "7282f345-3655-4849-a508-c10fb5c6e7f5": {
-        "game_ID": "7282f345-3655-4849-a508-c10fb5c6e7f5",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                " ",
-                "O",
-                "X"
-            ],
-            [
-                "X",
-                "O",
-                " "
-            ],
-            [
-                "X",
-                "O",
-                " "
-            ]
-        ],
-        "winner_ID": "5803",
-        "duration": 20.110379,
-        "creation_date": "2024-04-05T14:21:55.949709"
-    },
-    "504da0d5-4028-4fb6-a271-87f6baea27af": {
-        "game_ID": "504da0d5-4028-4fb6-a271-87f6baea27af",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T14:29:47.532612"
-    },
-    "dc36227d-5b35-4f91-a57f-62038184088a": {
-        "game_ID": "dc36227d-5b35-4f91-a57f-62038184088a",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T14:40:07.686802"
-    },
-    "c2bf2946-293c-4b09-85ef-1ace962f0055": {
-        "game_ID": "c2bf2946-293c-4b09-85ef-1ace962f0055",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                " ",
-                " ",
-                "X"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ]
-        ],
-        "winner_ID": 3038,
-        "duration": 39.34304,
-        "creation_date": "2024-04-05T14:41:06.724496"
-    },
-    "52e1e152-9cc2-4aec-9117-5580d192ca99": {
-        "game_ID": "52e1e152-9cc2-4aec-9117-5580d192ca99",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:32:56.546050"
-    },
-    "fc21ec37-4cf8-47c1-a3e3-8e7d0fc2bcb0": {
-        "game_ID": "fc21ec37-4cf8-47c1-a3e3-8e7d0fc2bcb0",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:34:07.742142"
-    },
-    "dd759932-91ed-48ec-8a9f-ea57558433e3": {
-        "game_ID": "dd759932-91ed-48ec-8a9f-ea57558433e3",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:36:27.451907"
-    },
-    "ed787d34-2b23-4fb3-ab0a-1dbc1861c16b": {
-        "game_ID": "ed787d34-2b23-4fb3-ab0a-1dbc1861c16b",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:43:51.587052"
-    },
-    "c4a69a55-e83b-4f4a-ad1a-7c65df186c6d": {
-        "game_ID": "c4a69a55-e83b-4f4a-ad1a-7c65df186c6d",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:45:42.020804"
-    },
-    "de901c0c-2528-4b7c-b385-f9fba8346005": {
-        "game_ID": "de901c0c-2528-4b7c-b385-f9fba8346005",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:46:43.027956"
-    },
-    "5064abd3-4632-4d6d-b201-5f93788cb7fa": {
-        "game_ID": "5064abd3-4632-4d6d-b201-5f93788cb7fa",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:53:17.100921"
-    },
-    "4cc88519-1f50-40f3-90bf-c934fba71cb7": {
-        "game_ID": "4cc88519-1f50-40f3-90bf-c934fba71cb7",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 0,
-        "creation_date": "2024-04-05T15:56:16.382203"
-    },
-    "9f15fd93-8edd-4381-a12a-dd79ffb6905d": {
-        "game_ID": "9f15fd93-8edd-4381-a12a-dd79ffb6905d",
-        "num_of_players": 2,
-        "game_state": "TIE",
-        "board": [
-            [
-                "X",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "O"
-            ],
-            [
-                "X",
-                "X",
-                "O"
-            ]
-        ],
-        "winner_ID": "",
-        "duration": 104.122598,
-        "creation_date": "2024-04-05T16:00:19.886869"
     },
     "5570b701-e10a-4669-adf4-0ff44bac6e7e": {
         "game_ID": "5570b701-e10a-4669-adf4-0ff44bac6e7e",
@@ -2566,7 +345,7 @@
                 "O"
             ]
         ],
-        "winner_ID": "5803",
+        "winner_name": "efrat",
         "duration": 42.64525,
         "creation_date": "2024-04-05T16:02:54.826542"
     },
@@ -2591,7 +370,7 @@
                 "X"
             ]
         ],
-        "winner_ID": "",
+        "winner_name": "",
         "duration": 34.238016,
         "creation_date": "2024-04-05T16:08:37.789016"
     },
@@ -2616,7 +395,7 @@
                 "O"
             ]
         ],
-        "winner_ID": 631,
+        "winner_name": "dvir",
         "duration": 17.549001,
         "creation_date": "2024-04-05T16:10:42.881926"
     },
@@ -2641,8 +420,753 @@
                 "X"
             ]
         ],
-        "winner_ID": "5803",
+        "winner_name": "efrat",
         "duration": 9.573606,
         "creation_date": "2024-04-05T16:13:49.579341"
+    },
+    "fd93b017-84ff-42fd-a939-18cfa1857db1": {
+        "game_ID": "fd93b017-84ff-42fd-a939-18cfa1857db1",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T12:49:34.397558"
+    },
+    "27812f54-5aa3-45f4-a56e-4837a1848a0e": {
+        "game_ID": "27812f54-5aa3-45f4-a56e-4837a1848a0e",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T12:49:46.668451"
+    },
+    "fe0aea93-0a0d-4cda-bcbf-92af317b3853": {
+        "game_ID": "fe0aea93-0a0d-4cda-bcbf-92af317b3853",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T12:49:47.658357"
+    },
+    "aaecb13e-be01-4fe3-9bed-7df0dd04448f": {
+        "game_ID": "aaecb13e-be01-4fe3-9bed-7df0dd04448f",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T12:49:50.128251"
+    },
+    "d532b5bd-2b44-49f6-bf7f-732b998d2bb5": {
+        "game_ID": "d532b5bd-2b44-49f6-bf7f-732b998d2bb5",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T13:34:05.650648"
+    },
+    "14fda030-0c78-4973-8d5d-a714ce645b57": {
+        "game_ID": "14fda030-0c78-4973-8d5d-a714ce645b57",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T13:36:43.213601"
+    },
+    "c673c193-beb9-4418-bdcd-3461e68b5c22": {
+        "game_ID": "c673c193-beb9-4418-bdcd-3461e68b5c22",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T13:38:05.242194"
+    },
+    "91868fbb-c30f-4bf2-9e52-b5bb86c10dea": {
+        "game_ID": "91868fbb-c30f-4bf2-9e52-b5bb86c10dea",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T13:50:11.841269"
+    },
+    "eb01b600-c40c-4e3c-8fab-88d9276a5098": {
+        "game_ID": "eb01b600-c40c-4e3c-8fab-88d9276a5098",
+        "num_of_players": 2,
+        "game_state": "WON",
+        "board": [
+            [
+                "X",
+                "X",
+                "X"
+            ],
+            [
+                " ",
+                "O",
+                "X"
+            ],
+            [
+                " ",
+                "O",
+                "O"
+            ]
+        ],
+        "winner_name": "dvir",
+        "duration": 21.10936,
+        "creation_date": "2024-04-07T14:12:30.724477"
+    },
+    "40b418a4-f8c5-4a7c-bc79-d53a35d0c360": {
+        "game_ID": "40b418a4-f8c5-4a7c-bc79-d53a35d0c360",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T15:07:38.463899"
+    },
+    "c6ca25cd-a31f-4ba7-a27c-81c12979fe4e": {
+        "game_ID": "c6ca25cd-a31f-4ba7-a27c-81c12979fe4e",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T16:56:47.985346"
+    },
+    "10cc36dd-6488-4216-8173-c90783e9db68": {
+        "game_ID": "10cc36dd-6488-4216-8173-c90783e9db68",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T16:58:35.488776"
+    },
+    "53f37fb1-8b5b-4035-afa4-1e9117ba5c15": {
+        "game_ID": "53f37fb1-8b5b-4035-afa4-1e9117ba5c15",
+        "num_of_players": 2,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T17:01:10.679428"
+    },
+    "04dcaf99-89ca-4b1a-9bf1-76c13794bb8b": {
+        "game_ID": "04dcaf99-89ca-4b1a-9bf1-76c13794bb8b",
+        "num_of_players": 8,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T21:29:22.305359"
+    },
+    "633c1421-fccd-479c-a418-58410534f116": {
+        "game_ID": "633c1421-fccd-479c-a418-58410534f116",
+        "num_of_players": 8,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T21:31:41.283390"
+    },
+    "098bc4b6-359f-4e2c-a437-65c692b52f0b": {
+        "game_ID": "098bc4b6-359f-4e2c-a437-65c692b52f0b",
+        "num_of_players": 3,
+        "game_state": "INITIALIZED",
+        "board": [
+            [
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "",
+        "duration": 0,
+        "creation_date": "2024-04-07T21:35:25.380821"
+    },
+    "d0f52b85-d610-478f-a39b-80b1c7a78283": {
+        "game_ID": "d0f52b85-d610-478f-a39b-80b1c7a78283",
+        "num_of_players": 8,
+        "game_state": "WON",
+        "board": [
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                "@",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                "O",
+                " ",
+                " ",
+                " ",
+                "@",
+                "=",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                "O",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                "O",
+                " ",
+                "$",
+                "+",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                "$",
+                " ",
+                " ",
+                "="
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                "%",
+                "#",
+                " ",
+                "X",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                "%",
+                " ",
+                "+",
+                "X",
+                "#",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ]
+        ],
+        "winner_name": "avraham",
+        "duration": 186.29874,
+        "creation_date": "2024-04-07T21:39:58.748562"
+    },
+    "d6ebc778-fd7b-453d-b4f6-297454a8a5a0": {
+        "game_ID": "d6ebc778-fd7b-453d-b4f6-297454a8a5a0",
+        "num_of_players": 3,
+        "game_state": "WON",
+        "board": [
+            [
+                " ",
+                " ",
+                "O",
+                " "
+            ],
+            [
+                "$",
+                "O",
+                "X",
+                " "
+            ],
+            [
+                " ",
+                "$",
+                "X",
+                "X"
+            ],
+            [
+                " ",
+                " ",
+                "$",
+                "O"
+            ]
+        ],
+        "winner_name": "orna",
+        "duration": 89.769157,
+        "creation_date": "2024-04-08T18:03:05.381275"
+    },
+    "097b562a-e2b4-420d-9321-d2a7787a6e2e": {
+        "game_ID": "097b562a-e2b4-420d-9321-d2a7787a6e2e",
+        "num_of_players": 2,
+        "game_state": "WON",
+        "board": [
+            [
+                " ",
+                "X",
+                "O"
+            ],
+            [
+                "X",
+                "O",
+                "O"
+            ],
+            [
+                " ",
+                "X",
+                "O"
+            ]
+        ],
+        "winner_name": "avraham",
+        "duration": 12.919266,
+        "creation_date": "2024-04-08T18:06:15.289664"
     }
 }

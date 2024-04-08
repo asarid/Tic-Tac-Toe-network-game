@@ -83,6 +83,9 @@ def signInUser(token: str, addr: tuple, sock: socket):
     """
     user = db_access.fetch_user_by_ID(token)
     if (isinstance(user, BE.User)):
+        for key, _user in registeredUsers.items(): # check if this user is already connected to the server
+            if _user[0].token == token:
+                return -2
         registeredUsers[addr] = [user, sock]
         return user.nikName
     else:
@@ -157,8 +160,16 @@ def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
             startTheGame(game_ID)
 
 
-def viewStatistics():
-    pass
+def fetchGamesHistory():
+    # fetch history of games from the database (the fetched games are sorted by creation date)
+    games = db_access.fetch_all_games()
+
+    return games
+
+def fetchUsersStats():
+    usersStats = db_access.fetch_users_stats()
+    return usersStats
+
 
 def notifyOneParticipant(addr: tuple, response: str, value):
     """notify one participant of a certain game with a message sent as an argument.
@@ -369,7 +380,7 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
         notifyOneParticipant(lastPlayer.addr, "12_youWon", "")
 
         game.set_game_state("WON")
-        game.set_winner_ID(registeredUsers[lastPlayer.addr][0].token)
+        game.set_winner_name(registeredUsers[lastPlayer.addr][0].nikName)
 
         for player in activeGames[game_ID][1]:
             user = registeredUsers[player.addr][0]

@@ -5,6 +5,7 @@ import io
 import struct
 import socket as sckt
 import os
+import time
 
 conf_path = os.getcwd()
 sys.path.append(conf_path)
@@ -22,35 +23,36 @@ class Message:
         self.selector = selector
         self.sock = sock
         self.addr = addr
-        self.request = None
+        self.requests = []
         self._recv_buffer = b""
         self._send_buffer = b""
         self._request_queued = True
         self._jsonheader_len = None
         self.jsonheader = None
-        self.response = None
+        self.responses = []
 
         self.last_event = "read"
-
+        self.moreResponsesExpected = False
 
     def process_events(self, mask):
         if mask & selectors.EVENT_READ:
-            print("bitwise: ", mask & selectors.EVENT_READ)
-            print(mask)
-            print(selectors.EVENT_READ)
             self.read()
             self.last_event = "read"
             print("read")
+            
         if mask & selectors.EVENT_WRITE:
             self.write()
+            self.last_event = "write"
+
             
 
 
 
     def read(self):
-        print("trying to read...")
+        print("\ntrying to read...\n")
         isRead = self._read()
-        if (isRead):
+        if (isRead  or  self._recv_buffer != b""):
+
             if self._jsonheader_len is None:
                 self.process_protoheader()
 
@@ -59,14 +61,12 @@ class Message:
                     self.process_jsonheader()
 
             if self.jsonheader:
-                print("and condition")
-                if self.response is None  or  self.last_event == "read":
+                if self.responses == []  or  self.last_event == "read":
+                    print("and condition")
                     self.process_response()
 
 
     
-
-
     def _read(self) -> bool:
         """try to read from the receiving buffer
 
@@ -76,6 +76,7 @@ class Message:
         try:
             # Should be ready to read
             data = self.sock.recv(4096)
+            print("\n", data, "\n")
         except BlockingIOError:
             # Resource temporarily unavailable (errno EWOULDBLOCK)
             pass
@@ -114,29 +115,30 @@ class Message:
 
 
     def process_response(self):
-        print("process_read")
         content_len = self.jsonheader["content-length"]
         if not len(self._recv_buffer) >= content_len:
+            print("not enough data")
             return
+        print("process_read")
         data = self._recv_buffer[:content_len]
         self._recv_buffer = self._recv_buffer[content_len:]
         if self.jsonheader["content-type"] == "text/json":
             encoding = self.jsonheader["content-encoding"]
-            self.response = self._json_decode(data, encoding)
-            print(f"Received response {self.response!r} from {self.addr}")
+            self.responses.append(self._json_decode(data, encoding))
+            print(f"Received response {self.responses[0]!r} from {self.addr}")
             self._process_response_json_content()
         else:
             # Binary or unknown content-type
-            self.response = data
+            self.responses.append(data)
             print(
                 f"Received {self.jsonheader['content-type']} "
                 f"response from {self.addr}"
             )
             self._process_response_binary_content()
-        
+                
         self.jsonheader = None
         self._jsonheader_len = None
-        
+
         # my revision - close only upon user exit
             
         # # Close when response has been processed
@@ -144,36 +146,40 @@ class Message:
 
 
     def _process_response_json_content(self):
-        
-        match self.response["response"]:
+        value = self.responses[0]["value"]
+
+        match self.responses[0]["response"]:
             case "9_afterOneMove":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
-                    currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
                     currentPage.game_turn_label.config(text="other's turn", bg="#0066cc", fg="#ffffff")
-                    currentPage.message_buffer.append("## The next to play is: " + self.response["value"][1])
+                    currentPage.message_buffer.append("## The next to play is: " + value[1])
+                    self.responses.pop(0)
 
             case "10_YourMoveArrived":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
-                    if (self.response["value"][0] != -1):
-                        currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    if (value[0] != -1):
+                        currentPage.updateBoardAndButton(value[0], value[1], value[2])
                     else:
                         currentPage.message_buffer.append("## timeout for last player")
-                    currentPage.game_turn_label.config(text=" your turn! ", bg="#00cc00", fg="#ffffff")
+                    currentPage.game_turn_label.config(text="turn's yours", bg="#00cc00", fg="#ffffff")
                     currentPage.message_buffer.append("## it's your turn to play!")
                     currentPage.yourTurn = True
-            
+                    self.responses.pop(0)
+
             case "11_victory":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
-                    currentPage.updateBoardAndButton(self.response["value"][0][0], self.response["value"][0][1], self.response["value"][0][2])
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
                     currentPage.isStarted = False
                     currentPage.game_result = "over"
-                    currentPage.game_turn_label.config(text=" game  over ", bg="#ff0000", fg="#ffffff")
-                    currentPage.message_buffer.append("## " + self.response["value"][1] + " has won the game, well done!")
+                    currentPage.game_turn_label.config(text="game's  over", bg="#ff0000", fg="#ffffff")
+                    currentPage.message_buffer.append("## " + value[1] + " has won the game, well done!")
+                    self.responses.pop(0)
 
             case "12_youWon":
                 currentPage = gui.currentPageInstance
@@ -182,44 +188,50 @@ class Message:
                     currentPage.game_result = "over"
                     currentPage.game_turn_label.config(text="  you won!  ", bg="#00cc00", fg="#ffffff")
                     currentPage.message_buffer.append("## you are the winner, congratulations!!!")
+                    self.responses.pop(0)
 
             case "13_draw":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
-                    currentPage.updateBoardAndButton(self.response["value"][0], self.response["value"][1], self.response["value"][2])
+                    currentPage.updateBoardAndButton(value[0], value[1], value[2])
                     currentPage.isStarted = False
                     currentPage.game_result = "over"
                     currentPage.game_turn_label.config(text="    draw    ", bg="#ff8000", fg="#ffffff")
                     currentPage.message_buffer.append("## it's a draw, the game is over.")
+                    self.responses.pop(0)
 
             case "4_exit":
                 self.close()
 
             case "5_newPlayer": # we get the following response due to false request: { "5_newPlayer" : <number of remaining num of players to join>}
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
+                    strForDisplay = "## waiting for " + str(value) + " more players to join and then we start!"
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
+                    self.responses.pop(0)
             
             case "14_newSpectator":  # we get the following response: { "14_newSpectator" : num_of_players-num_of_active_players }
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    if (self.response["value"] == 0): # the game has already started
+                    if (value == 0): # the game has already started
                         gui.currentPageInstance.message_buffer.append("## The game has already started, have a seat and enjoy watching!")
                     else: # num_of_players-num_of_active_players > 0, which means that the game has not yet started
-                        strForDisplay = "## waiting for " + str(self.response["value"]) + " more players to join and then we start!"
+                        strForDisplay = "## waiting for " + str(value) + " more players to join and then we start!"
                         gui.currentPageInstance.message_buffer.append(strForDisplay)
-            
+                    self.responses.pop(0)
+
             case "15_timeout":
                 currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     currentPage.game_turn_label.config(text="other's turn", bg="#0066cc", fg="#ffffff")
-                    currentPage.message_buffer.append("## timeout for " + self.response["value"][0] + ", the turn is passed to " + self.response["value"][1])
+                    currentPage.message_buffer.append("## timeout for " + value[0] + ", the turn is passed to " + value[1])
+                    self.responses.pop(0)
 
             case "6_beforeStart":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    strForDisplay = "## The game is about to begin, your turn is " + str(self.response["value"][0]) + " and your symbol is " + gui.currentPageInstance.assignSymbol(self.response["value"][1])
+                    strForDisplay = "## The game is about to begin, your turn is " + str(value[0]) + " and your symbol is " + gui.currentPageInstance.assignSymbol(value[1])
                     gui.currentPageInstance.message_buffer.append(strForDisplay)
-                    gui.currentPageInstance.assignSymbol(self.response["value"][1])
+                    gui.currentPageInstance.assignSymbol(value[1])
+                    self.responses.pop(0)
             
             case "7_start":
                 if gui.currentPageInstance.__class__.__name__ == "GamePage":
@@ -228,9 +240,10 @@ class Message:
                     gamePage.game_turn_label.config(text="started", bg="#00cc00", fg="#ffffff")
                     gamePage.game_result = "started"
                     gamePage.message_buffer.append("## Last player has joined, let the tournament begin!")
-                    gamePage.message_buffer.append("## First to play is " + self.response["value"] + ". And remember, "+ str(gamePage.secondsForTimeout) + " seconds for a move, no excuse accepted!")
+                    gamePage.message_buffer.append("## First to play is " + value + ". And remember, "+ str(gamePage.secondsForTimeout) + " seconds for a move, no excuse accepted!")
                     gamePage.restartTimer()
                     gamePage.isStarted = True
+                    self.responses.pop(0)
 
             case "8_yourMove":
                 print("8_yourMove")
@@ -238,6 +251,7 @@ class Message:
                     gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
                     gui.currentPageInstance.game_turn_label.config(text="your turn", bg="#00cc00", fg="#ffffff")
                     gui.currentPageInstance.yourTurn = True
+                    self.responses.pop(0)
             
         # result = content.get("result")
         # print(f"Got result: {result}")
@@ -249,7 +263,7 @@ class Message:
 ########################
         
     def _process_response_binary_content(self):
-        content = self.response
+        content = self.responses[0]
         print(f"Got response: {content!r}")
 
 ########################
@@ -270,12 +284,12 @@ class Message:
 
     def setRequest(self, action: str, value : str):
         print(f"set request: {action}, {value}")
-        self.request = {
+        self.requests.append({
             "action" : action,
             "value" : value,
             "type" : "text/json",
             "encoding" : "utf-8"
-        }
+        })
         self._request_queued = False
 
 
@@ -300,9 +314,10 @@ class Message:
     def _write(self):
         if self._send_buffer:
 
-            self.response = None
-            self.jsonheader = None
-            self._jsonheader_len = None
+            # self.response = None
+            # self.jsonheader = None
+            # self._jsonheader_len = None
+
             self.last_event = "write"
 
             print(f"Sending {self._send_buffer!r} to {self.addr}")
@@ -322,15 +337,15 @@ class Message:
 
 
     def queue_request(self):
-        action = self.request["action"]
+        action = self.requests[0]["action"]
         #content = "hello everyone!"
         
-        value = self.request["value"]
+        value = self.requests[0]["value"]
         
-        content_type = self.request["type"]
+        content_type = self.requests[0]["type"]
         #content_type = "text/json"
 
-        content_encoding = self.request["encoding"]
+        content_encoding = self.requests[0]["encoding"]
         #content_encoding = "utf-8"
         
         if content_type == "text/json":
@@ -350,7 +365,10 @@ class Message:
             }
         message = self._create_message(**req)
         self._send_buffer += message
-        self._request_queued = True
+        
+        self.requests.pop(0)
+        if (len(self.requests) == 0):
+            self._request_queued = True
 
 
     def _set_selector_events_mask(self, mode):
