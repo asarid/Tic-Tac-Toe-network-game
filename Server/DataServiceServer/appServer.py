@@ -62,7 +62,8 @@ try:
                         f"Main: Error: Exception for {message.addr}:\n"
                         f"{traceback.format_exc()}"
                     )
-                    BL.unregisterUser(message.addr)
+                    #BL.unregisterUser(message.addr)
+                    BL.someoneExitedAbruptly(message.addr)
                     message.close()
 except KeyboardInterrupt:
     print("Caught keyboard interrupt, exiting")

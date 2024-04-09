@@ -5,14 +5,12 @@ import io
 import struct
 import socket as sckt
 import os
-import time
+from tkinter import messagebox
 
 conf_path = os.getcwd()
 sys.path.append(conf_path)
 level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.append(level_up)
-
-# import Presentation2 as ui
 
 
 gui = None
@@ -147,10 +145,10 @@ class Message:
 
     def _process_response_json_content(self):
         value = self.responses[0]["value"]
+        currentPage = gui.currentPageInstance
 
         match self.responses[0]["response"]:
             case "9_afterOneMove":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
@@ -159,7 +157,6 @@ class Message:
                     self.responses.pop(0)
 
             case "10_YourMoveArrived":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     if (value[0] != -1):
@@ -172,7 +169,6 @@ class Message:
                     self.responses.pop(0)
 
             case "11_victory":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
                     currentPage.isStarted = False
@@ -182,7 +178,6 @@ class Message:
                     self.responses.pop(0)
 
             case "12_youWon":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.isStarted = False
                     currentPage.game_result = "over"
@@ -191,7 +186,6 @@ class Message:
                     self.responses.pop(0)
 
             case "13_draw":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.updateBoardAndButton(value[0], value[1], value[2])
                     currentPage.isStarted = False
@@ -204,22 +198,21 @@ class Message:
                 self.close()
 
             case "5_newPlayer": # we get the following response due to false request: { "5_newPlayer" : <number of remaining num of players to join>}
-                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                if currentPage.__class__.__name__ == "GamePage":
                     strForDisplay = "## waiting for " + str(value) + " more players to join and then we start!"
-                    gui.currentPageInstance.message_buffer.append(strForDisplay)
+                    currentPage.message_buffer.append(strForDisplay)
                     self.responses.pop(0)
             
             case "14_newSpectator":  # we get the following response: { "14_newSpectator" : num_of_players-num_of_active_players }
-                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                if currentPage.__class__.__name__ == "GamePage":
                     if (value == 0): # the game has already started
-                        gui.currentPageInstance.message_buffer.append("## The game has already started, have a seat and enjoy watching!")
+                        currentPage.message_buffer.append("## The game has already started, have a seat and enjoy watching!")
                     else: # num_of_players-num_of_active_players > 0, which means that the game has not yet started
                         strForDisplay = "## waiting for " + str(value) + " more players to join and then we start!"
-                        gui.currentPageInstance.message_buffer.append(strForDisplay)
+                        currentPage.message_buffer.append(strForDisplay)
                     self.responses.pop(0)
 
             case "15_timeout":
-                currentPage = gui.currentPageInstance
                 if currentPage.__class__.__name__ == "GamePage":
                     currentPage.restartTimer()
                     currentPage.game_turn_label.config(text="other's turn", bg="#0066cc", fg="#ffffff")
@@ -227,30 +220,37 @@ class Message:
                     self.responses.pop(0)
 
             case "6_beforeStart":
-                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                if currentPage.__class__.__name__ == "GamePage":
                     strForDisplay = "## The game is about to begin, your turn is " + str(value[0]) + " and your symbol is " + gui.currentPageInstance.assignSymbol(value[1])
-                    gui.currentPageInstance.message_buffer.append(strForDisplay)
-                    gui.currentPageInstance.assignSymbol(value[1])
+                    currentPage.message_buffer.append(strForDisplay)
+                    currentPage.assignSymbol(value[1])
                     self.responses.pop(0)
             
             case "7_start":
-                if gui.currentPageInstance.__class__.__name__ == "GamePage":
+                if currentPage.__class__.__name__ == "GamePage":
                     print("7_start")
-                    gamePage = gui.currentPageInstance
-                    gamePage.game_turn_label.config(text="started", bg="#00cc00", fg="#ffffff")
-                    gamePage.game_result = "started"
-                    gamePage.message_buffer.append("## Last player has joined, let the tournament begin!")
-                    gamePage.message_buffer.append("## First to play is " + value + ". And remember, "+ str(gamePage.secondsForTimeout) + " seconds for a move, no excuse accepted!")
-                    gamePage.restartTimer()
-                    gamePage.isStarted = True
+                    currentPage.game_turn_label.config(text="started", bg="#00cc00", fg="#ffffff")
+                    currentPage.game_result = "started"
+                    currentPage.message_buffer.append("## Last player has joined, let the tournament begin!")
+                    currentPage.message_buffer.append("## First to play is " + value + ". And remember, "+ str(currentPage.secondsForTimeout) + " seconds for a move, no excuse accepted!")
+                    currentPage.restartTimer()
+                    currentPage.isStarted = True
                     self.responses.pop(0)
 
             case "8_yourMove":
                 print("8_yourMove")
-                if gui.currentPageInstance.__class__.__name__ == "GamePage":
-                    gui.currentPageInstance.message_buffer.append("## it's your turn to play, the clock is ticking!")
-                    gui.currentPageInstance.game_turn_label.config(text="your turn", bg="#00cc00", fg="#ffffff")
-                    gui.currentPageInstance.yourTurn = True
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.message_buffer.append("## it's your turn to play, the clock is ticking!")
+                    currentPage.game_turn_label.config(text="your turn", bg="#00cc00", fg="#ffffff")
+                    currentPage.yourTurn = True
+                    self.responses.pop(0)
+            
+            case "18_someoneQuitted":
+                if currentPage.__class__.__name__ == "GamePage":
+                    currentPage.message_buffer.append("## someone got out of the game, it is not valid anymore :-(")
+                    currentPage.game_turn_label.config(text="game's paused", bg="#00cc00", fg="#ffffff")
+                    currentPage.isStarted = False
+                    currentPage.game_result = "over"
                     self.responses.pop(0)
             
         # result = content.get("result")
@@ -404,9 +404,14 @@ class Message:
 
 
 
-    def close(self):
-        print(f"Closing connection to {self.addr}")
+    def close(self, isClosedUnexpectedly = False):
         try:
+            if isClosedUnexpectedly == True:
+                result = None
+                result = messagebox.showerror("error", "the server is not connected, try and come back later  )-:")
+                while (result == None):
+                    pass
+            print(f"Closing connection to {self.addr}")
             self.selector.unregister(self.sock)
         except Exception as e:
             print(

@@ -197,8 +197,15 @@ class Message:
                     self.jsonheader = None      
                     self.request = None         # now the writing function won't execute, there is no need in this case.
 
-                case "exit": # exit the game
-                    BL.unregisterUser(self.addr)
+                case "exit":
+                    # the game is over, does not need to notify someone
+                    if (self.request[1] == "a"):
+                        BL.unregisterUser(self.addr)
+                    
+                    # the game not yet over
+                    else:
+                        BL.exitTheGame(self.request[1][0], self.request[1][1], self.addr)
+                    
                     self.responses.append(({ "response": "4_exit",
                                              "value" : "a"
                                             }, True))
@@ -234,6 +241,13 @@ class Message:
                     self.responses.append(({ "response": "17_usersStats",
                                                 "value" : result
                                         }, True))
+                
+                case "quitInMiddle": # request is as follows: {"quitInMiddle": (game_ID, self.symbol)}
+                    BL.quitInMiddle(self.request[1][0], self.request[1][1], self.addr)
+                    
+                    self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
+                    self.jsonheader      = None      
+                    self.request         = None # now the writing function won't execute, there is no need in this case.
 
             self.response_created = False
         else:

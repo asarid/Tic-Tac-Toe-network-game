@@ -13,7 +13,7 @@ factory.register_DB_access('JSON', DA.JSON_db_access)
 db_access = DA.JSON_db_access()
 
 registeredUsers = {}            # each entry is a { user_address 'addr' : [BE.User, socket, game_ID - if any] }
-activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (of addr)], numOfMovesDone: int = 0, turn = 0]}
+activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (ip, port)], numOfMovesDone: int = 0, turn = 0]}
 
 selector = None
 
@@ -114,15 +114,13 @@ def registerNewGame(num_of_participants: int, addr: tuple):
     Returns:
         var: BE.Game new game if the operation succeeded, else -1. 
     """
-    game = db_access.create_new_game(num_of_participants)
-    if (isinstance(game, BE.Game)):
-        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, 'O')
-        activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
-                                                                      # of sockets of players and spectators and how many moves were done so far.
-        # registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
-        return game
-    else:
-        return -1
+    game = BE.Game(num_of_participants)
+    
+    newParticipant = Participant(addr, registeredUsers[addr][0].nikName, 'O')
+    activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
+                                                                    # of sockets of players and spectators and how many moves were done so far.
+    registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
+    return game
 
 def fetchAllActiveGames():
     """return all the active games using the dict 'activeGames'
@@ -136,6 +134,8 @@ def fetchAllActiveGames():
 def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
     if type_of_joined_user == "spectator":
         activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+        
         # send a response with value of the remaining number of players to start the game (0 or more)
         notifyOneParticipant(addr, "14_newSpectator", activeGames[game_ID][0].num_of_players-len(activeGames[game_ID][1]))
 
@@ -143,7 +143,8 @@ def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
         newParticipant = Participant(addr, registeredUsers[addr][0].nikName, symbols[activeGames[game_ID][1][-1].symbol])
         print("symbol of second:", newParticipant.symbol)
         activeGames[game_ID][1].append(newParticipant) # add the active player user address to the list of players
-        
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+
         # compare the number of connected players to the amount that the game should has
         num_of_players = activeGames[game_ID][0].num_of_players
         num_of_active_players = len(activeGames[game_ID][1])
@@ -364,8 +365,24 @@ def timeout(game_ID: str):
     notifyOneParticipant(nextPlayer.addr, "10_YourMoveArrived", (-1,-1, ''))
 
 
-def someoneExitedAbruptly(sock : socket):
-    pass
+def someoneExitedAbruptly(addr : tuple):
+    # if the user is still registered 
+    if addr in registeredUsers:
+        # the user is associated with an occurring game
+        if len(registeredUsers[addr]) == 3:
+            isPlayer = True
+            for participant_addr in activeGames[registeredUsers[addr][2]][2]:
+                if participant_addr == addr: # the user is a spectator
+                    exitTheGame(registeredUsers[addr][2], "no", addr)
+                    isPlayer = False
+                    break
+            if isPlayer == True: # the user is a player, should notify the other players
+                exitTheGame(registeredUsers[addr][2], "O", addr)
+        else:
+            unregisterUser(addr)
+                  
+                            
+
 
 
 def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
@@ -390,7 +407,7 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
             else:
                 user.userStat.updateStat(1)
 
-    elif (result == 2):
+    elif (result == 2): # it's a draw
         notifyParticipants(game_ID, "13_draw", squareChanged)
         game.set_game_state("TIE")
 
@@ -402,4 +419,44 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
     db_access.update_users(users_list)
     db_access.update_game(game)
 
+    for player in activeGames[game_ID][1]:
+        registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    for spectator_addr in activeGames[game_ID][2]:
+        registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    
     activeGames.pop(game_ID, None)
+
+def quitInMiddle(game_ID: str, symbol_player: str, addr: tuple):
+    
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if symbol_player == "no":
+        activeGames[game_ID][2].remove(addr)
+
+    # the user is a player, we need to send a message to the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, "18_someoneQuitted", "", addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)
+
+def exitTheGame(game_ID: str, symbol_player: str, addr: tuple):
+    
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if symbol_player == "no":
+        activeGames[game_ID][2].remove(addr)
+        unregisterUser(addr)
+
+    # the user is a player, we need to notify the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, "18_someoneQuitted", "", addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)
+        unregisterUser(addr)
+
+
+

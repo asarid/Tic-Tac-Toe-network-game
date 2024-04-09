@@ -21,6 +21,9 @@ class SocketCommunication:
 
         self.tkRoot = tkRoot
         
+        # server closed unexpectedly
+        self.closedUnexpectedly = False
+
         #host, port = sys.argv[1], int(sys.argv[2])
         #action, value = sys.argv[3], sys.argv[4]
         #request = create_request(action, value)
@@ -69,7 +72,7 @@ class SocketCommunication:
                             f"Main: Error: Exception for {message.addr}:\n"
                             f"{traceback.format_exc()}"
                         )
-                        message.close()
+                        message.close(True)
                 
                 # Check for a socket being monitored to continue.
                 if not sel.get_map():
