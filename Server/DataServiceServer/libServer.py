@@ -224,7 +224,7 @@ class Message:
                     # the game is over, does not need to notify someone
                     if (self.request[1] == "a"):
                         BL.unregisterUser(self.addr)
-                    
+                                 
                     # the game not yet over
                     else: # request is as follows: { "exit" : (self.game_ID, self.isSpectator) }
                         BL.exitTheGame(self.request[1][0], self.request[1][1], self.addr)
