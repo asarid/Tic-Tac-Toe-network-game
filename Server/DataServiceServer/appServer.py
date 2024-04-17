@@ -58,10 +58,10 @@ try:
                     message.process_events(mask)
                     time.sleep(0.03)
                 except Exception:
-                    print(
-                        f"Main: Error: Exception for {message.addr}:\n"
-                        f"{traceback.format_exc()}"
-                    )
+                    # print(
+                    #     f"Main: Error: Exception for {message.addr}:\n"
+                    #     f"{traceback.format_exc()}"
+                    # )
                     #BL.unregisterUser(message.addr)
                     BL.someoneExitedAbruptly(message.addr)
                     message.close()

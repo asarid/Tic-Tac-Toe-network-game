@@ -426,10 +426,10 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
     
     activeGames.pop(game_ID, None)
 
-def quitInMiddle(game_ID: str, symbol_player: str, addr: tuple):
+def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
     
     # the user is a spectator, there no need to act except removing him from the list of sepctators
-    if symbol_player == "no":
+    if is_spectator == True:
         activeGames[game_ID][2].remove(addr)
 
     # the user is a player, we need to send a message to the other players and remove certain entries from the lists
@@ -441,10 +441,10 @@ def quitInMiddle(game_ID: str, symbol_player: str, addr: tuple):
             registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
         activeGames.pop(game_ID, None)
 
-def exitTheGame(game_ID: str, symbol_player: str, addr: tuple):
+def exitTheGame(game_ID: str, is_spectator: bool, addr: tuple):
     
     # the user is a spectator, there no need to act except removing him from the list of sepctators
-    if symbol_player == "no":
+    if is_spectator == True:
         activeGames[game_ID][2].remove(addr)
         unregisterUser(addr)
 

@@ -621,14 +621,17 @@ class MainPage(tk.Frame):
         if (selected_index >= len(self.activeGames_initialized)): 
             selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
             # numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
-            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], selectedGame["board"])
+            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], selectedGame["board"], True)
 
         # the user is either an active player or a spectator in a game that has not yet started
         else:
             selectedGame = self.activeGames_initialized[selected_index][0]
             # numOfActivePlayers = self.activeGames_initialized[selected_index][1]
             # print("selectedGame", selectedGame)
-            self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
+            if self.player_type_var.get() == "spectator":
+                self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], "", True)
+            else:
+                self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
         
     
         
@@ -894,7 +897,7 @@ class StatisticsPage(tk.Frame):
 
 class GamePage(tk.Frame):
 
-    def __init__(self, parent, controller, num_of_players : int,  game_ID: str = "", board = ""):
+    def __init__(self, parent, controller, num_of_players : int,  game_ID: str = "", board = "", isSpectator = False):
         tk.Frame.__init__(self, parent)
         self.master = parent
         self.controller = controller
@@ -910,6 +913,7 @@ class GamePage(tk.Frame):
 
         
         self.symbol_player = 'no'
+        self.isSpectator = isSpectator
 
         self.isStarted = False
         self.yourTurn = False
@@ -917,7 +921,7 @@ class GamePage(tk.Frame):
         self.message_buffer = []
 
         self.game_result = "waiting"
-        self.secondsForTimeout = 30  # no more than 59
+        self.secondsForTimeout = 30  # put here no more than 59
 
         self.create_widgets()
         self.update_timer_and_messages()
@@ -993,13 +997,13 @@ class GamePage(tk.Frame):
 
     def on_button_click(self, row, col):
         if self.yourTurn  and  self.board[row][col] == ' ':
-                self.board[row][col] = self.symbol_player
+                # self.board[row][col] = self.symbol_player
                 self.buttons[row][col]['text'] = self.symbol_player
                 self.yourTurn = False
                 self.controller.messageChannel.setRequest("aMove", ((row, col, self.symbol_player), self.game_ID))
 
     def updateBoardAndButton(self, row, col, symbol):
-        self.board[row][col] = symbol
+        # self.board[row][col] = symbol
         self.buttons[row][col]['text'] = symbol
 
     def update_timer_and_messages(self):
@@ -1032,7 +1036,7 @@ class GamePage(tk.Frame):
     def quit_game(self):
         if self.game_result != "over": # game is not over, ask if he is sure about him quitting the game
             if messagebox.askokcancel("Quit", "Are you sure you want to quit the game?"):
-                self.controller.messageChannel.setRequest("quitInMiddle", (self.game_ID, self.symbol_player))
+                self.controller.messageChannel.setRequest("quitInMiddle", (self.game_ID, self.isSpectator))
                 self.controller.show_page(MainPage)
         else:
             self.controller.show_page(MainPage)
@@ -1043,7 +1047,7 @@ class GamePage(tk.Frame):
         """
         if self.game_result != "over":
             if messagebox.askokcancel("Exit", "Are you sure you want to exit the application?"):
-                self.controller.messageChannel.setRequest("exit", (self.game_ID, self.symbol_player))
+                self.controller.messageChannel.setRequest("exit", (self.game_ID, self.isSpectator))
         else:
             self.controller.messageChannel.setRequest("exit", "a")
         

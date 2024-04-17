@@ -7,6 +7,41 @@ import socket as sckt
 import os
 from tkinter import messagebox
 
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+
+
+# Generate a key and IV (Initialization Vector)
+key = b'\x04\x03|\xeb\x8dSh\xe0\xc5\xae\xe5\xe1l9\x0co\xca\xb1"\r-Oo\xbaiYa\x1e\xd1\xf7\xa2\xdf'
+iv = b'#\xb59\xee\xa7\xc4@n\xe5r\xac\x97lV\xff\xf1'
+backend1 = default_backend()
+
+# Function to encrypt plaintext using AES-CBC
+def encrypt(plaintext):
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext) + padder.finalize()
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    return ciphertext
+
+# Function to decrypt ciphertext using AES-CBC
+def decrypt(ciphertext):
+    print("inside decrypt 1")
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    print("inside decrypt 2")
+    decryptor = cipher.decryptor()
+    print("inside decrypt 3")
+    decrypted_padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    print("inside decrypt 4")
+    unpadder = padding.PKCS7(128).unpadder()
+    print("inside decrypt 5")
+    decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+    print("inside decrypt 6")
+    return decrypted_data
+
+
 conf_path = os.getcwd()
 sys.path.append(conf_path)
 level_up = conf_path[:conf_path.rfind("\\")]
@@ -73,7 +108,7 @@ class Message:
         """
         try:
             # Should be ready to read
-            data = self.sock.recv(4096)
+            data = decrypt(self.sock.recv(16384))
             print("\n", data, "\n")
         except BlockingIOError:
             # Resource temporarily unavailable (errno EWOULDBLOCK)
@@ -326,14 +361,20 @@ class Message:
                 # self.sock.connect_ex(self.addr)
                 
                 # Should be ready to write
-                sent = self.sock.send(self._send_buffer)
+                length = len(self._send_buffer)
+                if (length > 2048):
+                    data = self._send_buffer[:2048]
+                else:
+                    data = self._send_buffer
+
+                self.sock.send(encrypt(data))
             except BlockingIOError:
                 # Resource temporarily unavailable (errno EWOULDBLOCK)
                 pass
             # except Exception:
             #     print("error")
             else:
-                self._send_buffer = self._send_buffer[sent:]
+                self._send_buffer = self._send_buffer[len(data):]
 
 
     def queue_request(self):
@@ -365,7 +406,6 @@ class Message:
             }
         message = self._create_message(**req)
         self._send_buffer += message
-        
         self.requests.pop(0)
         if (len(self.requests) == 0):
             self._request_queued = True

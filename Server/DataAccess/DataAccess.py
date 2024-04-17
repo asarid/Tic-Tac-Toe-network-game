@@ -192,12 +192,12 @@ class JSON_db_access(DataAccessInterface):
             with open(self.games) as gamesFile:
                 dictGames = json.load(gamesFile)
             
-            how_many_to_save = 30
+            how_many_to_save = 30  # how many games we want to store in the database
             sorted_games_by_creationDate = sorted(dictGames.items(), key=lambda x:datetime.datetime.fromisoformat(x[1]["creation_date"]))
             lastDateGamesFetched = datetime.datetime.now()
 
             # remove old games records (save only 'how_many_to_save' records or less), do it no more than once a day
-            if (len(sorted_games_by_creationDate) > how_many_to_save  and  (datetime.datetime.now()-lastDateGamesFetched).days >= 1):
+            if (len(sorted_games_by_creationDate) > how_many_to_save):
                 sorted_games_by_creationDate = sorted_games_by_creationDate[-30:]
                 for index, game in enumerate(sorted_games_by_creationDate):
                     if (index < len(dictGames.items()) - how_many_to_save):

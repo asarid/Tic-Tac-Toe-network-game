@@ -1,479 +1,4 @@
 {
-    "bfbb6d22-a667-4a6f-838a-07a97c37733f": {
-        "game_ID": "bfbb6d22-a667-4a6f-838a-07a97c37733f",
-        "num_of_players": 5,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_name": "",
-        "creation_date": "2024-03-27T16:02:00.427204",
-        "duration": 0
-    },
-    "e2dd5aa0-0e8f-46dd-a23c-3faba14a6d2b": {
-        "game_ID": "e2dd5aa0-0e8f-46dd-a23c-3faba14a6d2b",
-        "num_of_players": 5,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        ],
-        "winner_name": "",
-        "duration": 0,
-        "creation_date": "2024-04-03T11:37:33.075818"
-    },
-    "4d21d8f4-c033-4b1d-a21b-026da9f89488": {
-        "game_ID": "4d21d8f4-c033-4b1d-a21b-026da9f89488",
-        "num_of_players": 3,
-        "game_state": "WON",
-        "board": [
-            [
-                0,
-                "X",
-                0,
-                0
-            ],
-            [
-                0,
-                0,
-                "X",
-                0
-            ],
-            [
-                0,
-                "$",
-                "$",
-                "X"
-            ],
-            [
-                0,
-                0,
-                "O",
-                "O"
-            ]
-        ],
-        "winner_name": "avraham",
-        "duration": 48.014208,
-        "creation_date": "2024-04-04T17:10:58.024390"
-    },
-    "db5967a9-0574-4188-acaa-eda30f1ad887": {
-        "game_ID": "db5967a9-0574-4188-acaa-eda30f1ad887",
-        "num_of_players": 2,
-        "game_state": "TIE",
-        "board": [
-            [
-                "X",
-                "X",
-                "O"
-            ],
-            [
-                "O",
-                "O",
-                "X"
-            ],
-            [
-                "X",
-                "O",
-                "O"
-            ]
-        ],
-        "winner_name": "",
-        "duration": 29.738392,
-        "creation_date": "2024-04-05T10:30:46.905219"
-    },
-    "6017cd0b-34d5-413f-a552-92dc58427a29": {
-        "game_ID": "6017cd0b-34d5-413f-a552-92dc58427a29",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                " ",
-                " ",
-                "O"
-            ],
-            [
-                "X",
-                " ",
-                "O"
-            ],
-            [
-                "X",
-                " ",
-                "O"
-            ]
-        ],
-        "winner_name": "efrat",
-        "duration": 86.573047,
-        "creation_date": "2024-04-05T11:30:32.959610"
-    },
-    "fa66fe97-bcc8-4f8d-83a1-ec204a43f845": {
-        "game_ID": "fa66fe97-bcc8-4f8d-83a1-ec204a43f845",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                "O",
-                "O",
-                "O"
-            ],
-            [
-                " ",
-                "X",
-                "X"
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_name": "efrat",
-        "duration": 56.703905,
-        "creation_date": "2024-04-05T13:07:58.199567"
-    },
-    "c0d39508-8140-45f2-8db8-c6fc9655cc17": {
-        "game_ID": "c0d39508-8140-45f2-8db8-c6fc9655cc17",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                " ",
-                " ",
-                "X"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ]
-        ],
-        "winner_name": "dvir",
-        "duration": 12.389288,
-        "creation_date": "2024-04-05T13:26:19.247711"
-    },
-    "6c900002-55f0-428c-adc6-5c7bb22c0f0e": {
-        "game_ID": "6c900002-55f0-428c-adc6-5c7bb22c0f0e",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                "O",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "X"
-            ],
-            [
-                " ",
-                " ",
-                "X"
-            ]
-        ],
-        "winner_name": "dvir",
-        "duration": 25.59668,
-        "creation_date": "2024-04-05T13:30:18.176576"
-    },
-    "55e40d31-ea42-4c4e-8957-a9bc7e84a32c": {
-        "game_ID": "55e40d31-ea42-4c4e-8957-a9bc7e84a32c",
-        "num_of_players": 2,
-        "game_state": "TIE",
-        "board": [
-            [
-                "X",
-                "O",
-                "X"
-            ],
-            [
-                "X",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "O"
-            ]
-        ],
-        "winner_name": "",
-        "duration": 40.187684,
-        "creation_date": "2024-04-05T13:42:24.712437"
-    },
-    "c8907363-6942-4611-bfb0-d62ae37d2415": {
-        "game_ID": "c8907363-6942-4611-bfb0-d62ae37d2415",
-        "num_of_players": 2,
-        "game_state": "TIE",
-        "board": [
-            [
-                "X",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "O"
-            ],
-            [
-                "X",
-                "X",
-                "O"
-            ]
-        ],
-        "winner_name": "",
-        "duration": 37.117861,
-        "creation_date": "2024-04-05T13:45:30.378232"
-    },
-    "5570b701-e10a-4669-adf4-0ff44bac6e7e": {
-        "game_ID": "5570b701-e10a-4669-adf4-0ff44bac6e7e",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                "O",
-                "X",
-                "O"
-            ],
-            [
-                "X",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "O"
-            ]
-        ],
-        "winner_name": "efrat",
-        "duration": 42.64525,
-        "creation_date": "2024-04-05T16:02:54.826542"
-    },
-    "8ba06afa-2faa-425e-9bb5-4921be37dc55": {
-        "game_ID": "8ba06afa-2faa-425e-9bb5-4921be37dc55",
-        "num_of_players": 2,
-        "game_state": "TIE",
-        "board": [
-            [
-                "X",
-                "O",
-                "O"
-            ],
-            [
-                "O",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                "X",
-                "X"
-            ]
-        ],
-        "winner_name": "",
-        "duration": 34.238016,
-        "creation_date": "2024-04-05T16:08:37.789016"
-    },
-    "6fd2b8bc-53e0-4f47-9814-5438dca14925": {
-        "game_ID": "6fd2b8bc-53e0-4f47-9814-5438dca14925",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                "O",
-                " ",
-                "O"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ],
-            [
-                "X",
-                "X",
-                "O"
-            ]
-        ],
-        "winner_name": "dvir",
-        "duration": 17.549001,
-        "creation_date": "2024-04-05T16:10:42.881926"
-    },
-    "6cc53950-7379-42ad-afa0-b8569118a0b0": {
-        "game_ID": "6cc53950-7379-42ad-afa0-b8569118a0b0",
-        "num_of_players": 2,
-        "game_state": "WON",
-        "board": [
-            [
-                " ",
-                " ",
-                "O"
-            ],
-            [
-                " ",
-                "O",
-                "X"
-            ],
-            [
-                "O",
-                " ",
-                "X"
-            ]
-        ],
-        "winner_name": "efrat",
-        "duration": 9.573606,
-        "creation_date": "2024-04-05T16:13:49.579341"
-    },
-    "fd93b017-84ff-42fd-a939-18cfa1857db1": {
-        "game_ID": "fd93b017-84ff-42fd-a939-18cfa1857db1",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_name": "",
-        "duration": 0,
-        "creation_date": "2024-04-07T12:49:34.397558"
-    },
-    "27812f54-5aa3-45f4-a56e-4837a1848a0e": {
-        "game_ID": "27812f54-5aa3-45f4-a56e-4837a1848a0e",
-        "num_of_players": 2,
-        "game_state": "INITIALIZED",
-        "board": [
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ],
-            [
-                " ",
-                " ",
-                " "
-            ]
-        ],
-        "winner_name": "",
-        "duration": 0,
-        "creation_date": "2024-04-07T12:49:46.668451"
-    },
     "fe0aea93-0a0d-4cda-bcbf-92af317b3853": {
         "game_ID": "fe0aea93-0a0d-4cda-bcbf-92af317b3853",
         "num_of_players": 2,
@@ -1218,5 +743,139 @@
         "winner_name": "efrat",
         "duration": 42.700516,
         "creation_date": "2024-04-09T17:34:18.945139"
+    },
+    "071ee2c7-1345-4473-9820-2d7a63cf46e0": {
+        "game_ID": "071ee2c7-1345-4473-9820-2d7a63cf46e0",
+        "num_of_players": 2,
+        "game_state": "WON",
+        "board": [
+            [
+                "X",
+                "X",
+                "O"
+            ],
+            [
+                " ",
+                "X",
+                "O"
+            ],
+            [
+                "O",
+                "O",
+                "X"
+            ]
+        ],
+        "winner_name": "efrat",
+        "duration": 19.698863,
+        "creation_date": "2024-04-09T21:56:45.847918"
+    },
+    "bececd01-694e-495d-ba06-96eb703ede59": {
+        "game_ID": "bececd01-694e-495d-ba06-96eb703ede59",
+        "num_of_players": 2,
+        "game_state": "WON",
+        "board": [
+            [
+                "X",
+                "O",
+                "X"
+            ],
+            [
+                " ",
+                "X",
+                "O"
+            ],
+            [
+                " ",
+                "O",
+                "X"
+            ]
+        ],
+        "winner_name": "efrat",
+        "duration": 13.084111,
+        "creation_date": "2024-04-10T18:32:42.245039"
+    },
+    "a70423a0-c6cc-4684-88f7-26dcc46f4b89": {
+        "game_ID": "a70423a0-c6cc-4684-88f7-26dcc46f4b89",
+        "num_of_players": 3,
+        "game_state": "WON",
+        "board": [
+            [
+                " ",
+                "O",
+                "O",
+                "X"
+            ],
+            [
+                "O",
+                "$",
+                "X",
+                "X"
+            ],
+            [
+                " ",
+                "$",
+                "$",
+                "X"
+            ],
+            [
+                " ",
+                " ",
+                "$",
+                " "
+            ]
+        ],
+        "winner_name": "orna",
+        "duration": 157.478436,
+        "creation_date": "2024-04-10T20:38:49.947246"
+    },
+    "826a9bc6-7b0d-4756-9cbf-9a5b62ae13fe": {
+        "game_ID": "826a9bc6-7b0d-4756-9cbf-9a5b62ae13fe",
+        "num_of_players": 2,
+        "game_state": "WON",
+        "board": [
+            [
+                "X",
+                "X",
+                "O"
+            ],
+            [
+                "O",
+                "O",
+                "X"
+            ],
+            [
+                "O",
+                "X",
+                " "
+            ]
+        ],
+        "winner_name": "efrat",
+        "duration": 47.22067,
+        "creation_date": "2024-04-10T20:52:10.157532"
+    },
+    "dc623e17-0f41-450d-bb93-0d0d3da6390d": {
+        "game_ID": "dc623e17-0f41-450d-bb93-0d0d3da6390d",
+        "num_of_players": 2,
+        "game_state": "TIE",
+        "board": [
+            [
+                "X",
+                "O",
+                "X"
+            ],
+            [
+                "O",
+                "O",
+                "X"
+            ],
+            [
+                "X",
+                "X",
+                "O"
+            ]
+        ],
+        "winner_name": "",
+        "duration": 93.379438,
+        "creation_date": "2024-04-11T17:53:11.764740"
     }
 }

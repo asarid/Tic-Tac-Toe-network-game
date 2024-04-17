@@ -13,7 +13,31 @@ sys.path.insert(1, level_up)
 import BusinessLogic as BL
 # import BusinessEntities as BE
 
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
 
+# Generate a key and IV (Initialization Vector)
+key = b'\x04\x03|\xeb\x8dSh\xe0\xc5\xae\xe5\xe1l9\x0co\xca\xb1"\r-Oo\xbaiYa\x1e\xd1\xf7\xa2\xdf'
+iv = b'#\xb59\xee\xa7\xc4@n\xe5r\xac\x97lV\xff\xf1'
+
+# Function to encrypt plaintext using AES-CBC
+def encrypt(plaintext):
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext) + padder.finalize()
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    return ciphertext
+
+# Function to decrypt ciphertext using AES-CBC
+def decrypt(ciphertext):
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    decryptor = cipher.decryptor()
+    decrypted_padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    unpadder = padding.PKCS7(128).unpadder()
+    decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+    return decrypted_data
 
 
 class Message:
@@ -69,7 +93,7 @@ class Message:
     def _read(self) -> bool:
         try:
             # Should be ready to read
-            data = self.sock.recv(4096)
+            data = decrypt(self.sock.recv(4096))
             print("[=] Server reads <aviad>")
         except BlockingIOError:
             # Resource temporarily unavailable (errno EWOULDBLOCK)
@@ -203,7 +227,7 @@ class Message:
                         BL.unregisterUser(self.addr)
                     
                     # the game not yet over
-                    else:
+                    else: # request is as follows: { "exit" : (self.game_ID, self.isSpectator) }
                         BL.exitTheGame(self.request[1][0], self.request[1][1], self.addr)
                     
                     self.responses.append(({ "response": "4_exit",
@@ -242,7 +266,7 @@ class Message:
                                                 "value" : result
                                         }, True))
                 
-                case "quitInMiddle": # request is as follows: {"quitInMiddle": (game_ID, self.symbol)}
+                case "quitInMiddle": # request is as follows: {"quitInMiddle": (game_ID, self.is_spectator)}
                     BL.quitInMiddle(self.request[1][0], self.request[1][1], self.addr)
                     
                     self._jsonheader_len = None # for the next reading operation to work well, we zero these variables
@@ -305,12 +329,17 @@ class Message:
             print(f"Sending {self._send_buffer!r} to {self.addr}")
             try:
                 # Should be ready to write
-                sent = self.sock.send(self._send_buffer)
+                length = len(self._send_buffer)
+                # if (length > 4096):
+                #     data = self._send_buffer[:4096]
+                # else:
+                #     data = self._send_buffer
+                self.sock.send(encrypt(self._send_buffer))
             except BlockingIOError:
                 # Resource temporarily unavailable (errno EWOULDBLOCK)
                 pass
             else:
-                self._send_buffer = self._send_buffer[sent:]
+                self._send_buffer = self._send_buffer[length:]
                 if (self.toExit):
                     self.close()
                 

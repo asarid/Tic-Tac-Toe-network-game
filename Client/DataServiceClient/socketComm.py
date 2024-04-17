@@ -68,10 +68,10 @@ class SocketCommunication:
                         message.process_events(mask)
                         time.sleep(0.02)
                     except Exception:
-                        print(
-                            f"Main: Error: Exception for {message.addr}:\n"
-                            f"{traceback.format_exc()}"
-                        )
+                        # print(
+                        #     f"Main: Error: Exception for {message.addr}:\n"
+                        #     f"{traceback.format_exc()}"
+                        # )
                         message.close(True)
                 
                 # Check for a socket being monitored to continue.
