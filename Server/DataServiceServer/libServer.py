@@ -41,8 +41,7 @@ def decrypt(ciphertext):
 
 
 class Message:
-    def __init__(self, selector, sock, addr):
-        self.selector = selector
+    def __init__(self, sock, addr):
         self.sock = sock
         self.addr = addr
         self._recv_buffer = b""
@@ -65,12 +64,12 @@ class Message:
 
 
     def process_events(self, mask):
-        if mask & selectors.EVENT_READ:
-            print(mask)
+        if mask & 0b01: # reading
+            # print(mask)
             self.read()
             self.between_read_to_write = True
-            print("read")
-        if mask & selectors.EVENT_WRITE:
+        
+        if mask & 0b10: # writing
             self.write()
             self.between_read_to_write = False
 
@@ -94,7 +93,7 @@ class Message:
         try:
             # Should be ready to read
             data = decrypt(self.sock.recv(4096))
-            print("[=] Server reads <aviad>")
+            # print("[=] Server reads <aviad>")
         except BlockingIOError:
             # Resource temporarily unavailable (errno EWOULDBLOCK)
             pass
@@ -297,7 +296,7 @@ class Message:
             events = selectors.EVENT_READ | selectors.EVENT_WRITE
         else:
             raise ValueError(f"Invalid events mask mode {mode!r}.")
-        self.selector.modify(self.sock, events, data=self)
+        # self.selector.modify(self.sock, events, data=self)
 
     
 
@@ -417,14 +416,6 @@ class Message:
 
     def close(self):
         print(f"Closing connection to {self.addr}")
-        try:
-            self.selector.unregister(self.sock)
-        except Exception as e:
-            print(
-                f"Error: selector.unregister() exception for "
-                f"{self.addr}: {e!r}"
-            )
-
         try:
             self.sock.close()
         except OSError as e:

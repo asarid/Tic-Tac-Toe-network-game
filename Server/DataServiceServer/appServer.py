@@ -5,6 +5,7 @@ import traceback
 import libServer
 import time
 import os
+import threading
 
 conf_path = os.getcwd()
 level_up = conf_path[:conf_path.rfind("\\")]
@@ -12,23 +13,42 @@ sys.path.insert(1, level_up)
 
 import BusinessLogic as BL
 
-sel = selectors.DefaultSelector()
-BL.selector = sel  # now the BL knows about the selector and can access it
+
+# sel = selectors.DefaultSelector()
+# BL.selector = sel  # now the BL knows about the selector and can access it
 
 
 
 hostIP = "127.0.0.1"
 hostPort = 65432
 addr = (hostIP, hostPort)
+mask = 0b11 # '11' in binary, which means both reading ('01') and writing ('10')
+
+# dict to store addresses and their corresponding Message. Each pair is { addr : Message }
+addrs_messages = {}
+
+BL.addr_Message = addrs_messages
 
 
 
-def accept_wrapper(sock):
-    conn, addr = sock.accept()  # Should be ready to read
-    print(f"Accepted connection from {addr}")
-    conn.setblocking(False)
-    message = libServer.Message(sel, conn, addr)
-    sel.register(conn, selectors.EVENT_READ | selectors.EVENT_WRITE, data=message)
+
+def handle_client(conn, addr):
+    message = addrs_messages[addr]
+    while True:
+        try:
+            message.process_events(mask)
+            time.sleep(0.03)
+        except Exception:
+            print(
+                f"Main: Error: Exception for {addr}:\n"
+                f"{traceback.format_exc()}"
+            )
+            # BL.unregisterUser(message.addr)
+
+            BL.someoneExitedAbruptly(addr)
+            message.close()
+            addrs_messages.pop(addr, None)
+            break
 
 
 # if len(sys.argv) != 3:
@@ -43,29 +63,22 @@ lsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 lsock.bind(addr)
 lsock.listen()
 print(f"Listening on {addr}")
-lsock.setblocking(False)
-sel.register(lsock, selectors.EVENT_READ, data=None)
+# lsock.setblocking(False)
+# sel.register(lsock, selectors.EVENT_READ, data=None)
 
 try:
     while True:
-        events = sel.select(timeout=None)
-        for key, mask in events:
-            if key.data is None:
-                accept_wrapper(key.fileobj)
-            else:
-                message = key.data
-                try:
-                    message.process_events(mask)
-                    time.sleep(0.03)
-                except Exception:
-                    # print(
-                    #     f"Main: Error: Exception for {message.addr}:\n"
-                    #     f"{traceback.format_exc()}"
-                    # )
-                    #BL.unregisterUser(message.addr)
-                    BL.someoneExitedAbruptly(message.addr)
-                    message.close()
+        # events = sel.select(timeout=None)
+        conn, addr = lsock.accept()  # Should be ready to read (blocking command)
+        print(f"Accepted connection from {addr}")
+        conn.setblocking(False)
+        message = libServer.Message(conn, addr)
+        addrs_messages[addr] = message
+        
+        threading.Thread(target=handle_client, args=(conn,addr)).start()
+
 except KeyboardInterrupt:
     print("Caught keyboard interrupt, exiting")
-finally:
-    sel.close()
+
+# finally:
+#     sel.close()

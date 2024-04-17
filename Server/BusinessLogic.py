@@ -15,7 +15,7 @@ db_access = DA.JSON_db_access()
 registeredUsers = {}            # each entry is a { user_address 'addr' : [BE.User, socket, game_ID - if any] }
 activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (ip, port)], numOfMovesDone: int = 0, turn = 0]}
 
-selector = None
+addr_Message = None
 
 # dict with pairs: {symbolOfCurrentPlayer : symbolOfNextPlayer}
 symbols = {
@@ -185,8 +185,7 @@ def notifyOneParticipant(addr: tuple, response: str, value):
         "value": value
     }, False)
     
-    player_sock = registeredUsers[addr][1]
-    player_Message = selector.get_key(player_sock).data
+    player_Message = addr_Message[addr]
     player_Message.responses.append(message)
     # player_Message.false_request = True
     player_Message.response_created = False
@@ -209,8 +208,7 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
     # iterate the list of active players, whose list contains Participants instances
     for player_Participant in activeGames[game_ID][1]:
         if player_Participant.addr not in rest:
-            player_sock = registeredUsers[player_Participant.addr][1]
-            player_Message = selector.get_key(player_sock).data
+            player_Message = addr_Message[player_Participant.addr]
             player_Message.responses.append(message)
             # player_Message.false_request = True
             player_Message.response_created = False
@@ -219,8 +217,7 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
     # iterate the list of spectators, whose list contains only addresses, not Participants instances
     for player_Participant in activeGames[game_ID][2]:
         if player_Participant not in rest:
-            player_sock = registeredUsers[player_Participant][1]
-            player_Message = selector.get_key(player_sock).data
+            player_Message = addr_Message[player_Participant]
             player_Message.responses.append(message)
             # player_Message.false_request = True
             player_Message.response_created = False
