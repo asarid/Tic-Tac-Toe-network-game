@@ -3,8 +3,9 @@ import socket
 import selectors
 import traceback
 import libServer
-
+import time
 import os
+
 conf_path = os.getcwd()
 level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.insert(1, level_up)
@@ -12,6 +13,9 @@ sys.path.insert(1, level_up)
 import BusinessLogic as BL
 
 sel = selectors.DefaultSelector()
+BL.selector = sel  # now the BL knows about the selector and can access it
+
+
 
 hostIP = "127.0.0.1"
 hostPort = 65432
@@ -52,12 +56,14 @@ try:
                 message = key.data
                 try:
                     message.process_events(mask)
+                    time.sleep(0.03)
                 except Exception:
-                    print(
-                        f"Main: Error: Exception for {message.addr}:\n"
-                        f"{traceback.format_exc()}"
-                    )
-                    BL.unregisterUser(message.addr)
+                    # print(
+                    #     f"Main: Error: Exception for {message.addr}:\n"
+                    #     f"{traceback.format_exc()}"
+                    # )
+                    #BL.unregisterUser(message.addr)
+                    BL.someoneExitedAbruptly(message.addr)
                     message.close()
 except KeyboardInterrupt:
     print("Caught keyboard interrupt, exiting")
