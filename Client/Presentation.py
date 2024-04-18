@@ -3,147 +3,20 @@ import time
 from tkinter import ttk
 from tkinter import messagebox
 import threading
-import DataServiceClient.libClient as messageChannel
 import datetime
 
 MEDIUMFONT = ("Verdana", 15)
 LARGEFONT = ("Verdana", 30)
 
 
-class PresentationController:
- 
-    # __init__ function for class TicTacToePresentation 
-    def __init__(self, parent, message_channel : messageChannel.Message):
-
-        
-        self.messageChannel = message_channel
-
-        self.root = parent
-        # creating a container
-        self.container = tk.Frame(parent)
-        
-        self.container.pack(side = "top", fill = "both", expand = True)
-        
-        self.container.grid_rowconfigure(0, weight = 1)
-        self.container.grid_columnconfigure(0, weight = 1)
-  
-        # initializing frames to an empty array
-        self.frames = {}  
-  
-        
-        self.currentPage = AuthPageToken
-        self.currentPageInstance = None
-        self.show_page(self.currentPage)
-
-        
-
-        # # Iterating through a tuple consisting of the different page layouts
-        # # For that, find the names of the classes within the file
-        # frame = inspect.currentframe()
-        # module = inspect.getmodule(frame)
-        # members = inspect.getmembers(module)
-        # class_names = [globals()[member[0]] for member in members if inspect.isclass(member[1]) and member[0] != self.__class__.__name__]
-        
-        # #iterate all class names (the different pages) in the file except the first class, i.e. the root:
-        # for F in class_names:
-        #     frame = F(self.container, self)
-  
-        #     # initializing frame of that object from startpage, page1, page2 respectively with for loop
-        #     self.frames[F] = frame
-
-        #     frame.grid(row = 0, column = 0, sticky ="nsew")
-
-        # self.currentPage = AuthPageToken
-        # self.show_page(self.currentPage)
-        # self.message_buffer = []
-
-        
-
-    # # to display the current frame passed as
-    # # parameter
-    # def show_page(self, cont, *rest, isNew: bool = False):
-    #     if isNew:
-    #         if (cont in self.frames):
-    #             self.frames.pop(cont)
-    #         newInstance = cont(self.container, self, *rest)
-    #         self.frames[cont] = newInstance
-        
-    #     print(self.frames[cont])
-    #     frame = self.frames[cont]
-    #     self.currentPage = cont
-    #     frame.tkraise()
-
-
-
-
-          
-  
-  
-
-# """ Page for authentication with username and password
-# """
-# class AuthPagePassword(tk.Frame):
-#     def __init__(self, parent, controller):
-#         tk.Frame.__init__(self, parent)
-
-#         # Create headline
-#         headline_label = ttk.Label(self, text="Tic Tac Toe", font=LARGEFONT, background='#F0F0F0', foreground='#333333')
-#         #headline_label.grid(row=0, column=0, columnspan=2, pady=(50, 20), sticky="n")
-#         headline_label.place(relx=0.5, rely=0.1, anchor="center")
-
-#         # Group auth objects 
-#         detailsFrame = tk.Frame(self, bg="#F0F0F0", highlightbackground="#F0F0F0", highlightthickness=0)
-#         #authFrame.grid(row=1, column=0, columnspan=2, pady=(50, 20), sticky="n")
-#         detailsFrame.place(relx=0.5, rely=0.5, anchor="center")
-
-#         # Create username label and entry
-#         username_label = ttk.Label(detailsFrame, text="Username ", font=MEDIUMFONT, background='#F0F0F0', foreground='#333333')
-#         username_label.grid(row=0, column=0, pady=(0, 20), sticky="e")
-#         self.username_entry = tk.Entry(detailsFrame, font=("Verdana", 18))
-#         self.username_entry.grid(row=0, column=1, pady=(0, 20), sticky="w")
-
-#         # Create password label and entry
-#         password_label = ttk.Label(detailsFrame, text="Password ", font=MEDIUMFONT, background='#F0F0F0', foreground='#333333')
-#         password_label.grid(row=1, column=0, pady=(0, 20), sticky="e")
-#         self.password_entry = tk.Entry(detailsFrame, show="*", font=("Verdana", 18))
-#         self.password_entry.grid(row=1, column=1, pady=(0, 20), sticky="w")
-
-#         # Create login button
-#         login_button = tk.Button(detailsFrame, text="Sign in", command=self.authenticate, font=("Verdana", 18), bg='#4CAF50', fg='white')
-#         login_button.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="n")
-#         #login_button.place(relx=0.5, rely=0.9, anchor="center")
-
-
-#         # Create Exit button
-#         exit_button = tk.Button(self, text=" Exit ", command=self.exitTheGame, font=("Verdana", 18), bg='#4CAF50', fg='white')
-#         #login_button.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="n")
-#         exit_button.place(relx=0.5, rely=0.9, anchor="center")
-
-    
-#     def authenticate(self):
-#         username = self.username_entry.get()
-#         password = self.password_entry.get()
-
-#         # Replace this with your authentication logic
-#         if username == "admin" and password == "password":
-#             messagebox.showinfo("Login Successful", "Welcome, {}".format(username))
-#             # Add code to navigate to the next page or perform further actions after authentication
-#         else:
-#             messagebox.showerror("Login Failed", "Invalid username or password")
-
-#     def exitTheGame(self):
-#         pass
-
 
 class AuthPageToken(tk.Frame):
     def __init__(self, master, controller):
-        #super().__init__(master)
         tk.Frame.__init__(self, master)
         
         self.master = master
         self.controller = controller
         self.configure(bg="#f0f0f0")
-        #self.grid(row=0, column=0, sticky="nsew")
         self.create_widgets()
 
 
@@ -314,14 +187,6 @@ class SignUpPage(tk.Frame):
             else: # continue to the Main page
                 self.controller.show_page(MainPage)
 
-        # if 
-        # print(self.token_label1.winfo_ismapped())
-        # self.token_label1.grid(row=2, column=0, columnspan=2, pady=(20, 50), sticky="w")
-        # self.token_label2.grid(row=2, column=1, columnspan=2, pady=(20, 50), sticky="w")
-        # token = 123
-
-        # messagebox.showinfo("Login Successful", "Welcome, {}".format(token))
-        
         
     def signUp_helper(self):
         """check if a response from the server about the signUp request has arrived.
@@ -377,13 +242,11 @@ class SignUpPage(tk.Frame):
 
 class MainPage(tk.Frame):
     def __init__(self, master, controller):
-        #super().__init__(master)
         tk.Frame.__init__(self, master)
         
         self.master = master
         self.controller = controller
         self.configure(bg="#f0f0f0")
-        #self.grid(row=0, column=0, sticky="nsew")
         self.create_widgets()
 
 
@@ -505,12 +368,6 @@ class MainPage(tk.Frame):
                self.controller.messageChannel.responses[0]["response"][0] != "2"):
             pass
 
-        # # Replace this with your authentication logic
-        # if token == "admin":
-        #     messagebox.showinfo("Login Successful", "Welcome, {}".format(token))
-        #     # Add code to navigate to the next page or perform further actions after authentication
-        # else:
-        #     messagebox.showerror("Login Failed", "Invalid username or password")
 
     def check_if_newGame_done(self, t):
         """if the thread 't' is dead then it means a response from the server about the auth request has arrived,
@@ -620,25 +477,16 @@ class MainPage(tk.Frame):
         # the user is a spectator in an occurring game
         if (selected_index >= len(self.activeGames_initialized)): 
             selectedGame = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][0]
-            # numOfActivePlayers = self.activeGames_occuring[selected_index-len(self.activeGames_initialized)][1]
             self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], selectedGame["board"], True)
 
         # the user is either an active player or a spectator in a game that has not yet started
         else:
             selectedGame = self.activeGames_initialized[selected_index][0]
-            # numOfActivePlayers = self.activeGames_initialized[selected_index][1]
-            # print("selectedGame", selectedGame)
             if self.player_type_var.get() == "spectator":
                 self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"], "", True)
             else:
                 self.controller.show_page(GamePage, selectedGame["num_of_players"], selectedGame["game_ID"])
-        
-    
-        
-        # if self.player_type_var.get() == "spectator"  and selected_index < len(self.activeGames_initialized):
-        #     strForDisplay = "## waiting for " + str(selectedGame["num_of_players"]-numOfActivePlayers) + " more players to join and then we start!"
-        #     self.controller.currentPageInstance.message_buffer.append(strForDisplay)
-        
+             
 
         # send a message to the server that a new player has now joined the game
         if self.player_type_var.get() == "active_player":
@@ -835,9 +683,6 @@ class StatisticsPage(tk.Frame):
 
 
     def populate_table(self, table):
-        # # Clear existing items in the table
-        # for item in self.table.get_children():
-        #     self.table.delete(item)
 
         # Populate table with data based on the selected tab index
         if table == 1:
@@ -1010,9 +855,6 @@ class GamePage(tk.Frame):
         
         if (len(self.message_buffer) > 0):
             self.add_message(self.message_buffer.pop(0))
-            # for message in self.message_buffer:
-            #     self.add_message(message)
-            # self.message_buffer.clear()
             
             
         if (self.isStarted):

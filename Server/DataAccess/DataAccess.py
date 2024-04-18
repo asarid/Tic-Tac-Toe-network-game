@@ -13,12 +13,6 @@ databases_path = sys.path.append(conf_path[:conf_path.rfind("\\")+1]+"Databases"
 import BusinessEntities as BE
 
 
-# level_up = conf_path[:conf_path.rfind("\\")]
-# print(level_up)
-# sys.path.append(level_up)
-
-# sys.path.append('/Client/')
-
 
 class DataAccessInterface(metaclass=abc.ABCMeta):
 
@@ -390,28 +384,3 @@ def serialize_userStat_JSON(userStat : BE.UserStat):
             "games_tie"         : userStat.gamesInTie,
             "avg_time_for_move" : userStat.avgTimeForMove
             }
-
-
-
-
-
-
-
-
-
-# jsonAccess.create_new_game(2)
-# jsonAccess.create_new_game(3)
-
-# jsonAccess.create_new_user("aviad")
-# jsonAccess.create_new_user("noam")
-# jsonAccess.create_new_user("dvir")
-
-#jsonAccess.delete_game_by_ID("8e40f076-da29-41cb-b45e-a1d281c1b236")
-#jsonAccess.delete_user_by_ID("9008")
-#game = jsonAccess.fetch_game_by_ID("8e40f076-da29-41cb-b45e-a1d281c1b236")
-# game = BE.Game(6)
-# game.game_ID = "d2236a4f-aeed-469c-bd1b-6f7dd90b80c1"
-# jsonAccess.update_game(game)
-
-# user = BE.User("5803", "efrat")
-# jsonAccess.update_user(user)

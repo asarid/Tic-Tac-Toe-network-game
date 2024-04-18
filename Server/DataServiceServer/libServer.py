@@ -11,7 +11,6 @@ level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.insert(1, level_up)
 
 import BusinessLogic as BL
-# import BusinessEntities as BE
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -65,7 +64,6 @@ class Message:
 
     def process_events(self, mask):
         if mask & 0b01: # reading
-            # print(mask)
             self.read()
             self.between_read_to_write = True
         
@@ -134,13 +132,7 @@ class Message:
         
         bytes_decoded = json_bytes.decode(encoding=encoding)
         return json.loads(bytes_decoded)
-        
-        # tiow = io.TextIOWrapper(
-        #     io.BytesIO(json_bytes), encoding=encoding, newline=""
-        # )
-        # obj = json.load(tiow)
-        # tiow.close()
-        # return obj
+    
 
 
     def process_request(self):
@@ -157,7 +149,6 @@ class Message:
             print(self._recv_buffer)
             self.request = self._json_decode(data, encoding)
             
-            # print(f"Received request {self.request!r} from {self.addr}")
 
             match self.request[0]: # switch 'action'
                 
@@ -280,8 +271,6 @@ class Message:
                 f"Received {self.jsonheader['content-type']} "
                 f"request from {self.addr}"
             )
-        # # Set selector to listen for write events, we're done reading.
-        # self._set_selector_events_mask("w")
         
 
 
@@ -329,6 +318,7 @@ class Message:
             try:
                 # Should be ready to write
                 length = len(self._send_buffer)
+                
                 # if (length > 4096):
                 #     data = self._send_buffer[:4096]
                 # else:
@@ -342,19 +332,12 @@ class Message:
                 if (self.toExit):
                     self.close()
                 
-                # !$! my revision: close only when user exit! !$!
-
-                # # Close when the buffer is drained. The response has been sent.
-                # if sent and not self._send_buffer:
-                #     self.close()
 
 
     def create_response(self):
         # if self.false_request == True  or  self.jsonheader["content-type"] == "text/json":
         response = self._create_response_json_content()
-        # else:
-        #     # Binary or unknown content-type
-        #     response = self._create_response_binary_content()
+        
 
         message = self._create_message(**response)
         self.response_created = True

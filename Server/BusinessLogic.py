@@ -187,7 +187,6 @@ def notifyOneParticipant(addr: tuple, response: str, value):
     
     player_Message = addr_Message[addr]
     player_Message.responses.append(message)
-    # player_Message.false_request = True
     player_Message.response_created = False
 
 def notifyParticipants(game_ID: str, response: str, value, *rest):
@@ -210,7 +209,6 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
         if player_Participant.addr not in rest:
             player_Message = addr_Message[player_Participant.addr]
             player_Message.responses.append(message)
-            # player_Message.false_request = True
             player_Message.response_created = False
            
     
@@ -219,33 +217,8 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
         if player_Participant not in rest:
             player_Message = addr_Message[player_Participant]
             player_Message.responses.append(message)
-            # player_Message.false_request = True
             player_Message.response_created = False
             
-        
-            # falseRequest = prepareFalseRequest(message["action"], message["value"], "text/json", "utf-8")
-            # player_Message._recv_buffer += falseRequest
-            # threading.Thread(target=notify_helper, args=(player_Message,)).start()
-
-# def notify_helper(player_Message):
-#     while (player_Message.between_read_to_write == True):
-#         pass
-#     player_Message.process_events(3)
-
-# def prepareFalseRequest(action, value, content_type, encoding) -> bytes:
-
-#     content_bytes = json.dumps((action, value), ensure_ascii=False).encode(encoding)
-    
-#     json_header = {
-#             "byteorder": sys.byteorder,
-#             "content-type": content_type,
-#             "content-encoding": encoding,
-#             "content-length": len(content_bytes)
-#             }
-#     jsonheader_bytes = json.dumps(json_header, ensure_ascii=False).encode(encoding)
-#     message_hdr = struct.pack(">H", len(jsonheader_bytes))
-    
-#     return message_hdr + jsonheader_bytes + content_bytes
 
 
 

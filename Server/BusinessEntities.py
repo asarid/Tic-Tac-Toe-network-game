@@ -9,17 +9,6 @@ class StateOfGame(Enum):
     TIE = 4
 
 
-class symbolsOfBoard(Enum):
-    nothing = 0     # a spectator (does not have any symbol)
-    O = 1           # 'O'
-    X = 2           # 'X'
-    DOLLAR = 3      # '$'
-    HASHTAG = 4     # '#'
-    SHTRUDEL = 5    # '@'
-    PLUS = 6        # '+'
-    PERCENT = 7     # '%'
-    EQUALS = 8      # '='
-
 
 class Game(dict):
 
@@ -80,9 +69,6 @@ class User:
         self.nikName = nikName
         self.creation_date = datetime.datetime.now()
         
-        # self.gamesParticipated = 0
-        # self.gamesWon = 0
-        # self.avgTimeForMove = 0
         self.userStat = UserStat()
 
 

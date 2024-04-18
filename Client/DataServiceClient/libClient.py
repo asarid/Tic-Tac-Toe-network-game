@@ -168,10 +168,6 @@ class Message:
         self.jsonheader = None
         self._jsonheader_len = None
 
-        # my revision - close only upon user exit
-            
-        # # Close when response has been processed
-        # self.close()
 
 
     def _process_response_json_content(self):
@@ -284,21 +280,12 @@ class Message:
                     currentPage.game_result = "over"
                     self.responses.pop(0)
             
-        # result = content.get("result")
-        # print(f"Got result: {result}")
-        
-        # ui.frames[ui.AuthPageToken].setTokenEntry("Mom")
 
-
-########################
-########################
         
     def _process_response_binary_content(self):
         content = self.responses[0]
         print(f"Got response: {content!r}")
 
-########################
-########################
         
 
     def _json_decode(self, json_bytes, encoding):
@@ -345,16 +332,10 @@ class Message:
     def _write(self):
         if self._send_buffer:
 
-            # self.response = None
-            # self.jsonheader = None
-            # self._jsonheader_len = None
-
             self.last_event = "write"
 
             print(f"Sending {self._send_buffer!r} to {self.addr}")
             try:
-                
-                # self.sock.connect_ex(self.addr)
                 
                 # Should be ready to write
                 length = len(self._send_buffer)
@@ -367,28 +348,23 @@ class Message:
             except BlockingIOError:
                 # Resource temporarily unavailable (errno EWOULDBLOCK)
                 pass
-            # except Exception:
-            #     print("error")
+
             else:
                 self._send_buffer = self._send_buffer[len(data):]
 
 
     def queue_request(self):
         action = self.requests[0]["action"]
-        #content = "hello everyone!"
         
         value = self.requests[0]["value"]
         
         content_type = self.requests[0]["type"]
-        #content_type = "text/json"
 
         content_encoding = self.requests[0]["encoding"]
-        #content_encoding = "utf-8"
         
         if content_type == "text/json":
             req = {
                 "content_bytes": self._json_encode((action, value), content_encoding),
-                #"content_bytes": self._json_encode(content, content_encoding),
                 "content_type": content_type,
                 "content_encoding": content_encoding,
             }
@@ -396,7 +372,6 @@ class Message:
             req = {
                 "action_bytes": action,
                 "value_bytes": value,
-                #"content_bytes": content,
                 "content_type": content_type,
                 "content_encoding": content_encoding,
             }

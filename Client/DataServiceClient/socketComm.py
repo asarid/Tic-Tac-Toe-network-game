@@ -25,11 +25,6 @@ class SocketCommunication:
         # server closed unexpectedly
         self.closedUnexpectedly = False
 
-        #host, port = sys.argv[1], int(sys.argv[2])
-        #action, value = sys.argv[3], sys.argv[4]
-        #request = create_request(action, value)
-        #start_connection(host, port, request)
-
         print("[+] Socket is now created")
         self.bind()
 
@@ -41,9 +36,7 @@ class SocketCommunication:
         self.sock.setblocking(False)
         self.sock.connect_ex(self.addr)
         print("[+] Found connection to server")
-        # events = selectors.EVENT_READ | selectors.EVENT_WRITE
         self.message = libClient.Message(self.sock, self.addr)
-        # selector.register(self.sock, events, data=self.message)
         print("at beginning: ", self.sock)
         
         threading.Thread(target = self.processEvents, args=(self.message,)).start()

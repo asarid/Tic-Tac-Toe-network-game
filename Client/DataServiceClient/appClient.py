@@ -8,17 +8,7 @@ conf_path = os.getcwd()
 level_up = conf_path[:conf_path.rfind("\\")]
 sys.path.append(level_up)
 
-import Presentation2 as pr
-
-
-# from enum import Enum
-
-
-# class Action(Enum):
-#     REQUESR_NEW_USER = 1
-#     NEW_GAME = 2
-    
-
+import Presentation as pr
 
 
 class AppRoot(tk.Tk):
@@ -31,7 +21,6 @@ class AppRoot(tk.Tk):
 
         # Set up the main container for pages
         self.container = tk.Frame(self)
-        # self.container.pack(fill="both", expand=True)
         self.container.pack(side = "top", fill = "both", expand = True)
         
         self.container.grid_rowconfigure(0, weight = 1)
@@ -87,12 +76,6 @@ def configureRootWindow(root : AppRoot):
     window_width = 750
     window_height = 500
     
-    # screen_width = self.winfo_screenwidth()
-    # screen_height = self.winfo_screenheight()
-    # x = (screen_width // 2) - (window_width // 2)
-    # y = (screen_height // 2) - (window_height // 2)
-
-    # root.geometry(f"{window_width}x{window_height}+{x}+{y}")  # if we want all windows to be put exactly in the center
     root.geometry(f"{window_width}x{window_height}")
     root.configure(bg='#F0F0F0')
     root.resizable(False, False)
