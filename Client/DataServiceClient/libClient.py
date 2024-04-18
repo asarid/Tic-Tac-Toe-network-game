@@ -1,5 +1,4 @@
 import sys
-import selectors
 import json
 import io
 import struct
@@ -52,8 +51,7 @@ gui = None
 
 
 class Message:
-    def __init__(self, selector, sock : sckt.socket, addr):
-        self.selector = selector
+    def __init__(self, sock : sckt.socket, addr):
         self.sock = sock
         self.addr = addr
         self.requests = []
@@ -68,12 +66,11 @@ class Message:
         self.moreResponsesExpected = False
 
     def process_events(self, mask):
-        if mask & selectors.EVENT_READ:
+        if mask & 0b01:
             self.read()
             self.last_event = "read"
-            print("read")
             
-        if mask & selectors.EVENT_WRITE:
+        if mask & 0b10:
             self.write()
             self.last_event = "write"
 
@@ -82,7 +79,6 @@ class Message:
 
 
     def read(self):
-        print("\ntrying to read...\n")
         isRead = self._read()
         if (isRead  or  self._recv_buffer != b""):
 
@@ -411,17 +407,17 @@ class Message:
             self._request_queued = True
 
 
-    def _set_selector_events_mask(self, mode):
-        """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""
-        if mode == "r":
-            events = selectors.EVENT_READ
-        elif mode == "w":
-            events = selectors.EVENT_WRITE
-        elif mode == "rw":
-            events = selectors.EVENT_READ | selectors.EVENT_WRITE
-        else:
-            raise ValueError(f"Invalid events mask mode {mode!r}.")
-        self.selector.modify(self.sock, events, data=self)
+    # def _set_selector_events_mask(self, mode):
+    #     """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""
+    #     if mode == "r":
+    #         events = selectors.EVENT_READ
+    #     elif mode == "w":
+    #         events = selectors.EVENT_WRITE
+    #     elif mode == "rw":
+    #         events = selectors.EVENT_READ | selectors.EVENT_WRITE
+    #     else:
+    #         raise ValueError(f"Invalid events mask mode {mode!r}.")
+    #     self.selector.modify(self.sock, events, data=self)
 
     
     def _json_encode(self, obj, encoding):
@@ -452,14 +448,7 @@ class Message:
                 while (result == None):
                     pass
             print(f"Closing connection to {self.addr}")
-            self.selector.unregister(self.sock)
-        except Exception as e:
-            print(
-                f"Error: selector.unregister() exception for "
-                f"{self.addr}: {e!r}"
-            )
 
-        try:
             self.sock.close()
         except OSError as e:
             print(f"Error: socket.close() exception for {self.addr}: {e!r}")

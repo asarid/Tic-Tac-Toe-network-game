@@ -39,14 +39,16 @@ def handle_client(conn, addr):
             message.process_events(mask)
             time.sleep(0.03)
         except Exception:
-            print(
-                f"Main: Error: Exception for {addr}:\n"
-                f"{traceback.format_exc()}"
-            )
+            # print(
+            #     f"Main: Error: Exception for {addr}:\n"
+            #     f"{traceback.format_exc()}"
+            # )
+            
             # BL.unregisterUser(message.addr)
 
             BL.someoneExitedAbruptly(addr)
-            message.close()
+            if (message.toExit == False):
+                message.close()
             addrs_messages.pop(addr, None)
             break
 
