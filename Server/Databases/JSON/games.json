@@ -620,5 +620,39 @@
         "winner_name": "avishai",
         "duration": 8.641738,
         "creation_date": "2024-04-18T18:29:22.113146"
+    },
+    "a43ee2c3-459f-4c44-bb1c-edb7a9315df7": {
+        "game_ID": "a43ee2c3-459f-4c44-bb1c-edb7a9315df7",
+        "num_of_players": 3,
+        "game_state": "WON",
+        "board": [
+            [
+                "X",
+                " ",
+                "O",
+                "$"
+            ],
+            [
+                "O",
+                "X",
+                "O",
+                "O"
+            ],
+            [
+                "$",
+                "X",
+                "X",
+                "O"
+            ],
+            [
+                "$",
+                "$",
+                "X",
+                "$"
+            ]
+        ],
+        "winner_name": "dvir",
+        "duration": 67.886943,
+        "creation_date": "2024-04-20T21:16:58.325815"
     }
 }

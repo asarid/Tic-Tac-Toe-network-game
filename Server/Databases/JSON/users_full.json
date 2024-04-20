@@ -15,8 +15,8 @@
         "nik_name": "avishai",
         "creation_date": "2024-03-28T22:28:27.566744",
         "user_stat": {
-            "games_participated": 3,
-            "games_won": 1,
+            "games_participated": 4,
+            "games_won": 2,
             "games_tie": 0,
             "avg_time_for_move": 0.0
         }
@@ -70,7 +70,7 @@
         "nik_name": "dvir",
         "creation_date": "2024-03-27T15:21:15.801076",
         "user_stat": {
-            "games_participated": 22,
+            "games_participated": 23,
             "games_won": 6,
             "games_tie": 6,
             "avg_time_for_move": 0.0
@@ -87,17 +87,6 @@
             "avg_time_for_move": 0
         }
     },
-    "5803": {
-        "token": "5803",
-        "nik_name": "efrat",
-        "creation_date": "2024-03-27T16:05:33.892636",
-        "user_stat": {
-            "games_participated": 27,
-            "games_won": 9,
-            "games_tie": 6,
-            "avg_time_for_move": 0.0
-        }
-    },
     "1407": {
         "token": 1407,
         "nik_name": "tal",
@@ -109,13 +98,13 @@
             "avg_time_for_move": 0
         }
     },
-    "631": {
-        "token": 631,
-        "nik_name": "dvir",
-        "creation_date": "2024-03-27T15:21:15.801076",
+    "5803": {
+        "token": "5803",
+        "nik_name": "efrat",
+        "creation_date": "2024-03-27T16:05:33.892636",
         "user_stat": {
-            "games_participated": 23,
-            "games_won": 6,
+            "games_participated": 28,
+            "games_won": 9,
             "games_tie": 6,
             "avg_time_for_move": 0.0
         }
@@ -125,9 +114,20 @@
         "nik_name": "avishai",
         "creation_date": "2024-03-28T22:28:27.566744",
         "user_stat": {
-            "games_participated": 4,
+            "games_participated": 5,
             "games_won": 2,
             "games_tie": 0,
+            "avg_time_for_move": 0.0
+        }
+    },
+    "631": {
+        "token": 631,
+        "nik_name": "dvir",
+        "creation_date": "2024-03-27T15:21:15.801076",
+        "user_stat": {
+            "games_participated": 24,
+            "games_won": 7,
+            "games_tie": 6,
             "avg_time_for_move": 0.0
         }
     }

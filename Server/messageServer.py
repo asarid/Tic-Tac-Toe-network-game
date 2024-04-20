@@ -1,14 +1,13 @@
 import sys
-import selectors
 import json
 import struct
 
 
 
-import os
-conf_path = os.getcwd()
-level_up = conf_path[:conf_path.rfind("\\")]
-sys.path.insert(1, level_up)
+# import os
+# conf_path = os.getcwd()
+# level_up = conf_path[:conf_path.rfind("\\")]
+# sys.path.insert(1, level_up)
 
 import BusinessLogic as BL
 

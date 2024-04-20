@@ -1,21 +1,21 @@
-import DataAccess.DataAccess as DA
+import DataAccess as DA
 import BusinessEntities as BE
 import socket
 import random
 import datetime
 
 factory = DA.AccessFactory()
-factory.register_DB_access('JSON', DA.JSON_db_access)
+factory.register_DB_access('JSON', DA.JSON_db_access) # create an instance of a DB accessor based on JSON files
 # factory.register_format('SQL', SQL_db_access)
 
 
 
-db_access = DA.JSON_db_access()
+db_access = DA.JSON_db_access() # the gateway to the DB accessor
 
 registeredUsers = {}            # each entry is a { user_address 'addr' : [BE.User, socket, game_ID - if any] }
 activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (ip, port)], numOfMovesDone: int = 0, turn = 0]}
 
-addr_Message = None
+addr_Message = None              
 
 # dict with pairs: {symbolOfCurrentPlayer : symbolOfNextPlayer}
 symbols = {
@@ -58,12 +58,12 @@ def signUpUser(nikName: str, addr: tuple, sock: socket):
         sock (socket): socket he is connected with, written in order to identify the 
                         right registered object in the selector.
     Returns:
-        var: his new and unique token if succedds, else -1
+        var: his new and unique token if succeeds, else -1
     """
     user = db_access.create_new_user(nikName)
     
     if (isinstance(user, BE.User)):
-        registeredUsers[addr] = [user, sock]
+        registeredUsers[addr] = [user, sock] # store the new user in a dict
         return user.token
     else:
         return -1
@@ -132,6 +132,13 @@ def fetchAllActiveGames():
 
 
 def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
+    """handle a case in which a user wants to join to a game (either as a player or a spectator)
+
+    Args:
+        game_ID (str): ID of the game the user wnats to join to
+        type_of_joined_user (str): "player" or "spectator"
+        addr (tuple): (ip, port)
+    """
     if type_of_joined_user == "spectator":
         activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
         registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
@@ -162,12 +169,22 @@ def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
 
 
 def fetchGamesHistory():
+    """fetch history of games from the DB
+
+    Returns:
+        list: a list of Games
+    """
     # fetch history of games from the database (the fetched games are sorted by creation date)
     games = db_access.fetch_all_games()
 
     return games
 
 def fetchUsersStats():
+    """fetch statistics of users
+
+    Returns:
+        list: list of user statistics
+    """
     usersStats = db_access.fetch_users_stats()
     return usersStats
 
@@ -397,7 +414,6 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
     activeGames.pop(game_ID, None)
 
 def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
-    
     # the user is a spectator, there no need to act except removing him from the list of sepctators
     if is_spectator == True:
         activeGames[game_ID][2].remove(addr)
@@ -427,6 +443,3 @@ def exitTheGame(game_ID: str, is_spectator: bool, addr: tuple):
             registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
         activeGames.pop(game_ID, None)
         unregisterUser(addr)
-
-
-

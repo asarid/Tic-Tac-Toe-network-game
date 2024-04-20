@@ -3,6 +3,8 @@ import datetime
 import uuid
 
 class StateOfGame(Enum):
+    """an enum for the status of a game
+    """
     INITIALIZED = 1
     STARTED = 2
     WON = 3
@@ -11,7 +13,8 @@ class StateOfGame(Enum):
 
 
 class Game(dict):
-
+    """data structure representing a game. It inherits from 'dict' in favor of automatic JSON conversion (otherwise, the server won't know how to send as a JSON object this custom class)
+    """
     def __init__(self, num_of_players, gameState = "INITIALIZED"):
         """Constructor for Game class
 
@@ -29,10 +32,22 @@ class Game(dict):
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
     
     def set_game_ID(self, game_ID: str):
+        """set the game ID. this method is important for the re-initialization
+            of the dict it inherits from, otherwise in case of sending a game or storing
+            it in the DB, an old Game will be handled
+
+        Args:
+            game_ID (str): the game ID
+        """
         self.game_ID = game_ID
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_game_state(self, game_state: str):
+        """set the state of the game
+
+        Args:
+            game_state (str): string represnting the state of the game (INITIALIZED, STARTED, WON, DRAW)
+        """
         self.game_state = game_state
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
@@ -46,24 +61,42 @@ class Game(dict):
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_num_of_players(self, num_of_players: int):
+        """set the number of players in the game
+
+        Args:
+            num_of_players (int): number of players in the game (not including spectators)
+        """
         self.num_of_players = num_of_players
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_winner_name(self, winner_name: str):
-            self.winner_name = winner_name
-            dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
+        """set the nik name of the winner in this game
+
+        Args:
+            winner_name (str): nik name of winner
+        """
+        self.winner_name = winner_name
+        dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_duration(self):
+        """calculate the duration of game in seconds
+        """
         self.duration = (datetime.datetime.now() - self.creation_date).total_seconds()
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
     def set_creation_date(self, creation_date: datetime):
+        """set the date this game was created
+
+        Args:
+            creation_date (datetime): the date this game was creaeted
+        """
         self.creation_date = creation_date
         dict.__init__(self, game_ID = self.game_ID, num_of_players = self.num_of_players, game_state = self.game_state, board = self.board, winner_name = self.winner_name, duration = self.duration, creation_date = self.creation_date.isoformat())
 
 
 class User:
-    
+    """a data structure representing a user
+    """
     def __init__(self, token : int, nikName : str):
         self.token = token
         self.nikName = nikName
@@ -73,6 +106,8 @@ class User:
 
 
 class UserStat:
+    """as data structure for statistics of a user
+    """
     def __init__(self):
         self.numOfGamesParticipated = 0
         self.gamesWon = 0
