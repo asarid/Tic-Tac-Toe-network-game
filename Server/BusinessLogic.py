@@ -242,6 +242,13 @@ def notifyParticipants(game_ID: str, response: str, value, *rest):
 # game management functions
 
 def startTheGame(game_ID: str):
+    """start the game, mainly means notifying all the registered players and spectators
+    that the game is about to start (the client side will handle the consequences,
+    for example the timer will start to tick)
+
+    Args:
+        game_ID (str): the ID of the game that is about to begin
+    """
     activeGames[game_ID][0].set_game_state("STARTED")
     activeGames[game_ID][0].set_creation_date(datetime.datetime.now())
     print("game that started: ", activeGames[game_ID][0])
@@ -249,23 +256,30 @@ def startTheGame(game_ID: str):
     active_players = activeGames[game_ID][1]
 
     for player in active_players:
-        notifyOneParticipant(player.addr, "6_beforeStart", (player.turn, player.symbol))
+        notifyOneParticipant(player.addr, "6_beforeStart", (player.turn, player.symbol)) # inform eah player about his symbol
 
-    notifyParticipants(game_ID, "7_start", active_players[0].nik_name)
+    notifyParticipants(game_ID, "7_start", active_players[0].nik_name) # notify players and spectators that the game has begun
 
-    notifyOneParticipant(active_players[0].addr, "8_yourMove", "")
+    notifyOneParticipant(active_players[0].addr, "8_yourMove", "") # nofity the first palyer that he is the first to play
 
 
 def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
+    """handle a move that one player has done
+
+    Args:
+        game_ID (str): the ID of the game
+        squareChanged (tuple): includes (row chosed, column chosed, symbol of the player who made his move)
+        addr (tuple): (ip, port)
+    """
     gameInQuestion = activeGames[game_ID][0]
-    gameInQuestion.set_square_on_board(squareChanged)
-    activeGames[game_ID][3] = activeGames[game_ID][3] + 1  # increase number of moves
+    gameInQuestion.set_square_on_board(squareChanged)      # save the move on the board
+    activeGames[game_ID][3] = activeGames[game_ID][3] + 1  # increase number of moves that was done so far
 
-    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
-    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase 'turn' counter
-    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the last player, in case he won the game
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase 'turn' counter, which means that the next to play will get a message
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the next player to play, in order to inform him that hios turn has arrived
 
-    result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3])
+    result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3]) # check what is the state of the game
 
     if (result == 0): # the game is not finished
         notifyParticipants(game_ID, "9_afterOneMove", (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
@@ -344,6 +358,11 @@ def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -> int:
     
 
 def timeout(game_ID: str):
+    """handle occasion of timeout, the turn should pass to the next player
+
+    Args:
+        game_ID (str): the ID of the game in which there was a timeout
+    """
     lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
     activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase 'turn' counter
     nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
@@ -353,6 +372,12 @@ def timeout(game_ID: str):
 
 
 def someoneExitedAbruptly(addr : tuple):
+    """some player exited from the app abruptly, so there is a chance we need to notify other
+    players (in case the game is not over)
+
+    Args:
+        addr (tuple): (IP, PORT)
+    """
     # if the user is still registered 
     if addr in registeredUsers:
         # the user is associated with an occurring game
@@ -373,7 +398,14 @@ def someoneExitedAbruptly(addr : tuple):
 
 
 def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
-    
+    """handle a case in which the game is over, either by victory or by a tie
+
+    Args:
+        game_ID (str): the game in question
+        result (int):  1 - victory, 2 - draw
+        squareChanged (tuple): (row, column, symbol)
+        lastPlayer (Participant): data about the last player who made his move
+    """
     game = activeGames[game_ID][0]
     game.set_duration()
 
@@ -381,7 +413,7 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
 
     if (result == 1): # the game has won
         notifyParticipants(game_ID, "11_victory", (squareChanged, lastPlayer.nik_name), lastPlayer.addr)
-        notifyOneParticipant(lastPlayer.addr, "12_youWon", "")
+        notifyOneParticipant(lastPlayer.addr, "12_youWon", "") # notify the winner about his victory
 
         game.set_game_state("WON")
         game.set_winner_name(registeredUsers[lastPlayer.addr][0].nikName)
@@ -403,7 +435,7 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
             users_list.append(user)
             user.userStat.updateStat(2)
 
-    db_access.update_users(users_list)
+    db_access.update_users(users_list) # update DB with the game the and players who participated in the game
     db_access.update_game(game)
 
     for player in activeGames[game_ID][1]:
@@ -414,6 +446,13 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
     activeGames.pop(game_ID, None)
 
 def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
+    """some player quitted (but he didn't exit the app) in the middle of a game
+
+    Args:
+        game_ID (str): the ID of the game
+        is_spectator (bool): flag that signals if the participant that quitted is a spectator or a player
+        addr (tuple): (IP, PORT)
+    """
     # the user is a spectator, there no need to act except removing him from the list of sepctators
     if is_spectator == True:
         activeGames[game_ID][2].remove(addr)
@@ -428,7 +467,13 @@ def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
         activeGames.pop(game_ID, None)
 
 def exitTheGame(game_ID: str, is_spectator: bool, addr: tuple):
-    
+    """some participant exitted from the app abruptly
+
+    Args:
+        game_ID (str): the DI of the game
+        is_spectator (bool): flag that signals if the participant that exited is a spectator or a player
+        addr (tuple): (IP, PORT)
+    """
     # the user is a spectator, there no need to act except removing him from the list of sepctators
     if is_spectator == True:
         activeGames[game_ID][2].remove(addr)
