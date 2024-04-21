@@ -1,4 +1,4 @@
 Set oShell = CreateObject ("Wscript.Shell")
 Dim strArgs
-strArgs = "cmd /c Client.bat"
+strArgs = "cmd /c runClient_python312.bat"
 oShell.Run strArgs, 0, false

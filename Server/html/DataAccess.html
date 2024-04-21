@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>DataAccess API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>DataAccess</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import abc
+import json
+import random
+import os
+import datetime
+
+# conf_path = os.getcwd()
+# sys.path.append(conf_path[:conf_path.rfind(&#34;\\&#34;)])
+# databases_path = sys.path.append(conf_path[:conf_path.rfind(&#34;\\&#34;)+1]+&#34;Databases&#34;)
+
+
+import BusinessEntities as BE
+
+
+
+class DataAccessInterface(metaclass=abc.ABCMeta):
+    &#34;&#34;&#34;an interfance whom any DB manager should implement
+
+    Raises:
+        NotImplementedError: an exception raised if one of the methods of this interface is not implemented
+    &#34;&#34;&#34;
+
+    # =======================================
+    # =========  CRUD operations  ===========
+    # =======================================
+
+
+    # ==============================
+    # =========  CREATE  ===========
+
+    @abc.abstractmethod
+    def create_new_game(self, numOfPlayers : int) -&gt; BE.Game:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def create_new_user(self) -&gt; str:
+        raise NotImplementedError
+    
+
+    # ============================
+    # =========  READ  ===========
+
+    @abc.abstractmethod
+    def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def fetch_all_games(self, id: str) -&gt; dict:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def fetch_user_by_ID(self, id: int) -&gt; BE.User:
+        raise NotImplementedError
+
+
+    # ==============================
+    # =========  UPDATE  ===========
+
+    @abc.abstractmethod
+    def update_game(self, game : BE.Game):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def update_user(self, user : BE.User):
+        raise NotImplementedError
+    
+
+    # ==============================
+    # =========  DELETE  ===========
+
+    @abc.abstractmethod
+    def delete_game_by_ID(self, id: str):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def delete_user_by_ID(self, id: str):
+        raise NotImplementedError
+
+
+
+
+class AccessFactory:
+    &#34;&#34;&#34;using this factory a new type of access to the database can be created without
+        any change except adding the new class of access
+    &#34;&#34;&#34;
+    def __init__(self):
+        self._creators = {} # a dict of types of access to the database
+
+    def register_DB_access(self, format, creator):
+        self._creators[format] = creator
+
+    def get_access_by_DB_type(self, format):
+        &#34;&#34;&#34;get access to the database according to the type of database
+
+        Args:
+            format: format of database
+
+        Raises:
+            ValueError: if the type of database is not found
+
+        Returns:
+            var: an instance of the access to the DB
+        &#34;&#34;&#34;
+        creator = self._creators.get(format)
+        if not creator:
+            raise ValueError(format)
+        return creator()
+
+
+
+
+
+class JSON_db_access(DataAccessInterface):
+    &#34;&#34;&#34;access to a JSON database
+    &#34;&#34;&#34;
+    def __init__(self):
+        &#34;&#34;&#34;initialize paths of files
+
+        Raises:
+            Exception: if some file supposed to be in the database is not found
+        &#34;&#34;&#34;
+        self.users_full = &#34;./Databases/JSON/users_full.json&#34;
+        self.users_tokens = &#34;./Databases/JSON/users_tokens.json&#34;
+        self.games = &#34;./Databases/JSON/games.json&#34;
+
+        files = [self.users_full,self.users_tokens,self.games]
+        
+        # Check if file exists
+        for filePath in files:
+            if os.path.exists(filePath) is False:
+                raise Exception(&#34;File not found&#34;)    
+        
+        # self.lastDateGamesFetched = datetime.datetime.now() 
+
+
+    # ==============================
+    # =========  CREATE  ===========
+
+    def create_new_game(self, numOfPlayers: int):
+        &#34;&#34;&#34;create an entry of new game in the DB
+
+        Args:
+            numOfPlayers (int): number of players (not including spectators)
+
+        Returns:
+            Game: the new game
+        &#34;&#34;&#34;
+        newGame = BE.Game(num_of_players = numOfPlayers)
+        dictGames = {}
+
+        if (os.path.getsize(self.games) != 0):
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+        dictGames[newGame.game_ID] = newGame    # load this new game into the dict of games
+
+        with open(self.games, &#39;w&#39;) as gamesFile: # write the new dict of games (now includes the new game) into the DB
+            json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+        return newGame
+
+
+    def create_new_user(self, nik_name : str) -&gt; BE.User:
+        &#34;&#34;&#34;create an entry of new user in the DB
+
+        Args:
+            nik_name (str): a nik name the user chose for himself
+
+        Returns:
+            BE.User: the instance of the new user
+        &#34;&#34;&#34;
+        dictUserTokens = {}
+        newToken = random.randint(1,9999) # chooose a random token for the user
+
+        if (os.path.getsize(self.users_tokens) != 0):
+            with open(self.users_tokens) as usersTokensFile:
+                dictUserTokens = json.load(fp = usersTokensFile)
+            while (newToken in dictUserTokens): # verify the token is unique
+                newToken = random.randint(1,9999)
+
+        dictUserTokens[newToken] = nik_name
+        with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+            json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+        newUser = BE.User(token = newToken, nikName = nik_name)
+        dictUsers = {}
+        if (os.path.getsize(self.users_full) != 0):
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+        dictUsers[newUser.token] = newUser
+        with open(self.users_full, &#39;w&#39;) as usersFile: # store the dict of users (with the new user) in the DB
+            json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+
+        return newUser
+    
+
+    # ============================
+    # =========  READ  ===========
+
+    def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+        &#34;&#34;&#34;fetch a game from the DB based on its ID
+
+        Args:
+            id (str): the ID of the requested game
+
+        Returns:
+            BE.Game: the game whose ID was passed as parameter
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            dictGame = dictGames[id]
+            game                = BE.Game(dictGame[&#34;num_of_players&#34;])
+            game.game_ID        = dictGame[&#34;game_ID&#34;]
+            game.game_state     = dictGame[&#34;game_state&#34;]
+            game.board          = dictGame[&#34;board&#34;]
+            game.winner_ID      = dictGame[&#34;winner_ID&#34;]
+            game.creation_date  = datetime.datetime.fromisoformat(dictGame[&#34;creation_date&#34;])
+            game.duration       = dictGame[&#34;duration&#34;]
+
+            return game
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_game_by_ID(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+        except KeyError:
+            print(&#34;fetch_game_by_ID(): The key in the dictionary is not found&#34;)
+    
+
+    def fetch_all_games(self) -&gt; list:
+        &#34;&#34;&#34;fetch all the games in the DB
+
+        Returns:
+            list: a list of all the games in the DB
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile) # fetch all the games from the DB
+            
+            how_many_to_save = 30  # how many games we want to store in the database
+            sorted_games_by_creationDate = sorted(dictGames.items(), key=lambda x:datetime.datetime.fromisoformat(x[1][&#34;creation_date&#34;]))
+            # lastDateGamesFetched = datetime.datetime.now()
+
+            # remove old games records (save only &#39;how_many_to_save&#39; records or less), do it no more than once a day
+            if (len(sorted_games_by_creationDate) &gt; how_many_to_save):
+                sorted_games_by_creationDate = sorted_games_by_creationDate[-30:]
+                for index, game in enumerate(sorted_games_by_creationDate):
+                    if (index &lt; len(dictGames.items()) - how_many_to_save):
+                        dictGames.pop(game[0]) # pop the game with game_ID &#39;game[0]&#39;
+                    else:
+                        break
+            
+                with open(self.games, &#39;w&#39;) as gamesFile:
+                    json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+            return sorted_games_by_creationDate
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_all_games(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+            return []
+        except KeyError:
+            print(&#34;fetch_all_games(): The key in the dictionary is not found&#34;)
+            return []
+                    
+    def fetch_users_stats(self) -&gt; list:
+        &#34;&#34;&#34;fetch user statistics (not including sensitive data)
+
+        Returns:
+            list: a list of UserStats
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            users_list = []
+            for key, user in dictUsers.items():
+                users_list.append((user[&#34;nik_name&#34;],user[&#34;user_stat&#34;])) # list of statistics of all users
+            
+            return users_list
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_users_stats(): Seems like the &#39;users&#39; file is empty or corrupted&#34;)
+            return []
+        except KeyError:
+            print(&#34;fetch_users_stats(): The key in the dictionary is not found&#34;)
+            return []
+
+    def fetch_user_by_ID(self, token: int) -&gt; BE.User:
+        &#34;&#34;&#34;fetch a specific user based on its ID
+
+        Args:
+            token (int): a token of one user
+
+        Returns:
+            BE.User: the user whiose token was passed as parameter
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            if (token not in dictUsers):
+                return &#34;notFound&#34;
+            
+            dictUser = dictUsers[token]
+            user = BE.User(dictUser[&#34;token&#34;],dictUser[&#34;nik_name&#34;])
+            user.creation_date = datetime.datetime.fromisoformat(dictUser[&#34;creation_date&#34;])
+            
+            user.userStat.numOfGamesParticipated = dictUser[&#34;user_stat&#34;][&#34;games_participated&#34;]
+            user.userStat.gamesWon               = dictUser[&#34;user_stat&#34;][&#34;games_won&#34;]
+            user.userStat.gamesInTie             = dictUser[&#34;user_stat&#34;][&#34;games_tie&#34;]
+            user.userStat.avgTimeForMove         = dictUser[&#34;user_stat&#34;][&#34;avg_time_for_move&#34;]
+        
+            return user
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_user_by_ID(): Seems like the &#39;users_full&#39; file is empty or corrupted&#34;)
+        except KeyError:
+            print(&#34;fetch_user_by_ID(): The key in the dictionary is not found&#34;)
+
+
+    # ==============================
+    # =========  UPDATE  ===========
+
+    def update_game(self, game : BE.Game):
+        &#34;&#34;&#34;update a gmae in the DB (replace the old Game by a new Game)
+
+        Args:
+            game (BE.Game): the new and updated game
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            id = game.game_ID
+            dictGames.pop(id, None)
+            dictGames[game.game_ID] = game
+
+            with open(self.games, &#39;w&#39;) as gamesFile:
+                json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_game(): Seems like the file is empty or corrupted&#34;)
+
+
+    def update_user(self, user : BE.User):
+        &#34;&#34;&#34;update a user in the DB
+
+        Args:
+            user (BE.User): the new user to replace wit the old User entry
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            if (dictUsers[user.token][&#34;nik_name&#34;] != user.nikName):
+                with open(self.users_tokens) as usersTokensFile:
+                    dictUsersTokens = json.load(usersTokensFile)
+    
+                dictUsersTokens.pop(user.token, None)
+                dictUsersTokens[user.token] = user.nikName
+    
+                with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+                    json.dump(dictUsersTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+            dictUsers.pop(user.token, None)
+            dictUsers[user.token] = user
+            
+            with open(self.users_full, &#39;w&#39;) as usersFile:
+                json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_user(): Seems like the file is empty&#34;)
+        
+
+    def update_users(self, users_list: list):
+        &#34;&#34;&#34;update a list of users at once. the update is made only for the statistics, if anyone
+            wants to update its nik_name, it can be done through the function &#39;update_user&#39;
+
+        Args:
+            users_list (list): a list of users to be updated in the DB
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsersFull = json.load(usersFile)
+            
+            for user in users_list:
+                dictUsersFull.pop(user.token, None)     
+                dictUsersFull[user.token] = user
+            
+            with open(self.users_full, &#39;w&#39;) as usersFile:
+                json.dump(dictUsersFull, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_users(): Seems like the file is empty&#34;)
+
+    # ==============================
+    # =========  DELETE  ===========
+
+    def delete_game_by_ID(self, id: str):
+        &#34;&#34;&#34;dalete some game baes on its ID
+
+        Args:
+            id (str): the ID of the game to be deleted
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            dictGames.pop(id, None)
+
+            with open(self.games, &#39;w&#39;) as gamesFile:
+                json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+        
+        except json.JSONDecodeError:
+            print(&#34;delete_game_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)
+
+
+    def delete_user_by_ID(self, id: str):
+        &#34;&#34;&#34;delete user based on its token
+
+        Args:
+            id (str): the token of the user to be deleted
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_tokens) as usersTokensFile:
+                dictUserTokens = json.load(usersTokensFile)
+            dictUserTokens.pop(id, None) # delete from the file includes only tokens and nik names
+            
+            with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+                json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+            with open(self.users_full) as usersFullFile:
+                dictUsers = json.load(usersFullFile)
+            dictUsers.pop(id, None) # delete from the file includes full data on the users
+            
+            with open(self.users_full, &#39;w&#39;) as usersFullFile:
+                json.dump(dictUsers, usersFullFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+            
+        
+        except json.JSONDecodeError:
+            print(&#34;delete_user_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)
+
+
+class GameEncoderJSON(json.JSONEncoder):
+    &#34;&#34;&#34;encoder of a Game (a custom class can&#39;t be converted to a json object directly)
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, BE.Game):
+            return {&#34;game_ID&#34;       : obj.game_ID,
+                    &#34;num_of_players&#34;: obj.num_of_players,
+                    &#34;game_state&#34;    : obj.game_state,
+                    &#34;board&#34;         : obj.board,
+                    &#34;winner_ID&#34;     : obj.winner_ID,
+                    &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                    &#34;duration&#34;      : obj.duration,
+                    }
+        return super().default(obj)
+    
+class UserEncoderJSON(json.JSONEncoder):
+    &#34;&#34;&#34;encoder of a Game (a custom class can&#39;t be converted to a json object directly)
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, BE.User):
+            return {&#34;token&#34;         : obj.token,
+                    &#34;nik_name&#34;      : obj.nikName,
+                    &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                    &#34;user_stat&#34;     : serialize_userStat_JSON(obj.userStat)
+                    }
+        return super().default(obj)
+    
+def serialize_userStat_JSON(userStat : BE.UserStat):
+    &#34;&#34;&#34;helps the user encoder encode the UserStat object
+
+    Args:
+        userStat (BE.UserStat): the object to be encoded
+
+    Returns:
+        dict: a dict represented an encoded UserStat
+    &#34;&#34;&#34;
+    return {&#34;games_participated&#34;: userStat.numOfGamesParticipated,
+            &#34;games_won&#34;         : userStat.gamesWon,
+            &#34;games_tie&#34;         : userStat.gamesInTie,
+            &#34;avg_time_for_move&#34; : userStat.avgTimeForMove
+            }</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="DataAccess.serialize_userStat_JSON"><code class="name flex">
+<span>def <span class="ident">serialize_userStat_JSON</span></span>(<span>userStat: BusinessEntities.UserStat)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>helps the user encoder encode the UserStat object</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>userStat</code></strong> :&ensp;<code>BE.UserStat</code></dt>
+<dd>the object to be encoded</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>a dict represented an encoded UserStat</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def serialize_userStat_JSON(userStat : BE.UserStat):
+    &#34;&#34;&#34;helps the user encoder encode the UserStat object
+
+    Args:
+        userStat (BE.UserStat): the object to be encoded
+
+    Returns:
+        dict: a dict represented an encoded UserStat
+    &#34;&#34;&#34;
+    return {&#34;games_participated&#34;: userStat.numOfGamesParticipated,
+            &#34;games_won&#34;         : userStat.gamesWon,
+            &#34;games_tie&#34;         : userStat.gamesInTie,
+            &#34;avg_time_for_move&#34; : userStat.avgTimeForMove
+            }</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="DataAccess.AccessFactory"><code class="flex name class">
+<span>class <span class="ident">AccessFactory</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>using this factory a new type of access to the database can be created without
+any change except adding the new class of access</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccessFactory:
+    &#34;&#34;&#34;using this factory a new type of access to the database can be created without
+        any change except adding the new class of access
+    &#34;&#34;&#34;
+    def __init__(self):
+        self._creators = {} # a dict of types of access to the database
+
+    def register_DB_access(self, format, creator):
+        self._creators[format] = creator
+
+    def get_access_by_DB_type(self, format):
+        &#34;&#34;&#34;get access to the database according to the type of database
+
+        Args:
+            format: format of database
+
+        Raises:
+            ValueError: if the type of database is not found
+
+        Returns:
+            var: an instance of the access to the DB
+        &#34;&#34;&#34;
+        creator = self._creators.get(format)
+        if not creator:
+            raise ValueError(format)
+        return creator()</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="DataAccess.AccessFactory.get_access_by_DB_type"><code class="name flex">
+<span>def <span class="ident">get_access_by_DB_type</span></span>(<span>self, format)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get access to the database according to the type of database</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>format</code></strong></dt>
+<dd>format of database</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if the type of database is not found</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>var</code></dt>
+<dd>an instance of the access to the DB</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_access_by_DB_type(self, format):
+    &#34;&#34;&#34;get access to the database according to the type of database
+
+    Args:
+        format: format of database
+
+    Raises:
+        ValueError: if the type of database is not found
+
+    Returns:
+        var: an instance of the access to the DB
+    &#34;&#34;&#34;
+    creator = self._creators.get(format)
+    if not creator:
+        raise ValueError(format)
+    return creator()</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.AccessFactory.register_DB_access"><code class="name flex">
+<span>def <span class="ident">register_DB_access</span></span>(<span>self, format, creator)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_DB_access(self, format, creator):
+    self._creators[format] = creator</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="DataAccess.DataAccessInterface"><code class="flex name class">
+<span>class <span class="ident">DataAccessInterface</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>an interfance whom any DB manager should implement</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>NotImplementedError</code></dt>
+<dd>an exception raised if one of the methods of this interface is not implemented</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DataAccessInterface(metaclass=abc.ABCMeta):
+    &#34;&#34;&#34;an interfance whom any DB manager should implement
+
+    Raises:
+        NotImplementedError: an exception raised if one of the methods of this interface is not implemented
+    &#34;&#34;&#34;
+
+    # =======================================
+    # =========  CRUD operations  ===========
+    # =======================================
+
+
+    # ==============================
+    # =========  CREATE  ===========
+
+    @abc.abstractmethod
+    def create_new_game(self, numOfPlayers : int) -&gt; BE.Game:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def create_new_user(self) -&gt; str:
+        raise NotImplementedError
+    
+
+    # ============================
+    # =========  READ  ===========
+
+    @abc.abstractmethod
+    def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def fetch_all_games(self, id: str) -&gt; dict:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def fetch_user_by_ID(self, id: int) -&gt; BE.User:
+        raise NotImplementedError
+
+
+    # ==============================
+    # =========  UPDATE  ===========
+
+    @abc.abstractmethod
+    def update_game(self, game : BE.Game):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def update_user(self, user : BE.User):
+        raise NotImplementedError
+    
+
+    # ==============================
+    # =========  DELETE  ===========
+
+    @abc.abstractmethod
+    def delete_game_by_ID(self, id: str):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def delete_user_by_ID(self, id: str):
+        raise NotImplementedError</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="DataAccess.JSON_db_access" href="#DataAccess.JSON_db_access">JSON_db_access</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="DataAccess.DataAccessInterface.create_new_game"><code class="name flex">
+<span>def <span class="ident">create_new_game</span></span>(<span>self, numOfPlayers: int) ‑> BusinessEntities.Game</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def create_new_game(self, numOfPlayers : int) -&gt; BE.Game:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.create_new_user"><code class="name flex">
+<span>def <span class="ident">create_new_user</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def create_new_user(self) -&gt; str:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.delete_game_by_ID"><code class="name flex">
+<span>def <span class="ident">delete_game_by_ID</span></span>(<span>self, id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def delete_game_by_ID(self, id: str):
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.delete_user_by_ID"><code class="name flex">
+<span>def <span class="ident">delete_user_by_ID</span></span>(<span>self, id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def delete_user_by_ID(self, id: str):
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.fetch_all_games"><code class="name flex">
+<span>def <span class="ident">fetch_all_games</span></span>(<span>self, id: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def fetch_all_games(self, id: str) -&gt; dict:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.fetch_game_by_ID"><code class="name flex">
+<span>def <span class="ident">fetch_game_by_ID</span></span>(<span>self, id: str) ‑> BusinessEntities.Game</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.fetch_user_by_ID"><code class="name flex">
+<span>def <span class="ident">fetch_user_by_ID</span></span>(<span>self, id: int) ‑> BusinessEntities.User</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def fetch_user_by_ID(self, id: int) -&gt; BE.User:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.update_game"><code class="name flex">
+<span>def <span class="ident">update_game</span></span>(<span>self, game: BusinessEntities.Game)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def update_game(self, game : BE.Game):
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.DataAccessInterface.update_user"><code class="name flex">
+<span>def <span class="ident">update_user</span></span>(<span>self, user: BusinessEntities.User)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abc.abstractmethod
+def update_user(self, user : BE.User):
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="DataAccess.GameEncoderJSON"><code class="flex name class">
+<span>class <span class="ident">GameEncoderJSON</span></span>
+<span>(</span><span>*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>encoder of a Game (a custom class can't be converted to a json object directly)</p>
+<p>Constructor for JSONEncoder, with sensible defaults.</p>
+<p>If skipkeys is false, then it is a TypeError to attempt
+encoding of keys that are not str, int, float or None.
+If
+skipkeys is True, such items are simply skipped.</p>
+<p>If ensure_ascii is true, the output is guaranteed to be str
+objects with all incoming non-ASCII characters escaped.
+If
+ensure_ascii is false, the output can contain non-ASCII characters.</p>
+<p>If check_circular is true, then lists, dicts, and custom encoded
+objects will be checked for circular references during encoding to
+prevent an infinite recursion (which would cause an RecursionError).
+Otherwise, no such check takes place.</p>
+<p>If allow_nan is true, then NaN, Infinity, and -Infinity will be
+encoded as such.
+This behavior is not JSON specification compliant,
+but is consistent with most JavaScript based encoders and decoders.
+Otherwise, it will be a ValueError to encode such floats.</p>
+<p>If sort_keys is true, then the output of dictionaries will be
+sorted by key; this is useful for regression tests to ensure
+that JSON serializations can be compared on a day-to-day basis.</p>
+<p>If indent is a non-negative integer, then JSON array
+elements and object members will be pretty-printed with that
+indent level.
+An indent level of 0 will only insert newlines.
+None is the most compact representation.</p>
+<p>If specified, separators should be an (item_separator, key_separator)
+tuple.
+The default is (', ', ': ') if <em>indent</em> is <code>None</code> and
+(',', ': ') otherwise.
+To get the most compact JSON representation,
+you should specify (',', ':') to eliminate whitespace.</p>
+<p>If specified, default is a function that gets called for objects
+that can't otherwise be serialized.
+It should return a JSON encodable
+version of the object or raise a <code>TypeError</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GameEncoderJSON(json.JSONEncoder):
+    &#34;&#34;&#34;encoder of a Game (a custom class can&#39;t be converted to a json object directly)
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, BE.Game):
+            return {&#34;game_ID&#34;       : obj.game_ID,
+                    &#34;num_of_players&#34;: obj.num_of_players,
+                    &#34;game_state&#34;    : obj.game_state,
+                    &#34;board&#34;         : obj.board,
+                    &#34;winner_ID&#34;     : obj.winner_ID,
+                    &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                    &#34;duration&#34;      : obj.duration,
+                    }
+        return super().default(obj)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>json.encoder.JSONEncoder</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="DataAccess.GameEncoderJSON.default"><code class="name flex">
+<span>def <span class="ident">default</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement this method in a subclass such that it returns
+a serializable object for <code>o</code>, or calls the base implementation
+(to raise a <code>TypeError</code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this::</p>
+<pre><code>def default(self, o):
+    try:
+        iterable = iter(o)
+    except TypeError:
+        pass
+    else:
+        return list(iterable)
+    # Let the base class default method raise the TypeError
+    return super().default(o)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def default(self, obj):
+    if isinstance(obj, BE.Game):
+        return {&#34;game_ID&#34;       : obj.game_ID,
+                &#34;num_of_players&#34;: obj.num_of_players,
+                &#34;game_state&#34;    : obj.game_state,
+                &#34;board&#34;         : obj.board,
+                &#34;winner_ID&#34;     : obj.winner_ID,
+                &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                &#34;duration&#34;      : obj.duration,
+                }
+    return super().default(obj)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="DataAccess.JSON_db_access"><code class="flex name class">
+<span>class <span class="ident">JSON_db_access</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>access to a JSON database</p>
+<p>initialize paths of files</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>if some file supposed to be in the database is not found</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class JSON_db_access(DataAccessInterface):
+    &#34;&#34;&#34;access to a JSON database
+    &#34;&#34;&#34;
+    def __init__(self):
+        &#34;&#34;&#34;initialize paths of files
+
+        Raises:
+            Exception: if some file supposed to be in the database is not found
+        &#34;&#34;&#34;
+        self.users_full = &#34;./Databases/JSON/users_full.json&#34;
+        self.users_tokens = &#34;./Databases/JSON/users_tokens.json&#34;
+        self.games = &#34;./Databases/JSON/games.json&#34;
+
+        files = [self.users_full,self.users_tokens,self.games]
+        
+        # Check if file exists
+        for filePath in files:
+            if os.path.exists(filePath) is False:
+                raise Exception(&#34;File not found&#34;)    
+        
+        # self.lastDateGamesFetched = datetime.datetime.now() 
+
+
+    # ==============================
+    # =========  CREATE  ===========
+
+    def create_new_game(self, numOfPlayers: int):
+        &#34;&#34;&#34;create an entry of new game in the DB
+
+        Args:
+            numOfPlayers (int): number of players (not including spectators)
+
+        Returns:
+            Game: the new game
+        &#34;&#34;&#34;
+        newGame = BE.Game(num_of_players = numOfPlayers)
+        dictGames = {}
+
+        if (os.path.getsize(self.games) != 0):
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+        dictGames[newGame.game_ID] = newGame    # load this new game into the dict of games
+
+        with open(self.games, &#39;w&#39;) as gamesFile: # write the new dict of games (now includes the new game) into the DB
+            json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+        return newGame
+
+
+    def create_new_user(self, nik_name : str) -&gt; BE.User:
+        &#34;&#34;&#34;create an entry of new user in the DB
+
+        Args:
+            nik_name (str): a nik name the user chose for himself
+
+        Returns:
+            BE.User: the instance of the new user
+        &#34;&#34;&#34;
+        dictUserTokens = {}
+        newToken = random.randint(1,9999) # chooose a random token for the user
+
+        if (os.path.getsize(self.users_tokens) != 0):
+            with open(self.users_tokens) as usersTokensFile:
+                dictUserTokens = json.load(fp = usersTokensFile)
+            while (newToken in dictUserTokens): # verify the token is unique
+                newToken = random.randint(1,9999)
+
+        dictUserTokens[newToken] = nik_name
+        with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+            json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+        newUser = BE.User(token = newToken, nikName = nik_name)
+        dictUsers = {}
+        if (os.path.getsize(self.users_full) != 0):
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+        dictUsers[newUser.token] = newUser
+        with open(self.users_full, &#39;w&#39;) as usersFile: # store the dict of users (with the new user) in the DB
+            json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+
+        return newUser
+    
+
+    # ============================
+    # =========  READ  ===========
+
+    def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+        &#34;&#34;&#34;fetch a game from the DB based on its ID
+
+        Args:
+            id (str): the ID of the requested game
+
+        Returns:
+            BE.Game: the game whose ID was passed as parameter
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            dictGame = dictGames[id]
+            game                = BE.Game(dictGame[&#34;num_of_players&#34;])
+            game.game_ID        = dictGame[&#34;game_ID&#34;]
+            game.game_state     = dictGame[&#34;game_state&#34;]
+            game.board          = dictGame[&#34;board&#34;]
+            game.winner_ID      = dictGame[&#34;winner_ID&#34;]
+            game.creation_date  = datetime.datetime.fromisoformat(dictGame[&#34;creation_date&#34;])
+            game.duration       = dictGame[&#34;duration&#34;]
+
+            return game
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_game_by_ID(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+        except KeyError:
+            print(&#34;fetch_game_by_ID(): The key in the dictionary is not found&#34;)
+    
+
+    def fetch_all_games(self) -&gt; list:
+        &#34;&#34;&#34;fetch all the games in the DB
+
+        Returns:
+            list: a list of all the games in the DB
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile) # fetch all the games from the DB
+            
+            how_many_to_save = 30  # how many games we want to store in the database
+            sorted_games_by_creationDate = sorted(dictGames.items(), key=lambda x:datetime.datetime.fromisoformat(x[1][&#34;creation_date&#34;]))
+            # lastDateGamesFetched = datetime.datetime.now()
+
+            # remove old games records (save only &#39;how_many_to_save&#39; records or less), do it no more than once a day
+            if (len(sorted_games_by_creationDate) &gt; how_many_to_save):
+                sorted_games_by_creationDate = sorted_games_by_creationDate[-30:]
+                for index, game in enumerate(sorted_games_by_creationDate):
+                    if (index &lt; len(dictGames.items()) - how_many_to_save):
+                        dictGames.pop(game[0]) # pop the game with game_ID &#39;game[0]&#39;
+                    else:
+                        break
+            
+                with open(self.games, &#39;w&#39;) as gamesFile:
+                    json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+            return sorted_games_by_creationDate
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_all_games(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+            return []
+        except KeyError:
+            print(&#34;fetch_all_games(): The key in the dictionary is not found&#34;)
+            return []
+                    
+    def fetch_users_stats(self) -&gt; list:
+        &#34;&#34;&#34;fetch user statistics (not including sensitive data)
+
+        Returns:
+            list: a list of UserStats
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            users_list = []
+            for key, user in dictUsers.items():
+                users_list.append((user[&#34;nik_name&#34;],user[&#34;user_stat&#34;])) # list of statistics of all users
+            
+            return users_list
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_users_stats(): Seems like the &#39;users&#39; file is empty or corrupted&#34;)
+            return []
+        except KeyError:
+            print(&#34;fetch_users_stats(): The key in the dictionary is not found&#34;)
+            return []
+
+    def fetch_user_by_ID(self, token: int) -&gt; BE.User:
+        &#34;&#34;&#34;fetch a specific user based on its ID
+
+        Args:
+            token (int): a token of one user
+
+        Returns:
+            BE.User: the user whiose token was passed as parameter
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            if (token not in dictUsers):
+                return &#34;notFound&#34;
+            
+            dictUser = dictUsers[token]
+            user = BE.User(dictUser[&#34;token&#34;],dictUser[&#34;nik_name&#34;])
+            user.creation_date = datetime.datetime.fromisoformat(dictUser[&#34;creation_date&#34;])
+            
+            user.userStat.numOfGamesParticipated = dictUser[&#34;user_stat&#34;][&#34;games_participated&#34;]
+            user.userStat.gamesWon               = dictUser[&#34;user_stat&#34;][&#34;games_won&#34;]
+            user.userStat.gamesInTie             = dictUser[&#34;user_stat&#34;][&#34;games_tie&#34;]
+            user.userStat.avgTimeForMove         = dictUser[&#34;user_stat&#34;][&#34;avg_time_for_move&#34;]
+        
+            return user
+        
+        except json.JSONDecodeError:
+            print(&#34;fetch_user_by_ID(): Seems like the &#39;users_full&#39; file is empty or corrupted&#34;)
+        except KeyError:
+            print(&#34;fetch_user_by_ID(): The key in the dictionary is not found&#34;)
+
+
+    # ==============================
+    # =========  UPDATE  ===========
+
+    def update_game(self, game : BE.Game):
+        &#34;&#34;&#34;update a gmae in the DB (replace the old Game by a new Game)
+
+        Args:
+            game (BE.Game): the new and updated game
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            id = game.game_ID
+            dictGames.pop(id, None)
+            dictGames[game.game_ID] = game
+
+            with open(self.games, &#39;w&#39;) as gamesFile:
+                json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_game(): Seems like the file is empty or corrupted&#34;)
+
+
+    def update_user(self, user : BE.User):
+        &#34;&#34;&#34;update a user in the DB
+
+        Args:
+            user (BE.User): the new user to replace wit the old User entry
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsers = json.load(usersFile)
+            
+            if (dictUsers[user.token][&#34;nik_name&#34;] != user.nikName):
+                with open(self.users_tokens) as usersTokensFile:
+                    dictUsersTokens = json.load(usersTokensFile)
+    
+                dictUsersTokens.pop(user.token, None)
+                dictUsersTokens[user.token] = user.nikName
+    
+                with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+                    json.dump(dictUsersTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+            dictUsers.pop(user.token, None)
+            dictUsers[user.token] = user
+            
+            with open(self.users_full, &#39;w&#39;) as usersFile:
+                json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_user(): Seems like the file is empty&#34;)
+        
+
+    def update_users(self, users_list: list):
+        &#34;&#34;&#34;update a list of users at once. the update is made only for the statistics, if anyone
+            wants to update its nik_name, it can be done through the function &#39;update_user&#39;
+
+        Args:
+            users_list (list): a list of users to be updated in the DB
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_full) as usersFile:
+                dictUsersFull = json.load(usersFile)
+            
+            for user in users_list:
+                dictUsersFull.pop(user.token, None)     
+                dictUsersFull[user.token] = user
+            
+            with open(self.users_full, &#39;w&#39;) as usersFile:
+                json.dump(dictUsersFull, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+        
+        except json.JSONDecodeError:
+            print(&#34;update_users(): Seems like the file is empty&#34;)
+
+    # ==============================
+    # =========  DELETE  ===========
+
+    def delete_game_by_ID(self, id: str):
+        &#34;&#34;&#34;dalete some game baes on its ID
+
+        Args:
+            id (str): the ID of the game to be deleted
+        &#34;&#34;&#34;
+        try:
+            with open(self.games) as gamesFile:
+                dictGames = json.load(gamesFile)
+            dictGames.pop(id, None)
+
+            with open(self.games, &#39;w&#39;) as gamesFile:
+                json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+        
+        except json.JSONDecodeError:
+            print(&#34;delete_game_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)
+
+
+    def delete_user_by_ID(self, id: str):
+        &#34;&#34;&#34;delete user based on its token
+
+        Args:
+            id (str): the token of the user to be deleted
+        &#34;&#34;&#34;
+        try:
+            with open(self.users_tokens) as usersTokensFile:
+                dictUserTokens = json.load(usersTokensFile)
+            dictUserTokens.pop(id, None) # delete from the file includes only tokens and nik names
+            
+            with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+                json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+            with open(self.users_full) as usersFullFile:
+                dictUsers = json.load(usersFullFile)
+            dictUsers.pop(id, None) # delete from the file includes full data on the users
+            
+            with open(self.users_full, &#39;w&#39;) as usersFullFile:
+                json.dump(dictUsers, usersFullFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+            
+        
+        except json.JSONDecodeError:
+            print(&#34;delete_user_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="DataAccess.DataAccessInterface" href="#DataAccess.DataAccessInterface">DataAccessInterface</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="DataAccess.JSON_db_access.create_new_game"><code class="name flex">
+<span>def <span class="ident">create_new_game</span></span>(<span>self, numOfPlayers: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>create an entry of new game in the DB</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>numOfPlayers</code></strong> :&ensp;<code>int</code></dt>
+<dd>number of players (not including spectators)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Game</code></dt>
+<dd>the new game</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_new_game(self, numOfPlayers: int):
+    &#34;&#34;&#34;create an entry of new game in the DB
+
+    Args:
+        numOfPlayers (int): number of players (not including spectators)
+
+    Returns:
+        Game: the new game
+    &#34;&#34;&#34;
+    newGame = BE.Game(num_of_players = numOfPlayers)
+    dictGames = {}
+
+    if (os.path.getsize(self.games) != 0):
+        with open(self.games) as gamesFile:
+            dictGames = json.load(gamesFile)
+    dictGames[newGame.game_ID] = newGame    # load this new game into the dict of games
+
+    with open(self.games, &#39;w&#39;) as gamesFile: # write the new dict of games (now includes the new game) into the DB
+        json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+    return newGame</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.create_new_user"><code class="name flex">
+<span>def <span class="ident">create_new_user</span></span>(<span>self, nik_name: str) ‑> BusinessEntities.User</span>
+</code></dt>
+<dd>
+<div class="desc"><p>create an entry of new user in the DB</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>nik_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>a nik name the user chose for himself</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>BE.User</code></dt>
+<dd>the instance of the new user</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_new_user(self, nik_name : str) -&gt; BE.User:
+    &#34;&#34;&#34;create an entry of new user in the DB
+
+    Args:
+        nik_name (str): a nik name the user chose for himself
+
+    Returns:
+        BE.User: the instance of the new user
+    &#34;&#34;&#34;
+    dictUserTokens = {}
+    newToken = random.randint(1,9999) # chooose a random token for the user
+
+    if (os.path.getsize(self.users_tokens) != 0):
+        with open(self.users_tokens) as usersTokensFile:
+            dictUserTokens = json.load(fp = usersTokensFile)
+        while (newToken in dictUserTokens): # verify the token is unique
+            newToken = random.randint(1,9999)
+
+    dictUserTokens[newToken] = nik_name
+    with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+        json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+    newUser = BE.User(token = newToken, nikName = nik_name)
+    dictUsers = {}
+    if (os.path.getsize(self.users_full) != 0):
+        with open(self.users_full) as usersFile:
+            dictUsers = json.load(usersFile)
+    dictUsers[newUser.token] = newUser
+    with open(self.users_full, &#39;w&#39;) as usersFile: # store the dict of users (with the new user) in the DB
+        json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+
+    return newUser</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.delete_game_by_ID"><code class="name flex">
+<span>def <span class="ident">delete_game_by_ID</span></span>(<span>self, id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dalete some game baes on its ID</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>id</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the game to be deleted</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_game_by_ID(self, id: str):
+    &#34;&#34;&#34;dalete some game baes on its ID
+
+    Args:
+        id (str): the ID of the game to be deleted
+    &#34;&#34;&#34;
+    try:
+        with open(self.games) as gamesFile:
+            dictGames = json.load(gamesFile)
+        dictGames.pop(id, None)
+
+        with open(self.games, &#39;w&#39;) as gamesFile:
+            json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+    
+    except json.JSONDecodeError:
+        print(&#34;delete_game_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.delete_user_by_ID"><code class="name flex">
+<span>def <span class="ident">delete_user_by_ID</span></span>(<span>self, id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>delete user based on its token</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>id</code></strong> :&ensp;<code>str</code></dt>
+<dd>the token of the user to be deleted</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_user_by_ID(self, id: str):
+    &#34;&#34;&#34;delete user based on its token
+
+    Args:
+        id (str): the token of the user to be deleted
+    &#34;&#34;&#34;
+    try:
+        with open(self.users_tokens) as usersTokensFile:
+            dictUserTokens = json.load(usersTokensFile)
+        dictUserTokens.pop(id, None) # delete from the file includes only tokens and nik names
+        
+        with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+            json.dump(dictUserTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+        with open(self.users_full) as usersFullFile:
+            dictUsers = json.load(usersFullFile)
+        dictUsers.pop(id, None) # delete from the file includes full data on the users
+        
+        with open(self.users_full, &#39;w&#39;) as usersFullFile:
+            json.dump(dictUsers, usersFullFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)
+        
+    
+    except json.JSONDecodeError:
+        print(&#34;delete_user_by_ID(): Seems like the file is empty anyway, or the file is corrupted&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.fetch_all_games"><code class="name flex">
+<span>def <span class="ident">fetch_all_games</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch all the games in the DB</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>a list of all the games in the DB</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetch_all_games(self) -&gt; list:
+    &#34;&#34;&#34;fetch all the games in the DB
+
+    Returns:
+        list: a list of all the games in the DB
+    &#34;&#34;&#34;
+    try:
+        with open(self.games) as gamesFile:
+            dictGames = json.load(gamesFile) # fetch all the games from the DB
+        
+        how_many_to_save = 30  # how many games we want to store in the database
+        sorted_games_by_creationDate = sorted(dictGames.items(), key=lambda x:datetime.datetime.fromisoformat(x[1][&#34;creation_date&#34;]))
+        # lastDateGamesFetched = datetime.datetime.now()
+
+        # remove old games records (save only &#39;how_many_to_save&#39; records or less), do it no more than once a day
+        if (len(sorted_games_by_creationDate) &gt; how_many_to_save):
+            sorted_games_by_creationDate = sorted_games_by_creationDate[-30:]
+            for index, game in enumerate(sorted_games_by_creationDate):
+                if (index &lt; len(dictGames.items()) - how_many_to_save):
+                    dictGames.pop(game[0]) # pop the game with game_ID &#39;game[0]&#39;
+                else:
+                    break
+        
+            with open(self.games, &#39;w&#39;) as gamesFile:
+                json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)
+
+        return sorted_games_by_creationDate
+    
+    except json.JSONDecodeError:
+        print(&#34;fetch_all_games(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+        return []
+    except KeyError:
+        print(&#34;fetch_all_games(): The key in the dictionary is not found&#34;)
+        return []</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.fetch_game_by_ID"><code class="name flex">
+<span>def <span class="ident">fetch_game_by_ID</span></span>(<span>self, id: str) ‑> BusinessEntities.Game</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch a game from the DB based on its ID</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>id</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the requested game</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>BE.Game</code></dt>
+<dd>the game whose ID was passed as parameter</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetch_game_by_ID(self, id: str) -&gt; BE.Game:
+    &#34;&#34;&#34;fetch a game from the DB based on its ID
+
+    Args:
+        id (str): the ID of the requested game
+
+    Returns:
+        BE.Game: the game whose ID was passed as parameter
+    &#34;&#34;&#34;
+    try:
+        with open(self.games) as gamesFile:
+            dictGames = json.load(gamesFile)
+        dictGame = dictGames[id]
+        game                = BE.Game(dictGame[&#34;num_of_players&#34;])
+        game.game_ID        = dictGame[&#34;game_ID&#34;]
+        game.game_state     = dictGame[&#34;game_state&#34;]
+        game.board          = dictGame[&#34;board&#34;]
+        game.winner_ID      = dictGame[&#34;winner_ID&#34;]
+        game.creation_date  = datetime.datetime.fromisoformat(dictGame[&#34;creation_date&#34;])
+        game.duration       = dictGame[&#34;duration&#34;]
+
+        return game
+    
+    except json.JSONDecodeError:
+        print(&#34;fetch_game_by_ID(): Seems like the &#39;games&#39; file is empty or corrupted&#34;)
+    except KeyError:
+        print(&#34;fetch_game_by_ID(): The key in the dictionary is not found&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.fetch_user_by_ID"><code class="name flex">
+<span>def <span class="ident">fetch_user_by_ID</span></span>(<span>self, token: int) ‑> BusinessEntities.User</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch a specific user based on its ID</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>token</code></strong> :&ensp;<code>int</code></dt>
+<dd>a token of one user</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>BE.User</code></dt>
+<dd>the user whiose token was passed as parameter</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetch_user_by_ID(self, token: int) -&gt; BE.User:
+    &#34;&#34;&#34;fetch a specific user based on its ID
+
+    Args:
+        token (int): a token of one user
+
+    Returns:
+        BE.User: the user whiose token was passed as parameter
+    &#34;&#34;&#34;
+    try:
+        with open(self.users_full) as usersFile:
+            dictUsers = json.load(usersFile)
+        
+        if (token not in dictUsers):
+            return &#34;notFound&#34;
+        
+        dictUser = dictUsers[token]
+        user = BE.User(dictUser[&#34;token&#34;],dictUser[&#34;nik_name&#34;])
+        user.creation_date = datetime.datetime.fromisoformat(dictUser[&#34;creation_date&#34;])
+        
+        user.userStat.numOfGamesParticipated = dictUser[&#34;user_stat&#34;][&#34;games_participated&#34;]
+        user.userStat.gamesWon               = dictUser[&#34;user_stat&#34;][&#34;games_won&#34;]
+        user.userStat.gamesInTie             = dictUser[&#34;user_stat&#34;][&#34;games_tie&#34;]
+        user.userStat.avgTimeForMove         = dictUser[&#34;user_stat&#34;][&#34;avg_time_for_move&#34;]
+    
+        return user
+    
+    except json.JSONDecodeError:
+        print(&#34;fetch_user_by_ID(): Seems like the &#39;users_full&#39; file is empty or corrupted&#34;)
+    except KeyError:
+        print(&#34;fetch_user_by_ID(): The key in the dictionary is not found&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.fetch_users_stats"><code class="name flex">
+<span>def <span class="ident">fetch_users_stats</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch user statistics (not including sensitive data)</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>a list of UserStats</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetch_users_stats(self) -&gt; list:
+    &#34;&#34;&#34;fetch user statistics (not including sensitive data)
+
+    Returns:
+        list: a list of UserStats
+    &#34;&#34;&#34;
+    try:
+        with open(self.users_full) as usersFile:
+            dictUsers = json.load(usersFile)
+        
+        users_list = []
+        for key, user in dictUsers.items():
+            users_list.append((user[&#34;nik_name&#34;],user[&#34;user_stat&#34;])) # list of statistics of all users
+        
+        return users_list
+    
+    except json.JSONDecodeError:
+        print(&#34;fetch_users_stats(): Seems like the &#39;users&#39; file is empty or corrupted&#34;)
+        return []
+    except KeyError:
+        print(&#34;fetch_users_stats(): The key in the dictionary is not found&#34;)
+        return []</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.update_game"><code class="name flex">
+<span>def <span class="ident">update_game</span></span>(<span>self, game: BusinessEntities.Game)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>update a gmae in the DB (replace the old Game by a new Game)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game</code></strong> :&ensp;<code>BE.Game</code></dt>
+<dd>the new and updated game</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_game(self, game : BE.Game):
+    &#34;&#34;&#34;update a gmae in the DB (replace the old Game by a new Game)
+
+    Args:
+        game (BE.Game): the new and updated game
+    &#34;&#34;&#34;
+    try:
+        with open(self.games) as gamesFile:
+            dictGames = json.load(gamesFile)
+        id = game.game_ID
+        dictGames.pop(id, None)
+        dictGames[game.game_ID] = game
+
+        with open(self.games, &#39;w&#39;) as gamesFile:
+            json.dump(dictGames, gamesFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=GameEncoderJSON)    
+    
+    except json.JSONDecodeError:
+        print(&#34;update_game(): Seems like the file is empty or corrupted&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.update_user"><code class="name flex">
+<span>def <span class="ident">update_user</span></span>(<span>self, user: BusinessEntities.User)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>update a user in the DB</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user</code></strong> :&ensp;<code>BE.User</code></dt>
+<dd>the new user to replace wit the old User entry</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_user(self, user : BE.User):
+    &#34;&#34;&#34;update a user in the DB
+
+    Args:
+        user (BE.User): the new user to replace wit the old User entry
+    &#34;&#34;&#34;
+    try:
+        with open(self.users_full) as usersFile:
+            dictUsers = json.load(usersFile)
+        
+        if (dictUsers[user.token][&#34;nik_name&#34;] != user.nikName):
+            with open(self.users_tokens) as usersTokensFile:
+                dictUsersTokens = json.load(usersTokensFile)
+
+            dictUsersTokens.pop(user.token, None)
+            dictUsersTokens[user.token] = user.nikName
+
+            with open(self.users_tokens, &#39;w&#39;) as usersTokensFile:
+                json.dump(dictUsersTokens, usersTokensFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;))
+
+        dictUsers.pop(user.token, None)
+        dictUsers[user.token] = user
+        
+        with open(self.users_full, &#39;w&#39;) as usersFile:
+            json.dump(dictUsers, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+    
+    except json.JSONDecodeError:
+        print(&#34;update_user(): Seems like the file is empty&#34;)</code></pre>
+</details>
+</dd>
+<dt id="DataAccess.JSON_db_access.update_users"><code class="name flex">
+<span>def <span class="ident">update_users</span></span>(<span>self, users_list: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>update a list of users at once. the update is made only for the statistics, if anyone
+wants to update its nik_name, it can be done through the function 'update_user'</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>users_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>a list of users to be updated in the DB</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_users(self, users_list: list):
+    &#34;&#34;&#34;update a list of users at once. the update is made only for the statistics, if anyone
+        wants to update its nik_name, it can be done through the function &#39;update_user&#39;
+
+    Args:
+        users_list (list): a list of users to be updated in the DB
+    &#34;&#34;&#34;
+    try:
+        with open(self.users_full) as usersFile:
+            dictUsersFull = json.load(usersFile)
+        
+        for user in users_list:
+            dictUsersFull.pop(user.token, None)     
+            dictUsersFull[user.token] = user
+        
+        with open(self.users_full, &#39;w&#39;) as usersFile:
+            json.dump(dictUsersFull, usersFile, indent=4, separators=(&#39;,&#39;,&#39;: &#39;), cls=UserEncoderJSON)    
+    
+    except json.JSONDecodeError:
+        print(&#34;update_users(): Seems like the file is empty&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="DataAccess.UserEncoderJSON"><code class="flex name class">
+<span>class <span class="ident">UserEncoderJSON</span></span>
+<span>(</span><span>*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>encoder of a Game (a custom class can't be converted to a json object directly)</p>
+<p>Constructor for JSONEncoder, with sensible defaults.</p>
+<p>If skipkeys is false, then it is a TypeError to attempt
+encoding of keys that are not str, int, float or None.
+If
+skipkeys is True, such items are simply skipped.</p>
+<p>If ensure_ascii is true, the output is guaranteed to be str
+objects with all incoming non-ASCII characters escaped.
+If
+ensure_ascii is false, the output can contain non-ASCII characters.</p>
+<p>If check_circular is true, then lists, dicts, and custom encoded
+objects will be checked for circular references during encoding to
+prevent an infinite recursion (which would cause an RecursionError).
+Otherwise, no such check takes place.</p>
+<p>If allow_nan is true, then NaN, Infinity, and -Infinity will be
+encoded as such.
+This behavior is not JSON specification compliant,
+but is consistent with most JavaScript based encoders and decoders.
+Otherwise, it will be a ValueError to encode such floats.</p>
+<p>If sort_keys is true, then the output of dictionaries will be
+sorted by key; this is useful for regression tests to ensure
+that JSON serializations can be compared on a day-to-day basis.</p>
+<p>If indent is a non-negative integer, then JSON array
+elements and object members will be pretty-printed with that
+indent level.
+An indent level of 0 will only insert newlines.
+None is the most compact representation.</p>
+<p>If specified, separators should be an (item_separator, key_separator)
+tuple.
+The default is (', ', ': ') if <em>indent</em> is <code>None</code> and
+(',', ': ') otherwise.
+To get the most compact JSON representation,
+you should specify (',', ':') to eliminate whitespace.</p>
+<p>If specified, default is a function that gets called for objects
+that can't otherwise be serialized.
+It should return a JSON encodable
+version of the object or raise a <code>TypeError</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UserEncoderJSON(json.JSONEncoder):
+    &#34;&#34;&#34;encoder of a Game (a custom class can&#39;t be converted to a json object directly)
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, BE.User):
+            return {&#34;token&#34;         : obj.token,
+                    &#34;nik_name&#34;      : obj.nikName,
+                    &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                    &#34;user_stat&#34;     : serialize_userStat_JSON(obj.userStat)
+                    }
+        return super().default(obj)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>json.encoder.JSONEncoder</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="DataAccess.UserEncoderJSON.default"><code class="name flex">
+<span>def <span class="ident">default</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement this method in a subclass such that it returns
+a serializable object for <code>o</code>, or calls the base implementation
+(to raise a <code>TypeError</code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this::</p>
+<pre><code>def default(self, o):
+    try:
+        iterable = iter(o)
+    except TypeError:
+        pass
+    else:
+        return list(iterable)
+    # Let the base class default method raise the TypeError
+    return super().default(o)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def default(self, obj):
+    if isinstance(obj, BE.User):
+        return {&#34;token&#34;         : obj.token,
+                &#34;nik_name&#34;      : obj.nikName,
+                &#34;creation_date&#34; : obj.creation_date.isoformat(),
+                &#34;user_stat&#34;     : serialize_userStat_JSON(obj.userStat)
+                }
+    return super().default(obj)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="DataAccess.serialize_userStat_JSON" href="#DataAccess.serialize_userStat_JSON">serialize_userStat_JSON</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="DataAccess.AccessFactory" href="#DataAccess.AccessFactory">AccessFactory</a></code></h4>
+<ul class="">
+<li><code><a title="DataAccess.AccessFactory.get_access_by_DB_type" href="#DataAccess.AccessFactory.get_access_by_DB_type">get_access_by_DB_type</a></code></li>
+<li><code><a title="DataAccess.AccessFactory.register_DB_access" href="#DataAccess.AccessFactory.register_DB_access">register_DB_access</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="DataAccess.DataAccessInterface" href="#DataAccess.DataAccessInterface">DataAccessInterface</a></code></h4>
+<ul class="two-column">
+<li><code><a title="DataAccess.DataAccessInterface.create_new_game" href="#DataAccess.DataAccessInterface.create_new_game">create_new_game</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.create_new_user" href="#DataAccess.DataAccessInterface.create_new_user">create_new_user</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.delete_game_by_ID" href="#DataAccess.DataAccessInterface.delete_game_by_ID">delete_game_by_ID</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.delete_user_by_ID" href="#DataAccess.DataAccessInterface.delete_user_by_ID">delete_user_by_ID</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.fetch_all_games" href="#DataAccess.DataAccessInterface.fetch_all_games">fetch_all_games</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.fetch_game_by_ID" href="#DataAccess.DataAccessInterface.fetch_game_by_ID">fetch_game_by_ID</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.fetch_user_by_ID" href="#DataAccess.DataAccessInterface.fetch_user_by_ID">fetch_user_by_ID</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.update_game" href="#DataAccess.DataAccessInterface.update_game">update_game</a></code></li>
+<li><code><a title="DataAccess.DataAccessInterface.update_user" href="#DataAccess.DataAccessInterface.update_user">update_user</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="DataAccess.GameEncoderJSON" href="#DataAccess.GameEncoderJSON">GameEncoderJSON</a></code></h4>
+<ul class="">
+<li><code><a title="DataAccess.GameEncoderJSON.default" href="#DataAccess.GameEncoderJSON.default">default</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="DataAccess.JSON_db_access" href="#DataAccess.JSON_db_access">JSON_db_access</a></code></h4>
+<ul class="two-column">
+<li><code><a title="DataAccess.JSON_db_access.create_new_game" href="#DataAccess.JSON_db_access.create_new_game">create_new_game</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.create_new_user" href="#DataAccess.JSON_db_access.create_new_user">create_new_user</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.delete_game_by_ID" href="#DataAccess.JSON_db_access.delete_game_by_ID">delete_game_by_ID</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.delete_user_by_ID" href="#DataAccess.JSON_db_access.delete_user_by_ID">delete_user_by_ID</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.fetch_all_games" href="#DataAccess.JSON_db_access.fetch_all_games">fetch_all_games</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.fetch_game_by_ID" href="#DataAccess.JSON_db_access.fetch_game_by_ID">fetch_game_by_ID</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.fetch_user_by_ID" href="#DataAccess.JSON_db_access.fetch_user_by_ID">fetch_user_by_ID</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.fetch_users_stats" href="#DataAccess.JSON_db_access.fetch_users_stats">fetch_users_stats</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.update_game" href="#DataAccess.JSON_db_access.update_game">update_game</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.update_user" href="#DataAccess.JSON_db_access.update_user">update_user</a></code></li>
+<li><code><a title="DataAccess.JSON_db_access.update_users" href="#DataAccess.JSON_db_access.update_users">update_users</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="DataAccess.UserEncoderJSON" href="#DataAccess.UserEncoderJSON">UserEncoderJSON</a></code></h4>
+<ul class="">
+<li><code><a title="DataAccess.UserEncoderJSON.default" href="#DataAccess.UserEncoderJSON.default">default</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

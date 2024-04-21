@@ -1,0 +1,1380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>BusinessLogic API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>BusinessLogic</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import DataAccess as DA
+import BusinessEntities as BE
+import socket
+import random
+import datetime
+
+factory = DA.AccessFactory()
+factory.register_DB_access(&#39;JSON&#39;, DA.JSON_db_access) # create an instance of a DB accessor based on JSON files
+# factory.register_format(&#39;SQL&#39;, SQL_db_access)
+
+
+
+db_access = DA.JSON_db_access() # the gateway to the DB accessor
+
+registeredUsers = {}            # each entry is a { user_address &#39;addr&#39; : [BE.User, socket, game_ID - if any] }
+activeGames = {}                # each entry is a { gameID : [BE.Game, [active Participants : Participants], [passive participants, only addrs of spectators : tuple (ip, port)], numOfMovesDone: int = 0, turn = 0]}
+
+addr_Message = None              
+
+# dict with pairs: {symbolOfCurrentPlayer : symbolOfNextPlayer}
+symbols = {
+    &#39;O&#39;: &#39;X&#39;,
+    &#39;X&#39;: &#39;$&#39;,
+    &#39;$&#39;: &#39;#&#39;,
+    &#39;#&#39;: &#39;@&#39;,
+    &#39;@&#39;: &#39;+&#39;,
+    &#39;+&#39;: &#39;%&#39;,
+    &#39;%&#39;: &#39;=&#39;,
+    &#39;=&#39;: &#39;O&#39;
+    }
+
+
+class Participant:
+    &#34;&#34;&#34;represents a participant in a game as an active player or a spectator
+    &#34;&#34;&#34;
+    def __init__(self, addr: tuple, nikName: str, symbol: str, turn: int = -1):
+        &#34;&#34;&#34;initialize the details of a participant in a game
+
+        Args:
+            addr (tuple): an address of the participant (IP address, Port number)
+            symbol (BE.symbolsOfBoard): which symbol should represent the player in the game (1-8 as a player, 0 as a spectator)
+            turn (int): which turn the participant has (1-8, 0 for a spectator, -1 before the beginning)
+        &#34;&#34;&#34;
+        self.addr = addr
+        self.nik_name = nikName
+        self.symbol = symbol
+        self.turn = turn
+
+
+# entry page functions
+
+def signUpUser(nikName: str, addr: tuple, sock: socket):
+    &#34;&#34;&#34;sign up a new user by registering him
+
+    Args:
+        nikName (str): the nikName he chose
+        addr (tuple): the socket pair (IP address, Port number)
+        sock (socket): socket he is connected with, written in order to identify the 
+                        right registered object in the selector.
+    Returns:
+        var: his new and unique token if succeeds, else -1
+    &#34;&#34;&#34;
+    user = db_access.create_new_user(nikName)
+    
+    if (isinstance(user, BE.User)):
+        registeredUsers[addr] = [user, sock] # store the new user in a dict
+        return user.token
+    else:
+        return -1
+
+
+def signInUser(token: str, addr: tuple, sock: socket):    
+    &#34;&#34;&#34;sign in user using its unique token
+
+    Args:
+        token (str): unique ID of the user
+        addr (tuple): tuple of (IP address, port number)
+        sock (socket): socket he is connected with, written in order to identify the 
+                        right registered object in the selector.
+        
+    Returns:
+        var : nik name in case the login was successful, else: -1
+    &#34;&#34;&#34;
+    user = db_access.fetch_user_by_ID(token)
+    if (isinstance(user, BE.User)):
+        for key, _user in registeredUsers.items(): # check if this user is already connected to the server
+            if _user[0].token == token:
+                return -2
+        registeredUsers[addr] = [user, sock]
+        return user.nikName
+    else:
+        return -1
+
+def unregisterUser(addr: tuple):
+    &#34;&#34;&#34;pop the user who exit the game from the dynamoc memory of users
+
+    Args:
+        addr (tuple): tuple of (IP address, port number)
+    &#34;&#34;&#34;
+    if addr in registeredUsers:
+        registeredUsers.pop(addr)
+
+
+
+# main page functions
+
+def registerNewGame(num_of_participants: int, addr: tuple):
+    &#34;&#34;&#34;add a new game to the dict of active games and update the registered user with the game ID he started
+
+    Args:
+        num_of_participants (int): number of supposed participants in the game
+        addr (tuple): address (IP, PORT) of the player who sought to start a game
+
+    Returns:
+        var: BE.Game new game if the operation succeeded, else -1. 
+    &#34;&#34;&#34;
+    game = BE.Game(num_of_participants)
+    
+    newParticipant = Participant(addr, registeredUsers[addr][0].nikName, &#39;O&#39;)
+    activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
+                                                                    # of sockets of players and spectators and how many moves were done so far.
+    registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
+    return game
+
+def fetchAllActiveGames():
+    &#34;&#34;&#34;return all the active games using the dict &#39;activeGames&#39;
+
+    Returns:
+        Dict: dict of active games
+    &#34;&#34;&#34;
+    return activeGames
+
+
+def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
+    &#34;&#34;&#34;handle a case in which a user wants to join to a game (either as a player or a spectator)
+
+    Args:
+        game_ID (str): ID of the game the user wnats to join to
+        type_of_joined_user (str): &#34;player&#34; or &#34;spectator&#34;
+        addr (tuple): (ip, port)
+    &#34;&#34;&#34;
+    if type_of_joined_user == &#34;spectator&#34;:
+        activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+        
+        # send a response with value of the remaining number of players to start the game (0 or more)
+        notifyOneParticipant(addr, &#34;14_newSpectator&#34;, activeGames[game_ID][0].num_of_players-len(activeGames[game_ID][1]))
+
+    else:
+        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, symbols[activeGames[game_ID][1][-1].symbol])
+        print(&#34;symbol of second:&#34;, newParticipant.symbol)
+        activeGames[game_ID][1].append(newParticipant) # add the active player user address to the list of players
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+
+        # compare the number of connected players to the amount that the game should has
+        num_of_players = activeGames[game_ID][0].num_of_players
+        num_of_active_players = len(activeGames[game_ID][1])
+
+        # the game should not be started yet
+        if (num_of_players &gt; num_of_active_players): 
+            notifyParticipants(game_ID, &#34;5_newPlayer&#34;, num_of_players-num_of_active_players)
+        # the game should start, so determine order of playing and call the function in charge of starting the game
+        elif (num_of_players == num_of_active_players):
+            active_players = activeGames[game_ID][1]
+            random.shuffle(active_players)
+            for index, player in enumerate(active_players):
+                player.turn = index + 1
+            startTheGame(game_ID)
+
+
+def fetchGamesHistory():
+    &#34;&#34;&#34;fetch history of games from the DB
+
+    Returns:
+        list: a list of Games
+    &#34;&#34;&#34;
+    # fetch history of games from the database (the fetched games are sorted by creation date)
+    games = db_access.fetch_all_games()
+
+    return games
+
+def fetchUsersStats():
+    &#34;&#34;&#34;fetch statistics of users
+
+    Returns:
+        list: list of user statistics
+    &#34;&#34;&#34;
+    usersStats = db_access.fetch_users_stats()
+    return usersStats
+
+
+def notifyOneParticipant(addr: tuple, response: str, value):
+    &#34;&#34;&#34;notify one participant of a certain game with a message sent as an argument.
+        We do so by making a response messaege, the thread of the socket will take it from there.
+    Args:
+        addr (str): address of the participant to be notified
+        response (str): a headline to the message to the user
+        value (var): the content of the message (could be a number, a text, etc.)
+    &#34;&#34;&#34;
+    message = ({
+        &#34;response&#34;: response,
+        &#34;value&#34;: value
+    }, False)
+    
+    player_Message = addr_Message[addr]
+    player_Message.responses.append(message)
+    player_Message.response_created = False
+
+def notifyParticipants(game_ID: str, response: str, value, *rest):
+    &#34;&#34;&#34;notify all the participants of a certain game with a message sent as an argument, 
+        except some users that the &#39;rest&#39; argument comprises. We do so by making a response message,
+        the thread of the socket will take it from there.
+    Args:
+        game_ID (str): ID of the game that its participants should be notified
+        response (str): a headline to the message to the user
+        value (var): the content of the message (could be a number, a text, etc.)
+        rest (tuple): a tuple of addresses of users that should not get that message
+    &#34;&#34;&#34;
+    message = ({
+        &#34;response&#34;: response,
+        &#34;value&#34;: value
+    }, False)
+
+    # iterate the list of active players, whose list contains Participants instances
+    for player_Participant in activeGames[game_ID][1]:
+        if player_Participant.addr not in rest:
+            player_Message = addr_Message[player_Participant.addr]
+            player_Message.responses.append(message)
+            player_Message.response_created = False
+           
+    
+    # iterate the list of spectators, whose list contains only addresses, not Participants instances
+    for player_Participant in activeGames[game_ID][2]:
+        if player_Participant not in rest:
+            player_Message = addr_Message[player_Participant]
+            player_Message.responses.append(message)
+            player_Message.response_created = False
+            
+
+
+
+# game management functions
+
+def startTheGame(game_ID: str):
+    &#34;&#34;&#34;start the game, mainly means notifying all the registered players and spectators
+    that the game is about to start (the client side will handle the consequences,
+    for example the timer will start to tick)
+
+    Args:
+        game_ID (str): the ID of the game that is about to begin
+    &#34;&#34;&#34;
+    activeGames[game_ID][0].set_game_state(&#34;STARTED&#34;)
+    activeGames[game_ID][0].set_creation_date(datetime.datetime.now())
+    print(&#34;game that started: &#34;, activeGames[game_ID][0])
+    
+    active_players = activeGames[game_ID][1]
+
+    for player in active_players:
+        notifyOneParticipant(player.addr, &#34;6_beforeStart&#34;, (player.turn, player.symbol)) # inform eah player about his symbol
+
+    notifyParticipants(game_ID, &#34;7_start&#34;, active_players[0].nik_name) # notify players and spectators that the game has begun
+
+    notifyOneParticipant(active_players[0].addr, &#34;8_yourMove&#34;, &#34;&#34;) # nofity the first palyer that he is the first to play
+
+
+def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
+    &#34;&#34;&#34;handle a move that one player has done
+
+    Args:
+        game_ID (str): the ID of the game
+        squareChanged (tuple): includes (row chosed, column chosed, symbol of the player who made his move)
+        addr (tuple): (ip, port)
+    &#34;&#34;&#34;
+    gameInQuestion = activeGames[game_ID][0]
+    gameInQuestion.set_square_on_board(squareChanged)      # save the move on the board
+    activeGames[game_ID][3] = activeGames[game_ID][3] + 1  # increase number of moves that was done so far
+
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the last player, in case he won the game
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase &#39;turn&#39; counter, which means that the next to play will get a message
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the next player to play, in order to inform him that hios turn has arrived
+
+    result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3]) # check what is the state of the game
+
+    if (result == 0): # the game is not finished
+        notifyParticipants(game_ID, &#34;9_afterOneMove&#34;, (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
+        notifyOneParticipant(nextPlayer.addr, &#34;10_YourMoveArrived&#34;, squareChanged)
+    
+    else: # game has finished, either by victory or by draw
+        gameHasFinished(game_ID, result, squareChanged, lastPlayer)
+
+
+def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -&gt; int:
+    &#34;&#34;&#34;check if after the move that was done the state of the game has changed
+
+    Args:
+        board (list): the board of game
+        squareChanged (tuple): (row changed, column changed, which symbol)
+        numOfMoves (int): number of moves done so far
+        
+    Returns:
+        int: 0 - continue, the game didn&#39;t finished
+             1 - the game was won
+             2 - it&#39;s a draw 
+    &#34;&#34;&#34;
+    print(f&#34;check: ({squareChanged[0]} {squareChanged[1]})&#34;)
+    # if there were not enough moves so far, continue with the game
+    if numOfMoves &lt;= 2*(len(board)-1):
+        return 0
+    
+    # then, check for a victory
+    symbol = squareChanged[2]
+    row = squareChanged[0]
+    col = squareChanged[1]
+    size = len(board)
+
+    # check victory in the column 
+    if (row &gt; 0  and  board[row-1][col] == symbol):
+        if (row &gt; 1 and board[row-2][col] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  board[row+1][col] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  board[row+1][col] == symbol  and  board[row+2][col] == symbol):
+        return 1
+    
+    # check victory in the row
+    if (col &gt; 0  and  board[row][col-1] == symbol):
+        if (col &gt; 1 and board[row][col-2] == symbol):
+            return 1
+        elif (col &lt; size - 1  and  board[row][col+1] == symbol):
+            return 1
+    elif (col &lt; size - 2  and  board[row][col+1] == symbol  and  board[row][col+2] == symbol):
+        return 1
+    
+    # check victory in the backward slash diagonal
+    if (row &gt; 0  and  col &gt; 0  and  board[row-1][col-1] == symbol):
+        if (row &gt; 1  and  col &gt; 1  and  board[row-2][col-2] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  col &lt; size - 1  and  board[row+1][col+1] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  col &lt; size - 2  and  board[row+1][col+1] == symbol  and  board[row+2][col+2] == symbol):
+        return 1
+    
+    # check victory in the forward slash diagonal
+    if (row &gt; 0  and  col &lt; size - 1  and  board[row-1][col+1] == symbol):
+        if (row &gt; 1  and  col &lt; size - 2  and  board[row-2][col+2] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  col &gt; 0  and  board[row+1][col-1] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  col &gt; 1  and  board[row+1][col-1] == symbol  and  board[row+2][col-2] == symbol):
+        return 1
+    
+    # finally, check for a draw
+    if (numOfMoves == size*size):
+        return 2
+    
+    # if al other options were not true, continue the game
+    return 0
+    
+
+def timeout(game_ID: str):
+    &#34;&#34;&#34;handle occasion of timeout, the turn should pass to the next player
+
+    Args:
+        game_ID (str): the ID of the game in which there was a timeout
+    &#34;&#34;&#34;
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase &#39;turn&#39; counter
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+
+    notifyParticipants(game_ID, &#34;15_timeout&#34;, (lastPlayer.nik_name, nextPlayer.nik_name), nextPlayer.addr)
+    notifyOneParticipant(nextPlayer.addr, &#34;10_YourMoveArrived&#34;, (-1,-1, &#39;&#39;))
+
+
+def someoneExitedAbruptly(addr : tuple):
+    &#34;&#34;&#34;some player exited from the app abruptly, so there is a chance we need to notify other
+    players (in case the game is not over)
+
+    Args:
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # if the user is still registered 
+    if addr in registeredUsers:
+        # the user is associated with an occurring game
+        if len(registeredUsers[addr]) == 3:
+            isPlayer = True
+            for participant_addr in activeGames[registeredUsers[addr][2]][2]:
+                if participant_addr == addr: # the user is a spectator
+                    exitTheGame(registeredUsers[addr][2], &#34;no&#34;, addr)
+                    isPlayer = False
+                    break
+            if isPlayer == True: # the user is a player, should notify the other players
+                exitTheGame(registeredUsers[addr][2], &#34;O&#34;, addr)
+        else:
+            unregisterUser(addr)
+                  
+                            
+
+
+
+def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
+    &#34;&#34;&#34;handle a case in which the game is over, either by victory or by a tie
+
+    Args:
+        game_ID (str): the game in question
+        result (int):  1 - victory, 2 - draw
+        squareChanged (tuple): (row, column, symbol)
+        lastPlayer (Participant): data about the last player who made his move
+    &#34;&#34;&#34;
+    game = activeGames[game_ID][0]
+    game.set_duration()
+
+    users_list = []
+
+    if (result == 1): # the game has won
+        notifyParticipants(game_ID, &#34;11_victory&#34;, (squareChanged, lastPlayer.nik_name), lastPlayer.addr)
+        notifyOneParticipant(lastPlayer.addr, &#34;12_youWon&#34;, &#34;&#34;) # notify the winner about his victory
+
+        game.set_game_state(&#34;WON&#34;)
+        game.set_winner_name(registeredUsers[lastPlayer.addr][0].nikName)
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            if player.addr != lastPlayer.addr:
+                user.userStat.updateStat()
+            else:
+                user.userStat.updateStat(1)
+
+    elif (result == 2): # it&#39;s a draw
+        notifyParticipants(game_ID, &#34;13_draw&#34;, squareChanged)
+        game.set_game_state(&#34;TIE&#34;)
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            user.userStat.updateStat(2)
+
+    db_access.update_users(users_list) # update DB with the game the and players who participated in the game
+    db_access.update_game(game)
+
+    for player in activeGames[game_ID][1]:
+        registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    for spectator_addr in activeGames[game_ID][2]:
+        registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    
+    activeGames.pop(game_ID, None)
+
+def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
+    &#34;&#34;&#34;some player quitted (but he didn&#39;t exit the app) in the middle of a game
+
+    Args:
+        game_ID (str): the ID of the game
+        is_spectator (bool): flag that signals if the participant that quitted is a spectator or a player
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if is_spectator == True:
+        activeGames[game_ID][2].remove(addr)
+
+    # the user is a player, we need to send a message to the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, &#34;18_someoneQuitted&#34;, &#34;&#34;, addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)
+
+def exitTheGame(game_ID: str, is_spectator: bool, addr: tuple):
+    &#34;&#34;&#34;some participant exitted from the app abruptly
+
+    Args:
+        game_ID (str): the DI of the game
+        is_spectator (bool): flag that signals if the participant that exited is a spectator or a player
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if is_spectator == True:
+        activeGames[game_ID][2].remove(addr)
+        unregisterUser(addr)
+
+    # the user is a player, we need to notify the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, &#34;18_someoneQuitted&#34;, &#34;&#34;, addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)
+        unregisterUser(addr)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="BusinessLogic.checkStateOfGame"><code class="name flex">
+<span>def <span class="ident">checkStateOfGame</span></span>(<span>board: list, squareChanged: tuple, numOfMoves: int) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>check if after the move that was done the state of the game has changed</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>board</code></strong> :&ensp;<code>list</code></dt>
+<dd>the board of game</dd>
+<dt><strong><code>squareChanged</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(row changed, column changed, which symbol)</dd>
+<dt><strong><code>numOfMoves</code></strong> :&ensp;<code>int</code></dt>
+<dd>number of moves done so far</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>0 - continue, the game didn't finished
+1 - the game was won
+2 - it's a draw</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def checkStateOfGame(board: list, squareChanged: tuple, numOfMoves: int) -&gt; int:
+    &#34;&#34;&#34;check if after the move that was done the state of the game has changed
+
+    Args:
+        board (list): the board of game
+        squareChanged (tuple): (row changed, column changed, which symbol)
+        numOfMoves (int): number of moves done so far
+        
+    Returns:
+        int: 0 - continue, the game didn&#39;t finished
+             1 - the game was won
+             2 - it&#39;s a draw 
+    &#34;&#34;&#34;
+    print(f&#34;check: ({squareChanged[0]} {squareChanged[1]})&#34;)
+    # if there were not enough moves so far, continue with the game
+    if numOfMoves &lt;= 2*(len(board)-1):
+        return 0
+    
+    # then, check for a victory
+    symbol = squareChanged[2]
+    row = squareChanged[0]
+    col = squareChanged[1]
+    size = len(board)
+
+    # check victory in the column 
+    if (row &gt; 0  and  board[row-1][col] == symbol):
+        if (row &gt; 1 and board[row-2][col] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  board[row+1][col] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  board[row+1][col] == symbol  and  board[row+2][col] == symbol):
+        return 1
+    
+    # check victory in the row
+    if (col &gt; 0  and  board[row][col-1] == symbol):
+        if (col &gt; 1 and board[row][col-2] == symbol):
+            return 1
+        elif (col &lt; size - 1  and  board[row][col+1] == symbol):
+            return 1
+    elif (col &lt; size - 2  and  board[row][col+1] == symbol  and  board[row][col+2] == symbol):
+        return 1
+    
+    # check victory in the backward slash diagonal
+    if (row &gt; 0  and  col &gt; 0  and  board[row-1][col-1] == symbol):
+        if (row &gt; 1  and  col &gt; 1  and  board[row-2][col-2] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  col &lt; size - 1  and  board[row+1][col+1] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  col &lt; size - 2  and  board[row+1][col+1] == symbol  and  board[row+2][col+2] == symbol):
+        return 1
+    
+    # check victory in the forward slash diagonal
+    if (row &gt; 0  and  col &lt; size - 1  and  board[row-1][col+1] == symbol):
+        if (row &gt; 1  and  col &lt; size - 2  and  board[row-2][col+2] == symbol):
+            return 1
+        elif (row &lt; size - 1  and  col &gt; 0  and  board[row+1][col-1] == symbol):
+            return 1
+    elif (row &lt; size - 2  and  col &gt; 1  and  board[row+1][col-1] == symbol  and  board[row+2][col-2] == symbol):
+        return 1
+    
+    # finally, check for a draw
+    if (numOfMoves == size*size):
+        return 2
+    
+    # if al other options were not true, continue the game
+    return 0</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.exitTheGame"><code class="name flex">
+<span>def <span class="ident">exitTheGame</span></span>(<span>game_ID: str, is_spectator: bool, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>some participant exitted from the app abruptly</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the DI of the game</dd>
+<dt><strong><code>is_spectator</code></strong> :&ensp;<code>bool</code></dt>
+<dd>flag that signals if the participant that exited is a spectator or a player</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(IP, PORT)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def exitTheGame(game_ID: str, is_spectator: bool, addr: tuple):
+    &#34;&#34;&#34;some participant exitted from the app abruptly
+
+    Args:
+        game_ID (str): the DI of the game
+        is_spectator (bool): flag that signals if the participant that exited is a spectator or a player
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if is_spectator == True:
+        activeGames[game_ID][2].remove(addr)
+        unregisterUser(addr)
+
+    # the user is a player, we need to notify the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, &#34;18_someoneQuitted&#34;, &#34;&#34;, addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)
+        unregisterUser(addr)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.fetchAllActiveGames"><code class="name flex">
+<span>def <span class="ident">fetchAllActiveGames</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>return all the active games using the dict 'activeGames'</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict</code></dt>
+<dd>dict of active games</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetchAllActiveGames():
+    &#34;&#34;&#34;return all the active games using the dict &#39;activeGames&#39;
+
+    Returns:
+        Dict: dict of active games
+    &#34;&#34;&#34;
+    return activeGames</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.fetchGamesHistory"><code class="name flex">
+<span>def <span class="ident">fetchGamesHistory</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch history of games from the DB</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>a list of Games</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetchGamesHistory():
+    &#34;&#34;&#34;fetch history of games from the DB
+
+    Returns:
+        list: a list of Games
+    &#34;&#34;&#34;
+    # fetch history of games from the database (the fetched games are sorted by creation date)
+    games = db_access.fetch_all_games()
+
+    return games</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.fetchUsersStats"><code class="name flex">
+<span>def <span class="ident">fetchUsersStats</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch statistics of users</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>list of user statistics</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fetchUsersStats():
+    &#34;&#34;&#34;fetch statistics of users
+
+    Returns:
+        list: list of user statistics
+    &#34;&#34;&#34;
+    usersStats = db_access.fetch_users_stats()
+    return usersStats</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.gameHasFinished"><code class="name flex">
+<span>def <span class="ident">gameHasFinished</span></span>(<span>game_ID: str, result: int, squareChanged: tuple, lastPlayer: <a title="BusinessLogic.Participant" href="#BusinessLogic.Participant">Participant</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>handle a case in which the game is over, either by victory or by a tie</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the game in question</dd>
+<dt><strong><code>result</code></strong> :&ensp;<code>int</code></dt>
+<dd>1 - victory, 2 - draw</dd>
+<dt><strong><code>squareChanged</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(row, column, symbol)</dd>
+<dt><strong><code>lastPlayer</code></strong> :&ensp;<code><a title="BusinessLogic.Participant" href="#BusinessLogic.Participant">Participant</a></code></dt>
+<dd>data about the last player who made his move</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer: Participant):
+    &#34;&#34;&#34;handle a case in which the game is over, either by victory or by a tie
+
+    Args:
+        game_ID (str): the game in question
+        result (int):  1 - victory, 2 - draw
+        squareChanged (tuple): (row, column, symbol)
+        lastPlayer (Participant): data about the last player who made his move
+    &#34;&#34;&#34;
+    game = activeGames[game_ID][0]
+    game.set_duration()
+
+    users_list = []
+
+    if (result == 1): # the game has won
+        notifyParticipants(game_ID, &#34;11_victory&#34;, (squareChanged, lastPlayer.nik_name), lastPlayer.addr)
+        notifyOneParticipant(lastPlayer.addr, &#34;12_youWon&#34;, &#34;&#34;) # notify the winner about his victory
+
+        game.set_game_state(&#34;WON&#34;)
+        game.set_winner_name(registeredUsers[lastPlayer.addr][0].nikName)
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            if player.addr != lastPlayer.addr:
+                user.userStat.updateStat()
+            else:
+                user.userStat.updateStat(1)
+
+    elif (result == 2): # it&#39;s a draw
+        notifyParticipants(game_ID, &#34;13_draw&#34;, squareChanged)
+        game.set_game_state(&#34;TIE&#34;)
+
+        for player in activeGames[game_ID][1]:
+            user = registeredUsers[player.addr][0]
+            users_list.append(user)
+            user.userStat.updateStat(2)
+
+    db_access.update_users(users_list) # update DB with the game the and players who participated in the game
+    db_access.update_game(game)
+
+    for player in activeGames[game_ID][1]:
+        registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    for spectator_addr in activeGames[game_ID][2]:
+        registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+    
+    activeGames.pop(game_ID, None)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.joinToExistingGame"><code class="name flex">
+<span>def <span class="ident">joinToExistingGame</span></span>(<span>game_ID: str, type_of_joined_user: str, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>handle a case in which a user wants to join to a game (either as a player or a spectator)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>ID of the game the user wnats to join to</dd>
+<dt><strong><code>type_of_joined_user</code></strong> :&ensp;<code>str</code></dt>
+<dd>"player" or "spectator"</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(ip, port)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def joinToExistingGame(game_ID: str, type_of_joined_user: str, addr: tuple):
+    &#34;&#34;&#34;handle a case in which a user wants to join to a game (either as a player or a spectator)
+
+    Args:
+        game_ID (str): ID of the game the user wnats to join to
+        type_of_joined_user (str): &#34;player&#34; or &#34;spectator&#34;
+        addr (tuple): (ip, port)
+    &#34;&#34;&#34;
+    if type_of_joined_user == &#34;spectator&#34;:
+        activeGames[game_ID][2].append(addr) # add the spectator user address to the list of spectators
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+        
+        # send a response with value of the remaining number of players to start the game (0 or more)
+        notifyOneParticipant(addr, &#34;14_newSpectator&#34;, activeGames[game_ID][0].num_of_players-len(activeGames[game_ID][1]))
+
+    else:
+        newParticipant = Participant(addr, registeredUsers[addr][0].nikName, symbols[activeGames[game_ID][1][-1].symbol])
+        print(&#34;symbol of second:&#34;, newParticipant.symbol)
+        activeGames[game_ID][1].append(newParticipant) # add the active player user address to the list of players
+        registeredUsers[addr].append(game_ID) # add game_ID for purposes of remiving this user from the list of spectators to be notified about moves in the game
+
+        # compare the number of connected players to the amount that the game should has
+        num_of_players = activeGames[game_ID][0].num_of_players
+        num_of_active_players = len(activeGames[game_ID][1])
+
+        # the game should not be started yet
+        if (num_of_players &gt; num_of_active_players): 
+            notifyParticipants(game_ID, &#34;5_newPlayer&#34;, num_of_players-num_of_active_players)
+        # the game should start, so determine order of playing and call the function in charge of starting the game
+        elif (num_of_players == num_of_active_players):
+            active_players = activeGames[game_ID][1]
+            random.shuffle(active_players)
+            for index, player in enumerate(active_players):
+                player.turn = index + 1
+            startTheGame(game_ID)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.moveOnBoard"><code class="name flex">
+<span>def <span class="ident">moveOnBoard</span></span>(<span>game_ID: str, squareChanged: tuple, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>handle a move that one player has done</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the game</dd>
+<dt><strong><code>squareChanged</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>includes (row chosed, column chosed, symbol of the player who made his move)</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(ip, port)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def moveOnBoard(game_ID: str, squareChanged: tuple, addr: tuple):
+    &#34;&#34;&#34;handle a move that one player has done
+
+    Args:
+        game_ID (str): the ID of the game
+        squareChanged (tuple): includes (row chosed, column chosed, symbol of the player who made his move)
+        addr (tuple): (ip, port)
+    &#34;&#34;&#34;
+    gameInQuestion = activeGames[game_ID][0]
+    gameInQuestion.set_square_on_board(squareChanged)      # save the move on the board
+    activeGames[game_ID][3] = activeGames[game_ID][3] + 1  # increase number of moves that was done so far
+
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the last player, in case he won the game
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase &#39;turn&#39; counter, which means that the next to play will get a message
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]] # get ID of the next player to play, in order to inform him that hios turn has arrived
+
+    result = checkStateOfGame(gameInQuestion.board, squareChanged, activeGames[game_ID][3]) # check what is the state of the game
+
+    if (result == 0): # the game is not finished
+        notifyParticipants(game_ID, &#34;9_afterOneMove&#34;, (squareChanged, nextPlayer.nik_name), nextPlayer.addr)
+        notifyOneParticipant(nextPlayer.addr, &#34;10_YourMoveArrived&#34;, squareChanged)
+    
+    else: # game has finished, either by victory or by draw
+        gameHasFinished(game_ID, result, squareChanged, lastPlayer)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.notifyOneParticipant"><code class="name flex">
+<span>def <span class="ident">notifyOneParticipant</span></span>(<span>addr: tuple, response: str, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>notify one participant of a certain game with a message sent as an argument.
+We do so by making a response messaege, the thread of the socket will take it from there.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>addr</code></strong> :&ensp;<code>str</code></dt>
+<dd>address of the participant to be notified</dd>
+<dt><strong><code>response</code></strong> :&ensp;<code>str</code></dt>
+<dd>a headline to the message to the user</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>var</code></dt>
+<dd>the content of the message (could be a number, a text, etc.)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def notifyOneParticipant(addr: tuple, response: str, value):
+    &#34;&#34;&#34;notify one participant of a certain game with a message sent as an argument.
+        We do so by making a response messaege, the thread of the socket will take it from there.
+    Args:
+        addr (str): address of the participant to be notified
+        response (str): a headline to the message to the user
+        value (var): the content of the message (could be a number, a text, etc.)
+    &#34;&#34;&#34;
+    message = ({
+        &#34;response&#34;: response,
+        &#34;value&#34;: value
+    }, False)
+    
+    player_Message = addr_Message[addr]
+    player_Message.responses.append(message)
+    player_Message.response_created = False</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.notifyParticipants"><code class="name flex">
+<span>def <span class="ident">notifyParticipants</span></span>(<span>game_ID: str, response: str, value, *rest)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>notify all the participants of a certain game with a message sent as an argument,
+except some users that the 'rest' argument comprises. We do so by making a response message,
+the thread of the socket will take it from there.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>ID of the game that its participants should be notified</dd>
+<dt><strong><code>response</code></strong> :&ensp;<code>str</code></dt>
+<dd>a headline to the message to the user</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>var</code></dt>
+<dd>the content of the message (could be a number, a text, etc.)</dd>
+<dt><strong><code>rest</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>a tuple of addresses of users that should not get that message</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def notifyParticipants(game_ID: str, response: str, value, *rest):
+    &#34;&#34;&#34;notify all the participants of a certain game with a message sent as an argument, 
+        except some users that the &#39;rest&#39; argument comprises. We do so by making a response message,
+        the thread of the socket will take it from there.
+    Args:
+        game_ID (str): ID of the game that its participants should be notified
+        response (str): a headline to the message to the user
+        value (var): the content of the message (could be a number, a text, etc.)
+        rest (tuple): a tuple of addresses of users that should not get that message
+    &#34;&#34;&#34;
+    message = ({
+        &#34;response&#34;: response,
+        &#34;value&#34;: value
+    }, False)
+
+    # iterate the list of active players, whose list contains Participants instances
+    for player_Participant in activeGames[game_ID][1]:
+        if player_Participant.addr not in rest:
+            player_Message = addr_Message[player_Participant.addr]
+            player_Message.responses.append(message)
+            player_Message.response_created = False
+           
+    
+    # iterate the list of spectators, whose list contains only addresses, not Participants instances
+    for player_Participant in activeGames[game_ID][2]:
+        if player_Participant not in rest:
+            player_Message = addr_Message[player_Participant]
+            player_Message.responses.append(message)
+            player_Message.response_created = False</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.quitInMiddle"><code class="name flex">
+<span>def <span class="ident">quitInMiddle</span></span>(<span>game_ID: str, is_spectator: bool, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>some player quitted (but he didn't exit the app) in the middle of a game</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the game</dd>
+<dt><strong><code>is_spectator</code></strong> :&ensp;<code>bool</code></dt>
+<dd>flag that signals if the participant that quitted is a spectator or a player</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(IP, PORT)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
+    &#34;&#34;&#34;some player quitted (but he didn&#39;t exit the app) in the middle of a game
+
+    Args:
+        game_ID (str): the ID of the game
+        is_spectator (bool): flag that signals if the participant that quitted is a spectator or a player
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # the user is a spectator, there no need to act except removing him from the list of sepctators
+    if is_spectator == True:
+        activeGames[game_ID][2].remove(addr)
+
+    # the user is a player, we need to send a message to the other players and remove certain entries from the lists
+    elif game_ID in activeGames:
+        notifyParticipants(game_ID, &#34;18_someoneQuitted&#34;, &#34;&#34;, addr)
+        for player in activeGames[game_ID][1]:
+            registeredUsers[player.addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        for spectator_addr in activeGames[game_ID][2]:
+            registeredUsers[spectator_addr].pop()  # remove game_ID, this user is not associated anymore to a game
+        activeGames.pop(game_ID, None)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.registerNewGame"><code class="name flex">
+<span>def <span class="ident">registerNewGame</span></span>(<span>num_of_participants: int, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>add a new game to the dict of active games and update the registered user with the game ID he started</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_of_participants</code></strong> :&ensp;<code>int</code></dt>
+<dd>number of supposed participants in the game</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>address (IP, PORT) of the player who sought to start a game</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>var</code></dt>
+<dd>BE.Game new game if the operation succeeded, else -1.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def registerNewGame(num_of_participants: int, addr: tuple):
+    &#34;&#34;&#34;add a new game to the dict of active games and update the registered user with the game ID he started
+
+    Args:
+        num_of_participants (int): number of supposed participants in the game
+        addr (tuple): address (IP, PORT) of the player who sought to start a game
+
+    Returns:
+        var: BE.Game new game if the operation succeeded, else -1. 
+    &#34;&#34;&#34;
+    game = BE.Game(num_of_participants)
+    
+    newParticipant = Participant(addr, registeredUsers[addr][0].nikName, &#39;O&#39;)
+    activeGames[game.game_ID] = [game, [newParticipant],[], 0, 0] # the key is the address of the first player, we save the game record, a list
+                                                                    # of sockets of players and spectators and how many moves were done so far.
+    registeredUsers[addr].append(game.game_ID)      # add the game_ID of the new game the user just now started.
+    return game</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.signInUser"><code class="name flex">
+<span>def <span class="ident">signInUser</span></span>(<span>token: str, addr: tuple, sock: <module 'socket' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\socket.py'>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>sign in user using its unique token</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>token</code></strong> :&ensp;<code>str</code></dt>
+<dd>unique ID of the user</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>tuple of (IP address, port number)</dd>
+<dt><strong><code>sock</code></strong> :&ensp;<code>socket</code></dt>
+<dd>socket he is connected with, written in order to identify the
+right registered object in the selector.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>var </code></dt>
+<dd>nik name in case the login was successful, else: -1</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def signInUser(token: str, addr: tuple, sock: socket):    
+    &#34;&#34;&#34;sign in user using its unique token
+
+    Args:
+        token (str): unique ID of the user
+        addr (tuple): tuple of (IP address, port number)
+        sock (socket): socket he is connected with, written in order to identify the 
+                        right registered object in the selector.
+        
+    Returns:
+        var : nik name in case the login was successful, else: -1
+    &#34;&#34;&#34;
+    user = db_access.fetch_user_by_ID(token)
+    if (isinstance(user, BE.User)):
+        for key, _user in registeredUsers.items(): # check if this user is already connected to the server
+            if _user[0].token == token:
+                return -2
+        registeredUsers[addr] = [user, sock]
+        return user.nikName
+    else:
+        return -1</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.signUpUser"><code class="name flex">
+<span>def <span class="ident">signUpUser</span></span>(<span>nikName: str, addr: tuple, sock: <module 'socket' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\socket.py'>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>sign up a new user by registering him</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>nikName</code></strong> :&ensp;<code>str</code></dt>
+<dd>the nikName he chose</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>the socket pair (IP address, Port number)</dd>
+<dt><strong><code>sock</code></strong> :&ensp;<code>socket</code></dt>
+<dd>socket he is connected with, written in order to identify the
+right registered object in the selector.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>var</code></dt>
+<dd>his new and unique token if succeeds, else -1</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def signUpUser(nikName: str, addr: tuple, sock: socket):
+    &#34;&#34;&#34;sign up a new user by registering him
+
+    Args:
+        nikName (str): the nikName he chose
+        addr (tuple): the socket pair (IP address, Port number)
+        sock (socket): socket he is connected with, written in order to identify the 
+                        right registered object in the selector.
+    Returns:
+        var: his new and unique token if succeeds, else -1
+    &#34;&#34;&#34;
+    user = db_access.create_new_user(nikName)
+    
+    if (isinstance(user, BE.User)):
+        registeredUsers[addr] = [user, sock] # store the new user in a dict
+        return user.token
+    else:
+        return -1</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.someoneExitedAbruptly"><code class="name flex">
+<span>def <span class="ident">someoneExitedAbruptly</span></span>(<span>addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>some player exited from the app abruptly, so there is a chance we need to notify other
+players (in case the game is not over)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>(IP, PORT)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def someoneExitedAbruptly(addr : tuple):
+    &#34;&#34;&#34;some player exited from the app abruptly, so there is a chance we need to notify other
+    players (in case the game is not over)
+
+    Args:
+        addr (tuple): (IP, PORT)
+    &#34;&#34;&#34;
+    # if the user is still registered 
+    if addr in registeredUsers:
+        # the user is associated with an occurring game
+        if len(registeredUsers[addr]) == 3:
+            isPlayer = True
+            for participant_addr in activeGames[registeredUsers[addr][2]][2]:
+                if participant_addr == addr: # the user is a spectator
+                    exitTheGame(registeredUsers[addr][2], &#34;no&#34;, addr)
+                    isPlayer = False
+                    break
+            if isPlayer == True: # the user is a player, should notify the other players
+                exitTheGame(registeredUsers[addr][2], &#34;O&#34;, addr)
+        else:
+            unregisterUser(addr)</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.startTheGame"><code class="name flex">
+<span>def <span class="ident">startTheGame</span></span>(<span>game_ID: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>start the game, mainly means notifying all the registered players and spectators
+that the game is about to start (the client side will handle the consequences,
+for example the timer will start to tick)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the game that is about to begin</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def startTheGame(game_ID: str):
+    &#34;&#34;&#34;start the game, mainly means notifying all the registered players and spectators
+    that the game is about to start (the client side will handle the consequences,
+    for example the timer will start to tick)
+
+    Args:
+        game_ID (str): the ID of the game that is about to begin
+    &#34;&#34;&#34;
+    activeGames[game_ID][0].set_game_state(&#34;STARTED&#34;)
+    activeGames[game_ID][0].set_creation_date(datetime.datetime.now())
+    print(&#34;game that started: &#34;, activeGames[game_ID][0])
+    
+    active_players = activeGames[game_ID][1]
+
+    for player in active_players:
+        notifyOneParticipant(player.addr, &#34;6_beforeStart&#34;, (player.turn, player.symbol)) # inform eah player about his symbol
+
+    notifyParticipants(game_ID, &#34;7_start&#34;, active_players[0].nik_name) # notify players and spectators that the game has begun
+
+    notifyOneParticipant(active_players[0].addr, &#34;8_yourMove&#34;, &#34;&#34;) # nofity the first palyer that he is the first to play</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.timeout"><code class="name flex">
+<span>def <span class="ident">timeout</span></span>(<span>game_ID: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>handle occasion of timeout, the turn should pass to the next player</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>game_ID</code></strong> :&ensp;<code>str</code></dt>
+<dd>the ID of the game in which there was a timeout</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def timeout(game_ID: str):
+    &#34;&#34;&#34;handle occasion of timeout, the turn should pass to the next player
+
+    Args:
+        game_ID (str): the ID of the game in which there was a timeout
+    &#34;&#34;&#34;
+    lastPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+    activeGames[game_ID][4] = (activeGames[game_ID][4] + 1) % len(activeGames[game_ID][1])  # increase &#39;turn&#39; counter
+    nextPlayer = activeGames[game_ID][1][activeGames[game_ID][4]]
+
+    notifyParticipants(game_ID, &#34;15_timeout&#34;, (lastPlayer.nik_name, nextPlayer.nik_name), nextPlayer.addr)
+    notifyOneParticipant(nextPlayer.addr, &#34;10_YourMoveArrived&#34;, (-1,-1, &#39;&#39;))</code></pre>
+</details>
+</dd>
+<dt id="BusinessLogic.unregisterUser"><code class="name flex">
+<span>def <span class="ident">unregisterUser</span></span>(<span>addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>pop the user who exit the game from the dynamoc memory of users</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>tuple of (IP address, port number)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def unregisterUser(addr: tuple):
+    &#34;&#34;&#34;pop the user who exit the game from the dynamoc memory of users
+
+    Args:
+        addr (tuple): tuple of (IP address, port number)
+    &#34;&#34;&#34;
+    if addr in registeredUsers:
+        registeredUsers.pop(addr)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="BusinessLogic.Participant"><code class="flex name class">
+<span>class <span class="ident">Participant</span></span>
+<span>(</span><span>addr: tuple, nikName: str, symbol: str, turn: int = -1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>represents a participant in a game as an active player or a spectator</p>
+<p>initialize the details of a participant in a game</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>an address of the participant (IP address, Port number)</dd>
+<dt><strong><code>symbol</code></strong> :&ensp;<code>BE.symbolsOfBoard</code></dt>
+<dd>which symbol should represent the player in the game (1-8 as a player, 0 as a spectator)</dd>
+<dt><strong><code>turn</code></strong> :&ensp;<code>int</code></dt>
+<dd>which turn the participant has (1-8, 0 for a spectator, -1 before the beginning)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Participant:
+    &#34;&#34;&#34;represents a participant in a game as an active player or a spectator
+    &#34;&#34;&#34;
+    def __init__(self, addr: tuple, nikName: str, symbol: str, turn: int = -1):
+        &#34;&#34;&#34;initialize the details of a participant in a game
+
+        Args:
+            addr (tuple): an address of the participant (IP address, Port number)
+            symbol (BE.symbolsOfBoard): which symbol should represent the player in the game (1-8 as a player, 0 as a spectator)
+            turn (int): which turn the participant has (1-8, 0 for a spectator, -1 before the beginning)
+        &#34;&#34;&#34;
+        self.addr = addr
+        self.nik_name = nikName
+        self.symbol = symbol
+        self.turn = turn</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="BusinessLogic.checkStateOfGame" href="#BusinessLogic.checkStateOfGame">checkStateOfGame</a></code></li>
+<li><code><a title="BusinessLogic.exitTheGame" href="#BusinessLogic.exitTheGame">exitTheGame</a></code></li>
+<li><code><a title="BusinessLogic.fetchAllActiveGames" href="#BusinessLogic.fetchAllActiveGames">fetchAllActiveGames</a></code></li>
+<li><code><a title="BusinessLogic.fetchGamesHistory" href="#BusinessLogic.fetchGamesHistory">fetchGamesHistory</a></code></li>
+<li><code><a title="BusinessLogic.fetchUsersStats" href="#BusinessLogic.fetchUsersStats">fetchUsersStats</a></code></li>
+<li><code><a title="BusinessLogic.gameHasFinished" href="#BusinessLogic.gameHasFinished">gameHasFinished</a></code></li>
+<li><code><a title="BusinessLogic.joinToExistingGame" href="#BusinessLogic.joinToExistingGame">joinToExistingGame</a></code></li>
+<li><code><a title="BusinessLogic.moveOnBoard" href="#BusinessLogic.moveOnBoard">moveOnBoard</a></code></li>
+<li><code><a title="BusinessLogic.notifyOneParticipant" href="#BusinessLogic.notifyOneParticipant">notifyOneParticipant</a></code></li>
+<li><code><a title="BusinessLogic.notifyParticipants" href="#BusinessLogic.notifyParticipants">notifyParticipants</a></code></li>
+<li><code><a title="BusinessLogic.quitInMiddle" href="#BusinessLogic.quitInMiddle">quitInMiddle</a></code></li>
+<li><code><a title="BusinessLogic.registerNewGame" href="#BusinessLogic.registerNewGame">registerNewGame</a></code></li>
+<li><code><a title="BusinessLogic.signInUser" href="#BusinessLogic.signInUser">signInUser</a></code></li>
+<li><code><a title="BusinessLogic.signUpUser" href="#BusinessLogic.signUpUser">signUpUser</a></code></li>
+<li><code><a title="BusinessLogic.someoneExitedAbruptly" href="#BusinessLogic.someoneExitedAbruptly">someoneExitedAbruptly</a></code></li>
+<li><code><a title="BusinessLogic.startTheGame" href="#BusinessLogic.startTheGame">startTheGame</a></code></li>
+<li><code><a title="BusinessLogic.timeout" href="#BusinessLogic.timeout">timeout</a></code></li>
+<li><code><a title="BusinessLogic.unregisterUser" href="#BusinessLogic.unregisterUser">unregisterUser</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="BusinessLogic.Participant" href="#BusinessLogic.Participant">Participant</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>messageClient API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>messageClient</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import sys
+import json
+import io
+import struct
+import socket as sckt
+# import os
+from tkinter import messagebox
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+
+
+# Generate a key and IV (Initialization Vector)
+key = b&#39;\x04\x03|\xeb\x8dSh\xe0\xc5\xae\xe5\xe1l9\x0co\xca\xb1&#34;\r-Oo\xbaiYa\x1e\xd1\xf7\xa2\xdf&#39;
+iv = b&#39;#\xb59\xee\xa7\xc4@n\xe5r\xac\x97lV\xff\xf1&#39;
+backend1 = default_backend()
+
+# Function to encrypt plaintext using AES-CBC
+def encrypt(plaintext):
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext) + padder.finalize()
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    return ciphertext
+
+# Function to decrypt ciphertext using AES-CBC
+def decrypt(ciphertext):
+    print(&#34;inside decrypt 1&#34;)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    print(&#34;inside decrypt 2&#34;)
+    decryptor = cipher.decryptor()
+    print(&#34;inside decrypt 3&#34;)
+    decrypted_padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    print(&#34;inside decrypt 4&#34;)
+    unpadder = padding.PKCS7(128).unpadder()
+    print(&#34;inside decrypt 5&#34;)
+    decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+    print(&#34;inside decrypt 6&#34;)
+    return decrypted_data
+
+
+# conf_path = os.getcwd()
+# sys.path.append(conf_path)
+# level_up = conf_path[:conf_path.rfind(&#34;\\&#34;)]
+# sys.path.append(level_up)
+
+
+gui = None
+
+
+class Message:
+    &#34;&#34;&#34;manage received and sent messages
+    &#34;&#34;&#34;
+    def __init__(self, sock : sckt.socket, addr: tuple):
+        &#34;&#34;&#34;initialize socket, buffers and queues
+
+        Args:
+            sock (sckt.socket): a socket object
+            addr (tuple): host IP, host PORT
+        &#34;&#34;&#34;
+        self.sock = sock
+        self.addr = addr
+        self.requests = []
+        self._recv_buffer = b&#34;&#34;
+        self._send_buffer = b&#34;&#34;
+        self._request_queued = True
+        self._jsonheader_len = None
+        self.jsonheader = None
+        self.responses = []
+
+        self.last_event = &#34;read&#34;
+
+    def process_events(self, mask: bytes):
+        &#34;&#34;&#34;process reading and writing events
+
+        Args:
+            mask (bytes): a mask to distinguish between reading and writing operations
+        &#34;&#34;&#34;
+        if mask &amp; 0b01:
+            self.read()
+            self.last_event = &#34;read&#34;
+            
+        if mask &amp; 0b10:
+            self.write()
+            self.last_event = &#34;write&#34;
+
+
+
+    def read(self):
+        &#34;&#34;&#34;seperat ethe reading operation to the different parts of a message
+        &#34;&#34;&#34;
+        isRead = self._read()
+        if (isRead  or  self._recv_buffer != b&#34;&#34;):
+
+            if self._jsonheader_len is None:
+                self.process_protoheader() # read and interpret the header length (first 2 bytes)
+
+            if self._jsonheader_len is not None:
+                if self.jsonheader is None:
+                    self.process_jsonheader() # read and interpret the header
+
+            if self.jsonheader:
+                if self.responses == []  or  self.last_event == &#34;read&#34;:
+                    self.process_response() # read and interpret the content of the message
+
+
+    
+    def _read(self) -&gt; bool:
+        &#34;&#34;&#34;try reading bytes from the receiving buffer and interpret it as a message
+
+        Returns:
+            bool: is new data that was read
+        &#34;&#34;&#34;
+        try:
+            # Should be ready to read
+            data = decrypt(self.sock.recv(16384))
+            print(&#34;\n&#34;, data, &#34;\n&#34;)
+        except BlockingIOError:
+            # Resource temporarily unavailable (errno EWOULDBLOCK)
+            pass
+        else:
+            if data:
+                self._recv_buffer += data
+                return True
+            else:
+                # raise RuntimeError(&#34;Peer closed.&#34;)
+                return False
+
+
+
+    def process_protoheader(self):
+        &#34;&#34;&#34;read first 2 bytes which represent the header length and remove them from the receiving buffer
+        &#34;&#34;&#34;
+        hdrlen = 2
+        if len(self._recv_buffer) &gt;= hdrlen:
+            self._jsonheader_len = struct.unpack(&#34;&gt;H&#34;, self._recv_buffer[:hdrlen])[0]
+            self._recv_buffer = self._recv_buffer[hdrlen:]
+
+
+    def process_jsonheader(self):
+        &#34;&#34;&#34;read and process header of message (size was received earlier in the first 2 bytes)
+
+        Raises:
+            ValueError: raise this exception if the header is not found
+        &#34;&#34;&#34;
+        hdrlen = self._jsonheader_len
+        if len(self._recv_buffer) &gt;= hdrlen:
+            self.jsonheader = self._json_decode(
+                self._recv_buffer[:hdrlen], &#34;utf-8&#34;
+            )
+            self._recv_buffer = self._recv_buffer[hdrlen:] # remove the bytes that was read from the buffer
+            for reqhdr in (
+                &#34;byteorder&#34;,
+                &#34;content-length&#34;,
+                &#34;content-type&#34;,
+                &#34;content-encoding&#34;,
+            ):
+                if reqhdr not in self.jsonheader:
+                    raise ValueError(f&#34;Missing required header &#39;{reqhdr}&#39;.&#34;)
+
+
+    def process_response(self):
+        &#34;&#34;&#34;read and process the content of the message
+        &#34;&#34;&#34;
+        content_len = self.jsonheader[&#34;content-length&#34;]
+        if not len(self._recv_buffer) &gt;= content_len:
+            print(&#34;not enough data&#34;)
+            return
+        data = self._recv_buffer[:content_len]              # extract the message content rom the buffer
+        self._recv_buffer = self._recv_buffer[content_len:] # remove the bytes that was read from the buffer
+        if self.jsonheader[&#34;content-type&#34;] == &#34;text/json&#34;:
+            encoding = self.jsonheader[&#34;content-encoding&#34;]
+            self.responses.append(self._json_decode(data, encoding))
+            print(f&#34;Received response {self.responses[0]!r} from {self.addr}&#34;)
+            self._process_response_json_content()           # handle the response according to its content
+        else:
+            # Binary or unknown content-type
+            self.responses.append(data)
+            print(
+                f&#34;Received {self.jsonheader[&#39;content-type&#39;]} &#34;
+                f&#34;response from {self.addr}&#34;
+            )
+            self._process_response_binary_content()
+                
+        self.jsonheader = None              # clear the header and header_len variables, enabling reading another response
+        self._jsonheader_len = None
+
+
+
+    def _process_response_json_content(self):
+        &#34;&#34;&#34;handle eahch response accoring to its content
+        &#34;&#34;&#34;
+        value = self.responses[0][&#34;value&#34;]
+        currentPage = gui.currentPageInstance # a link to the GUI
+
+        match self.responses[0][&#34;response&#34;]: # examine the headline of the message
+            case &#34;9_afterOneMove&#34;: # after a move of a player, restart timer and append messages to display to the other players
+                                   # &#39;value&#39; should be: ( (row,col,symbol), nikName )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
+                    currentPage.game_turn_label.config(text=&#34;other&#39;s turn&#34;, bg=&#34;#0066cc&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## The next to play is: &#34; + value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;10_YourMoveArrived&#34;: # a message sent only to the player whose turn has arrived
+                                       # &#39;value&#39; should be: ( row, col, symbol )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    if (value[0] != -1): # in case of timeout, value should be (-1, -1, -1)
+                        currentPage.updateBoardAndButton(value[0], value[1], value[2])
+                    else:
+                        currentPage.message_buffer.append(&#34;## timeout for last player&#34;)
+                    currentPage.game_turn_label.config(text=&#34;turn&#39;s yours&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## it&#39;s your turn to play!&#34;)
+                    currentPage.yourTurn = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;11_victory&#34;: # a victory was declared by the server
+                               # &#39;value&#39; should be: ( (row,col,symbol), nikName_of_winner )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;game&#39;s  over&#34;, bg=&#34;#ff0000&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## &#34; + value[1] + &#34; has won the game, well done!&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;12_youWon&#34;: # a seperat message for the winner itself
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;  you won!  &#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## you are the winner, congratulations!!!&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;13_draw&#34;: # a draw was declared by the server
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.updateBoardAndButton(value[0], value[1], value[2])
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;    draw    &#34;, bg=&#34;#ff8000&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## it&#39;s a draw, the game is over.&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;4_exit&#34;: # exit the app response, arrive as a response to an exit request
+                self.close()
+
+            case &#34;5_newPlayer&#34;: # we get the following response: { &#34;5_newPlayer&#34; : &lt;number of remaining num of players to join&gt;}
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    strForDisplay = &#34;## waiting for &#34; + str(value) + &#34; more players to join and then we start!&#34;
+                    currentPage.message_buffer.append(strForDisplay)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;14_newSpectator&#34;:  # we get the following response: { &#34;14_newSpectator&#34; : num_of_players-num_of_active_players }
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    if (value == 0): # the game has already started
+                        currentPage.message_buffer.append(&#34;## The game has already started, have a seat and enjoy watching!&#34;)
+                    else: # num_of_players-num_of_active_players &gt; 0, which means that the game has not yet started
+                        strForDisplay = &#34;## waiting for &#34; + str(value) + &#34; more players to join and then we start!&#34;
+                        currentPage.message_buffer.append(strForDisplay)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;15_timeout&#34;: # a timeout has occurred, notify this user about it
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    currentPage.game_turn_label.config(text=&#34;other&#39;s turn&#34;, bg=&#34;#0066cc&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## timeout for &#34; + value[0] + &#34;, the turn is passed to &#34; + value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;6_beforeStart&#34;: # a seperate message for each player, informing him of his symbol and turn
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    strForDisplay = &#34;## The game is about to begin, your turn is &#34; + str(value[0]) + &#34; and your symbol is &#34; + gui.currentPageInstance.assignSymbol(value[1])
+                    currentPage.message_buffer.append(strForDisplay)
+                    currentPage.assignSymbol(value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;7_start&#34;: # start the game (initialize timer)
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    print(&#34;7_start&#34;)
+                    currentPage.game_turn_label.config(text=&#34;started&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.game_result = &#34;started&#34;
+                    currentPage.message_buffer.append(&#34;## Last player has joined, let the tournament begin!&#34;)
+                    currentPage.message_buffer.append(&#34;## First to play is &#34; + value + &#34;. And remember, &#34;+ str(currentPage.secondsForTimeout) + &#34; seconds for a move, no excuse accepted!&#34;)
+                    currentPage.restartTimer()
+                    currentPage.isStarted = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;8_yourMove&#34;: # inform a player that it&#39;s his turn
+                print(&#34;8_yourMove&#34;)
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.message_buffer.append(&#34;## it&#39;s your turn to play, the clock is ticking!&#34;)
+                    currentPage.game_turn_label.config(text=&#34;your turn&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.yourTurn = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;18_someoneQuitted&#34;: # someone exitted, inform the participants that the game is not valid anymore and stop the timer
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.message_buffer.append(&#34;## someone got out of the game, it is not valid anymore :-(&#34;)
+                    currentPage.game_turn_label.config(text=&#34;game&#39;s paused&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+
+        
+    def _process_response_binary_content(self):
+        &#34;&#34;&#34;process response in binery repr and not json repr
+        &#34;&#34;&#34;
+        content = self.responses[0]
+        print(f&#34;Got response: {content!r}&#34;)
+
+        
+
+    def _json_decode(self, json_bytes: bytes, encoding: str):
+        &#34;&#34;&#34;decode the json object arrived from the server
+
+        Args:
+            json_bytes (bytes): the bytes to decode
+            encoding (str): the type of format to decode to
+
+        Returns:
+            dict: a dict of property and its value
+        &#34;&#34;&#34;
+        tiow = io.TextIOWrapper(
+            io.BytesIO(json_bytes), encoding=encoding, newline=&#34;&#34;
+        )
+        obj = json.load(tiow)
+        tiow.close()
+        return obj
+
+
+
+
+
+    def setRequest(self, action: str, value : str):
+        &#34;&#34;&#34;set the request designated for sending to the server
+
+        Args:
+            action (str): what action was occurred
+            value (str): any content or information about the action
+        &#34;&#34;&#34;
+        print(f&#34;set request: {action}, {value}&#34;)
+        self.requests.append({
+            &#34;action&#34; : action,
+            &#34;value&#34; : value,
+            &#34;type&#34; : &#34;text/json&#34;,
+            &#34;encoding&#34; : &#34;utf-8&#34;
+        })
+        self._request_queued = False
+
+
+
+
+
+    def write(self):
+        &#34;&#34;&#34;manage writing operation
+        &#34;&#34;&#34;
+        if not self._request_queued:    # insert a new request only if all the requests were handled already
+            self.queue_request()
+
+        self._write() # actually write to the sending buffer
+
+        if self._request_queued:
+            if not self._send_buffer:                
+                # self._set_selector_events_mask(&#34;r&#34;)
+                # self._set_selector_events_mask(&#34;rw&#34;)
+                pass
+
+
+
+    def _write(self):
+        &#34;&#34;&#34;send some bytes to the server
+        &#34;&#34;&#34;
+        if self._send_buffer:
+
+            self.last_event = &#34;write&#34;
+
+            # print(f&#34;Sending {self._send_buffer!r} to {self.addr}&#34;)
+            try:
+                
+                # Should be ready to write
+                length = len(self._send_buffer)
+                if (length &gt; 2048):
+                    data = self._send_buffer[:2048]
+                else:
+                    data = self._send_buffer
+
+                self.sock.send(encrypt(data))
+            except BlockingIOError:
+                # Resource temporarily unavailable (errno EWOULDBLOCK)
+                pass
+
+            else:
+                self._send_buffer = self._send_buffer[len(data):]
+
+
+    def queue_request(self):
+        &#34;&#34;&#34;build a request with all its parts (header and content)
+        &#34;&#34;&#34;
+        action = self.requests[0][&#34;action&#34;]
+        
+        value = self.requests[0][&#34;value&#34;]
+        
+        content_type = self.requests[0][&#34;type&#34;]
+
+        content_encoding = self.requests[0][&#34;encoding&#34;]
+        
+        if content_type == &#34;text/json&#34;:
+            req = {
+                &#34;content_bytes&#34;: self._json_encode((action, value), content_encoding),
+                &#34;content_type&#34;: content_type,
+                &#34;content_encoding&#34;: content_encoding,
+            }
+        else:
+            req = {
+                &#34;action_bytes&#34;: action,
+                &#34;value_bytes&#34;: value,
+                &#34;content_type&#34;: content_type,
+                &#34;content_encoding&#34;: content_encoding,
+            }
+        message = self._create_message(**req) # create the message from the &#39;req&#39; variable
+        self._send_buffer += message          # add &#39;message&#39; to the sending buffer
+        self.requests.pop(0)
+        if (len(self.requests) == 0):
+            self._request_queued = True
+
+
+    # def _set_selector_events_mask(self, mode):
+    #     &#34;&#34;&#34;Set selector to listen for events: mode is &#39;r&#39;, &#39;w&#39;, or &#39;rw&#39;.&#34;&#34;&#34;
+    #     if mode == &#34;r&#34;:
+    #         events = selectors.EVENT_READ
+    #     elif mode == &#34;w&#34;:
+    #         events = selectors.EVENT_WRITE
+    #     elif mode == &#34;rw&#34;:
+    #         events = selectors.EVENT_READ | selectors.EVENT_WRITE
+    #     else:
+    #         raise ValueError(f&#34;Invalid events mask mode {mode!r}.&#34;)
+    #     self.selector.modify(self.sock, events, data=self)
+
+    
+    def _json_encode(self, obj, encoding):
+        &#34;&#34;&#34;encode the message bytes a a json object
+
+        Args:
+            obj: object to encode
+            encoding (str): type of encoding
+
+        Returns:
+            str: the encoded object as a string
+        &#34;&#34;&#34;
+        return json.dumps(obj, ensure_ascii=False).encode(encoding)
+
+
+    def _create_message(self, *, content_bytes: bytes, content_type: str, content_encoding: str):
+        &#34;&#34;&#34;create a sequence of bytes representing a message with all the differnet parts of a message
+
+        Args:
+            content_bytes (bytes): the bytes to send
+            content_type (str): type of format (usually text/json)
+            content_encoding (str): type of encoding (usually utf-8)
+
+        Returns:
+            bytes: the message as a sequence of bytes
+        &#34;&#34;&#34;
+        jsonheader = {
+            &#34;byteorder&#34;: sys.byteorder,
+            &#34;content-type&#34;: content_type,
+            &#34;content-encoding&#34;: content_encoding,
+            &#34;content-length&#34;: len(content_bytes),
+        }
+        jsonheader_bytes = self._json_encode(jsonheader, &#34;utf-8&#34;)
+        message_hdr = struct.pack(&#34;&gt;H&#34;, len(jsonheader_bytes))
+        message = message_hdr + jsonheader_bytes + content_bytes
+        return message
+
+    
+
+
+
+    def close(self, isClosedUnexpectedly = False):
+        &#34;&#34;&#34;close this massage manager
+
+        Args:
+            isClosedUnexpectedly (bool, optional): flag to know if the connectino was closed abruplty. Defaults to False.
+        &#34;&#34;&#34;
+        try:
+            if isClosedUnexpectedly == True:
+                result = None
+                result = messagebox.showerror(&#34;error&#34;, &#34;the server is not connected, try and come back later  )-:&#34;)
+                while (result == None):
+                    pass
+            print(f&#34;Closing connection to {self.addr}&#34;)
+
+            self.sock.close()
+        except OSError as e:
+            print(f&#34;Error: socket.close() exception for {self.addr}: {e!r}&#34;)
+        finally:
+            # Delete reference to socket object for garbage collection
+            self.sock = None
+
+
+    def updateAccessToGUI(self, presentation_instance):
+        &#34;&#34;&#34;update the variable through whioch this module can access the GUI
+
+        Args:
+            presentation_instance (AppRoot): an instance of the appRoot which holds a reference to the GUI
+        &#34;&#34;&#34;
+        global gui
+        gui = presentation_instance</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="messageClient.decrypt"><code class="name flex">
+<span>def <span class="ident">decrypt</span></span>(<span>ciphertext)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def decrypt(ciphertext):
+    print(&#34;inside decrypt 1&#34;)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    print(&#34;inside decrypt 2&#34;)
+    decryptor = cipher.decryptor()
+    print(&#34;inside decrypt 3&#34;)
+    decrypted_padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    print(&#34;inside decrypt 4&#34;)
+    unpadder = padding.PKCS7(128).unpadder()
+    print(&#34;inside decrypt 5&#34;)
+    decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+    print(&#34;inside decrypt 6&#34;)
+    return decrypted_data</code></pre>
+</details>
+</dd>
+<dt id="messageClient.encrypt"><code class="name flex">
+<span>def <span class="ident">encrypt</span></span>(<span>plaintext)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def encrypt(plaintext):
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext) + padder.finalize()
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    return ciphertext</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="messageClient.Message"><code class="flex name class">
+<span>class <span class="ident">Message</span></span>
+<span>(</span><span>sock: socket.socket, addr: tuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>manage received and sent messages</p>
+<p>initialize socket, buffers and queues</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sock</code></strong> :&ensp;<code>sckt.socket</code></dt>
+<dd>a socket object</dd>
+<dt><strong><code>addr</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>host IP, host PORT</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Message:
+    &#34;&#34;&#34;manage received and sent messages
+    &#34;&#34;&#34;
+    def __init__(self, sock : sckt.socket, addr: tuple):
+        &#34;&#34;&#34;initialize socket, buffers and queues
+
+        Args:
+            sock (sckt.socket): a socket object
+            addr (tuple): host IP, host PORT
+        &#34;&#34;&#34;
+        self.sock = sock
+        self.addr = addr
+        self.requests = []
+        self._recv_buffer = b&#34;&#34;
+        self._send_buffer = b&#34;&#34;
+        self._request_queued = True
+        self._jsonheader_len = None
+        self.jsonheader = None
+        self.responses = []
+
+        self.last_event = &#34;read&#34;
+
+    def process_events(self, mask: bytes):
+        &#34;&#34;&#34;process reading and writing events
+
+        Args:
+            mask (bytes): a mask to distinguish between reading and writing operations
+        &#34;&#34;&#34;
+        if mask &amp; 0b01:
+            self.read()
+            self.last_event = &#34;read&#34;
+            
+        if mask &amp; 0b10:
+            self.write()
+            self.last_event = &#34;write&#34;
+
+
+
+    def read(self):
+        &#34;&#34;&#34;seperat ethe reading operation to the different parts of a message
+        &#34;&#34;&#34;
+        isRead = self._read()
+        if (isRead  or  self._recv_buffer != b&#34;&#34;):
+
+            if self._jsonheader_len is None:
+                self.process_protoheader() # read and interpret the header length (first 2 bytes)
+
+            if self._jsonheader_len is not None:
+                if self.jsonheader is None:
+                    self.process_jsonheader() # read and interpret the header
+
+            if self.jsonheader:
+                if self.responses == []  or  self.last_event == &#34;read&#34;:
+                    self.process_response() # read and interpret the content of the message
+
+
+    
+    def _read(self) -&gt; bool:
+        &#34;&#34;&#34;try reading bytes from the receiving buffer and interpret it as a message
+
+        Returns:
+            bool: is new data that was read
+        &#34;&#34;&#34;
+        try:
+            # Should be ready to read
+            data = decrypt(self.sock.recv(16384))
+            print(&#34;\n&#34;, data, &#34;\n&#34;)
+        except BlockingIOError:
+            # Resource temporarily unavailable (errno EWOULDBLOCK)
+            pass
+        else:
+            if data:
+                self._recv_buffer += data
+                return True
+            else:
+                # raise RuntimeError(&#34;Peer closed.&#34;)
+                return False
+
+
+
+    def process_protoheader(self):
+        &#34;&#34;&#34;read first 2 bytes which represent the header length and remove them from the receiving buffer
+        &#34;&#34;&#34;
+        hdrlen = 2
+        if len(self._recv_buffer) &gt;= hdrlen:
+            self._jsonheader_len = struct.unpack(&#34;&gt;H&#34;, self._recv_buffer[:hdrlen])[0]
+            self._recv_buffer = self._recv_buffer[hdrlen:]
+
+
+    def process_jsonheader(self):
+        &#34;&#34;&#34;read and process header of message (size was received earlier in the first 2 bytes)
+
+        Raises:
+            ValueError: raise this exception if the header is not found
+        &#34;&#34;&#34;
+        hdrlen = self._jsonheader_len
+        if len(self._recv_buffer) &gt;= hdrlen:
+            self.jsonheader = self._json_decode(
+                self._recv_buffer[:hdrlen], &#34;utf-8&#34;
+            )
+            self._recv_buffer = self._recv_buffer[hdrlen:] # remove the bytes that was read from the buffer
+            for reqhdr in (
+                &#34;byteorder&#34;,
+                &#34;content-length&#34;,
+                &#34;content-type&#34;,
+                &#34;content-encoding&#34;,
+            ):
+                if reqhdr not in self.jsonheader:
+                    raise ValueError(f&#34;Missing required header &#39;{reqhdr}&#39;.&#34;)
+
+
+    def process_response(self):
+        &#34;&#34;&#34;read and process the content of the message
+        &#34;&#34;&#34;
+        content_len = self.jsonheader[&#34;content-length&#34;]
+        if not len(self._recv_buffer) &gt;= content_len:
+            print(&#34;not enough data&#34;)
+            return
+        data = self._recv_buffer[:content_len]              # extract the message content rom the buffer
+        self._recv_buffer = self._recv_buffer[content_len:] # remove the bytes that was read from the buffer
+        if self.jsonheader[&#34;content-type&#34;] == &#34;text/json&#34;:
+            encoding = self.jsonheader[&#34;content-encoding&#34;]
+            self.responses.append(self._json_decode(data, encoding))
+            print(f&#34;Received response {self.responses[0]!r} from {self.addr}&#34;)
+            self._process_response_json_content()           # handle the response according to its content
+        else:
+            # Binary or unknown content-type
+            self.responses.append(data)
+            print(
+                f&#34;Received {self.jsonheader[&#39;content-type&#39;]} &#34;
+                f&#34;response from {self.addr}&#34;
+            )
+            self._process_response_binary_content()
+                
+        self.jsonheader = None              # clear the header and header_len variables, enabling reading another response
+        self._jsonheader_len = None
+
+
+
+    def _process_response_json_content(self):
+        &#34;&#34;&#34;handle eahch response accoring to its content
+        &#34;&#34;&#34;
+        value = self.responses[0][&#34;value&#34;]
+        currentPage = gui.currentPageInstance # a link to the GUI
+
+        match self.responses[0][&#34;response&#34;]: # examine the headline of the message
+            case &#34;9_afterOneMove&#34;: # after a move of a player, restart timer and append messages to display to the other players
+                                   # &#39;value&#39; should be: ( (row,col,symbol), nikName )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
+                    currentPage.game_turn_label.config(text=&#34;other&#39;s turn&#34;, bg=&#34;#0066cc&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## The next to play is: &#34; + value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;10_YourMoveArrived&#34;: # a message sent only to the player whose turn has arrived
+                                       # &#39;value&#39; should be: ( row, col, symbol )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    if (value[0] != -1): # in case of timeout, value should be (-1, -1, -1)
+                        currentPage.updateBoardAndButton(value[0], value[1], value[2])
+                    else:
+                        currentPage.message_buffer.append(&#34;## timeout for last player&#34;)
+                    currentPage.game_turn_label.config(text=&#34;turn&#39;s yours&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## it&#39;s your turn to play!&#34;)
+                    currentPage.yourTurn = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;11_victory&#34;: # a victory was declared by the server
+                               # &#39;value&#39; should be: ( (row,col,symbol), nikName_of_winner )
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.updateBoardAndButton(value[0][0], value[0][1], value[0][2])
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;game&#39;s  over&#34;, bg=&#34;#ff0000&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## &#34; + value[1] + &#34; has won the game, well done!&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;12_youWon&#34;: # a seperat message for the winner itself
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;  you won!  &#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## you are the winner, congratulations!!!&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;13_draw&#34;: # a draw was declared by the server
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.updateBoardAndButton(value[0], value[1], value[2])
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    currentPage.game_turn_label.config(text=&#34;    draw    &#34;, bg=&#34;#ff8000&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## it&#39;s a draw, the game is over.&#34;)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;4_exit&#34;: # exit the app response, arrive as a response to an exit request
+                self.close()
+
+            case &#34;5_newPlayer&#34;: # we get the following response: { &#34;5_newPlayer&#34; : &lt;number of remaining num of players to join&gt;}
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    strForDisplay = &#34;## waiting for &#34; + str(value) + &#34; more players to join and then we start!&#34;
+                    currentPage.message_buffer.append(strForDisplay)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;14_newSpectator&#34;:  # we get the following response: { &#34;14_newSpectator&#34; : num_of_players-num_of_active_players }
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    if (value == 0): # the game has already started
+                        currentPage.message_buffer.append(&#34;## The game has already started, have a seat and enjoy watching!&#34;)
+                    else: # num_of_players-num_of_active_players &gt; 0, which means that the game has not yet started
+                        strForDisplay = &#34;## waiting for &#34; + str(value) + &#34; more players to join and then we start!&#34;
+                        currentPage.message_buffer.append(strForDisplay)
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;15_timeout&#34;: # a timeout has occurred, notify this user about it
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.restartTimer()
+                    currentPage.game_turn_label.config(text=&#34;other&#39;s turn&#34;, bg=&#34;#0066cc&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.message_buffer.append(&#34;## timeout for &#34; + value[0] + &#34;, the turn is passed to &#34; + value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;6_beforeStart&#34;: # a seperate message for each player, informing him of his symbol and turn
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    strForDisplay = &#34;## The game is about to begin, your turn is &#34; + str(value[0]) + &#34; and your symbol is &#34; + gui.currentPageInstance.assignSymbol(value[1])
+                    currentPage.message_buffer.append(strForDisplay)
+                    currentPage.assignSymbol(value[1])
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;7_start&#34;: # start the game (initialize timer)
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    print(&#34;7_start&#34;)
+                    currentPage.game_turn_label.config(text=&#34;started&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.game_result = &#34;started&#34;
+                    currentPage.message_buffer.append(&#34;## Last player has joined, let the tournament begin!&#34;)
+                    currentPage.message_buffer.append(&#34;## First to play is &#34; + value + &#34;. And remember, &#34;+ str(currentPage.secondsForTimeout) + &#34; seconds for a move, no excuse accepted!&#34;)
+                    currentPage.restartTimer()
+                    currentPage.isStarted = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+
+            case &#34;8_yourMove&#34;: # inform a player that it&#39;s his turn
+                print(&#34;8_yourMove&#34;)
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.message_buffer.append(&#34;## it&#39;s your turn to play, the clock is ticking!&#34;)
+                    currentPage.game_turn_label.config(text=&#34;your turn&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.yourTurn = True
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+            case &#34;18_someoneQuitted&#34;: # someone exitted, inform the participants that the game is not valid anymore and stop the timer
+                if currentPage.__class__.__name__ == &#34;GamePage&#34;:
+                    currentPage.message_buffer.append(&#34;## someone got out of the game, it is not valid anymore :-(&#34;)
+                    currentPage.game_turn_label.config(text=&#34;game&#39;s paused&#34;, bg=&#34;#00cc00&#34;, fg=&#34;#ffffff&#34;)
+                    currentPage.isStarted = False
+                    currentPage.game_result = &#34;over&#34;
+                    self.responses.pop(0) # pop this response from the queue, it has been handled
+            
+
+        
+    def _process_response_binary_content(self):
+        &#34;&#34;&#34;process response in binery repr and not json repr
+        &#34;&#34;&#34;
+        content = self.responses[0]
+        print(f&#34;Got response: {content!r}&#34;)
+
+        
+
+    def _json_decode(self, json_bytes: bytes, encoding: str):
+        &#34;&#34;&#34;decode the json object arrived from the server
+
+        Args:
+            json_bytes (bytes): the bytes to decode
+            encoding (str): the type of format to decode to
+
+        Returns:
+            dict: a dict of property and its value
+        &#34;&#34;&#34;
+        tiow = io.TextIOWrapper(
+            io.BytesIO(json_bytes), encoding=encoding, newline=&#34;&#34;
+        )
+        obj = json.load(tiow)
+        tiow.close()
+        return obj
+
+
+
+
+
+    def setRequest(self, action: str, value : str):
+        &#34;&#34;&#34;set the request designated for sending to the server
+
+        Args:
+            action (str): what action was occurred
+            value (str): any content or information about the action
+        &#34;&#34;&#34;
+        print(f&#34;set request: {action}, {value}&#34;)
+        self.requests.append({
+            &#34;action&#34; : action,
+            &#34;value&#34; : value,
+            &#34;type&#34; : &#34;text/json&#34;,
+            &#34;encoding&#34; : &#34;utf-8&#34;
+        })
+        self._request_queued = False
+
+
+
+
+
+    def write(self):
+        &#34;&#34;&#34;manage writing operation
+        &#34;&#34;&#34;
+        if not self._request_queued:    # insert a new request only if all the requests were handled already
+            self.queue_request()
+
+        self._write() # actually write to the sending buffer
+
+        if self._request_queued:
+            if not self._send_buffer:                
+                # self._set_selector_events_mask(&#34;r&#34;)
+                # self._set_selector_events_mask(&#34;rw&#34;)
+                pass
+
+
+
+    def _write(self):
+        &#34;&#34;&#34;send some bytes to the server
+        &#34;&#34;&#34;
+        if self._send_buffer:
+
+            self.last_event = &#34;write&#34;
+
+            # print(f&#34;Sending {self._send_buffer!r} to {self.addr}&#34;)
+            try:
+                
+                # Should be ready to write
+                length = len(self._send_buffer)
+                if (length &gt; 2048):
+                    data = self._send_buffer[:2048]
+                else:
+                    data = self._send_buffer
+
+                self.sock.send(encrypt(data))
+            except BlockingIOError:
+                # Resource temporarily unavailable (errno EWOULDBLOCK)
+                pass
+
+            else:
+                self._send_buffer = self._send_buffer[len(data):]
+
+
+    def queue_request(self):
+        &#34;&#34;&#34;build a request with all its parts (header and content)
+        &#34;&#34;&#34;
+        action = self.requests[0][&#34;action&#34;]
+        
+        value = self.requests[0][&#34;value&#34;]
+        
+        content_type = self.requests[0][&#34;type&#34;]
+
+        content_encoding = self.requests[0][&#34;encoding&#34;]
+        
+        if content_type == &#34;text/json&#34;:
+            req = {
+                &#34;content_bytes&#34;: self._json_encode((action, value), content_encoding),
+                &#34;content_type&#34;: content_type,
+                &#34;content_encoding&#34;: content_encoding,
+            }
+        else:
+            req = {
+                &#34;action_bytes&#34;: action,
+                &#34;value_bytes&#34;: value,
+                &#34;content_type&#34;: content_type,
+                &#34;content_encoding&#34;: content_encoding,
+            }
+        message = self._create_message(**req) # create the message from the &#39;req&#39; variable
+        self._send_buffer += message          # add &#39;message&#39; to the sending buffer
+        self.requests.pop(0)
+        if (len(self.requests) == 0):
+            self._request_queued = True
+
+
+    # def _set_selector_events_mask(self, mode):
+    #     &#34;&#34;&#34;Set selector to listen for events: mode is &#39;r&#39;, &#39;w&#39;, or &#39;rw&#39;.&#34;&#34;&#34;
+    #     if mode == &#34;r&#34;:
+    #         events = selectors.EVENT_READ
+    #     elif mode == &#34;w&#34;:
+    #         events = selectors.EVENT_WRITE
+    #     elif mode == &#34;rw&#34;:
+    #         events = selectors.EVENT_READ | selectors.EVENT_WRITE
+    #     else:
+    #         raise ValueError(f&#34;Invalid events mask mode {mode!r}.&#34;)
+    #     self.selector.modify(self.sock, events, data=self)
+
+    
+    def _json_encode(self, obj, encoding):
+        &#34;&#34;&#34;encode the message bytes a a json object
+
+        Args:
+            obj: object to encode
+            encoding (str): type of encoding
+
+        Returns:
+            str: the encoded object as a string
+        &#34;&#34;&#34;
+        return json.dumps(obj, ensure_ascii=False).encode(encoding)
+
+
+    def _create_message(self, *, content_bytes: bytes, content_type: str, content_encoding: str):
+        &#34;&#34;&#34;create a sequence of bytes representing a message with all the differnet parts of a message
+
+        Args:
+            content_bytes (bytes): the bytes to send
+            content_type (str): type of format (usually text/json)
+            content_encoding (str): type of encoding (usually utf-8)
+
+        Returns:
+            bytes: the message as a sequence of bytes
+        &#34;&#34;&#34;
+        jsonheader = {
+            &#34;byteorder&#34;: sys.byteorder,
+            &#34;content-type&#34;: content_type,
+            &#34;content-encoding&#34;: content_encoding,
+            &#34;content-length&#34;: len(content_bytes),
+        }
+        jsonheader_bytes = self._json_encode(jsonheader, &#34;utf-8&#34;)
+        message_hdr = struct.pack(&#34;&gt;H&#34;, len(jsonheader_bytes))
+        message = message_hdr + jsonheader_bytes + content_bytes
+        return message
+
+    
+
+
+
+    def close(self, isClosedUnexpectedly = False):
+        &#34;&#34;&#34;close this massage manager
+
+        Args:
+            isClosedUnexpectedly (bool, optional): flag to know if the connectino was closed abruplty. Defaults to False.
+        &#34;&#34;&#34;
+        try:
+            if isClosedUnexpectedly == True:
+                result = None
+                result = messagebox.showerror(&#34;error&#34;, &#34;the server is not connected, try and come back later  )-:&#34;)
+                while (result == None):
+                    pass
+            print(f&#34;Closing connection to {self.addr}&#34;)
+
+            self.sock.close()
+        except OSError as e:
+            print(f&#34;Error: socket.close() exception for {self.addr}: {e!r}&#34;)
+        finally:
+            # Delete reference to socket object for garbage collection
+            self.sock = None
+
+
+    def updateAccessToGUI(self, presentation_instance):
+        &#34;&#34;&#34;update the variable through whioch this module can access the GUI
+
+        Args:
+            presentation_instance (AppRoot): an instance of the appRoot which holds a reference to the GUI
+        &#34;&#34;&#34;
+        global gui
+        gui = presentation_instance</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="messageClient.Message.close"><code class="name flex">
+<span>def <span class="ident">close</span></span>(<span>self, isClosedUnexpectedly=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>close this massage manager</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>isClosedUnexpectedly</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>flag to know if the connectino was closed abruplty. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def close(self, isClosedUnexpectedly = False):
+    &#34;&#34;&#34;close this massage manager
+
+    Args:
+        isClosedUnexpectedly (bool, optional): flag to know if the connectino was closed abruplty. Defaults to False.
+    &#34;&#34;&#34;
+    try:
+        if isClosedUnexpectedly == True:
+            result = None
+            result = messagebox.showerror(&#34;error&#34;, &#34;the server is not connected, try and come back later  )-:&#34;)
+            while (result == None):
+                pass
+        print(f&#34;Closing connection to {self.addr}&#34;)
+
+        self.sock.close()
+    except OSError as e:
+        print(f&#34;Error: socket.close() exception for {self.addr}: {e!r}&#34;)
+    finally:
+        # Delete reference to socket object for garbage collection
+        self.sock = None</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.process_events"><code class="name flex">
+<span>def <span class="ident">process_events</span></span>(<span>self, mask: bytes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>process reading and writing events</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>bytes</code></dt>
+<dd>a mask to distinguish between reading and writing operations</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_events(self, mask: bytes):
+    &#34;&#34;&#34;process reading and writing events
+
+    Args:
+        mask (bytes): a mask to distinguish between reading and writing operations
+    &#34;&#34;&#34;
+    if mask &amp; 0b01:
+        self.read()
+        self.last_event = &#34;read&#34;
+        
+    if mask &amp; 0b10:
+        self.write()
+        self.last_event = &#34;write&#34;</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.process_jsonheader"><code class="name flex">
+<span>def <span class="ident">process_jsonheader</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>read and process header of message (size was received earlier in the first 2 bytes)</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>raise this exception if the header is not found</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_jsonheader(self):
+    &#34;&#34;&#34;read and process header of message (size was received earlier in the first 2 bytes)
+
+    Raises:
+        ValueError: raise this exception if the header is not found
+    &#34;&#34;&#34;
+    hdrlen = self._jsonheader_len
+    if len(self._recv_buffer) &gt;= hdrlen:
+        self.jsonheader = self._json_decode(
+            self._recv_buffer[:hdrlen], &#34;utf-8&#34;
+        )
+        self._recv_buffer = self._recv_buffer[hdrlen:] # remove the bytes that was read from the buffer
+        for reqhdr in (
+            &#34;byteorder&#34;,
+            &#34;content-length&#34;,
+            &#34;content-type&#34;,
+            &#34;content-encoding&#34;,
+        ):
+            if reqhdr not in self.jsonheader:
+                raise ValueError(f&#34;Missing required header &#39;{reqhdr}&#39;.&#34;)</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.process_protoheader"><code class="name flex">
+<span>def <span class="ident">process_protoheader</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>read first 2 bytes which represent the header length and remove them from the receiving buffer</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_protoheader(self):
+    &#34;&#34;&#34;read first 2 bytes which represent the header length and remove them from the receiving buffer
+    &#34;&#34;&#34;
+    hdrlen = 2
+    if len(self._recv_buffer) &gt;= hdrlen:
+        self._jsonheader_len = struct.unpack(&#34;&gt;H&#34;, self._recv_buffer[:hdrlen])[0]
+        self._recv_buffer = self._recv_buffer[hdrlen:]</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.process_response"><code class="name flex">
+<span>def <span class="ident">process_response</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>read and process the content of the message</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_response(self):
+    &#34;&#34;&#34;read and process the content of the message
+    &#34;&#34;&#34;
+    content_len = self.jsonheader[&#34;content-length&#34;]
+    if not len(self._recv_buffer) &gt;= content_len:
+        print(&#34;not enough data&#34;)
+        return
+    data = self._recv_buffer[:content_len]              # extract the message content rom the buffer
+    self._recv_buffer = self._recv_buffer[content_len:] # remove the bytes that was read from the buffer
+    if self.jsonheader[&#34;content-type&#34;] == &#34;text/json&#34;:
+        encoding = self.jsonheader[&#34;content-encoding&#34;]
+        self.responses.append(self._json_decode(data, encoding))
+        print(f&#34;Received response {self.responses[0]!r} from {self.addr}&#34;)
+        self._process_response_json_content()           # handle the response according to its content
+    else:
+        # Binary or unknown content-type
+        self.responses.append(data)
+        print(
+            f&#34;Received {self.jsonheader[&#39;content-type&#39;]} &#34;
+            f&#34;response from {self.addr}&#34;
+        )
+        self._process_response_binary_content()
+            
+    self.jsonheader = None              # clear the header and header_len variables, enabling reading another response
+    self._jsonheader_len = None</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.queue_request"><code class="name flex">
+<span>def <span class="ident">queue_request</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>build a request with all its parts (header and content)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def queue_request(self):
+    &#34;&#34;&#34;build a request with all its parts (header and content)
+    &#34;&#34;&#34;
+    action = self.requests[0][&#34;action&#34;]
+    
+    value = self.requests[0][&#34;value&#34;]
+    
+    content_type = self.requests[0][&#34;type&#34;]
+
+    content_encoding = self.requests[0][&#34;encoding&#34;]
+    
+    if content_type == &#34;text/json&#34;:
+        req = {
+            &#34;content_bytes&#34;: self._json_encode((action, value), content_encoding),
+            &#34;content_type&#34;: content_type,
+            &#34;content_encoding&#34;: content_encoding,
+        }
+    else:
+        req = {
+            &#34;action_bytes&#34;: action,
+            &#34;value_bytes&#34;: value,
+            &#34;content_type&#34;: content_type,
+            &#34;content_encoding&#34;: content_encoding,
+        }
+    message = self._create_message(**req) # create the message from the &#39;req&#39; variable
+    self._send_buffer += message          # add &#39;message&#39; to the sending buffer
+    self.requests.pop(0)
+    if (len(self.requests) == 0):
+        self._request_queued = True</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.read"><code class="name flex">
+<span>def <span class="ident">read</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>seperat ethe reading operation to the different parts of a message</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read(self):
+    &#34;&#34;&#34;seperat ethe reading operation to the different parts of a message
+    &#34;&#34;&#34;
+    isRead = self._read()
+    if (isRead  or  self._recv_buffer != b&#34;&#34;):
+
+        if self._jsonheader_len is None:
+            self.process_protoheader() # read and interpret the header length (first 2 bytes)
+
+        if self._jsonheader_len is not None:
+            if self.jsonheader is None:
+                self.process_jsonheader() # read and interpret the header
+
+        if self.jsonheader:
+            if self.responses == []  or  self.last_event == &#34;read&#34;:
+                self.process_response() # read and interpret the content of the message</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.setRequest"><code class="name flex">
+<span>def <span class="ident">setRequest</span></span>(<span>self, action: str, value: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>set the request designated for sending to the server</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>action</code></strong> :&ensp;<code>str</code></dt>
+<dd>what action was occurred</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>str</code></dt>
+<dd>any content or information about the action</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setRequest(self, action: str, value : str):
+    &#34;&#34;&#34;set the request designated for sending to the server
+
+    Args:
+        action (str): what action was occurred
+        value (str): any content or information about the action
+    &#34;&#34;&#34;
+    print(f&#34;set request: {action}, {value}&#34;)
+    self.requests.append({
+        &#34;action&#34; : action,
+        &#34;value&#34; : value,
+        &#34;type&#34; : &#34;text/json&#34;,
+        &#34;encoding&#34; : &#34;utf-8&#34;
+    })
+    self._request_queued = False</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.updateAccessToGUI"><code class="name flex">
+<span>def <span class="ident">updateAccessToGUI</span></span>(<span>self, presentation_instance)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>update the variable through whioch this module can access the GUI</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>presentation_instance</code></strong> :&ensp;<code>AppRoot</code></dt>
+<dd>an instance of the appRoot which holds a reference to the GUI</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def updateAccessToGUI(self, presentation_instance):
+    &#34;&#34;&#34;update the variable through whioch this module can access the GUI
+
+    Args:
+        presentation_instance (AppRoot): an instance of the appRoot which holds a reference to the GUI
+    &#34;&#34;&#34;
+    global gui
+    gui = presentation_instance</code></pre>
+</details>
+</dd>
+<dt id="messageClient.Message.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>manage writing operation</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self):
+    &#34;&#34;&#34;manage writing operation
+    &#34;&#34;&#34;
+    if not self._request_queued:    # insert a new request only if all the requests were handled already
+        self.queue_request()
+
+    self._write() # actually write to the sending buffer
+
+    if self._request_queued:
+        if not self._send_buffer:                
+            # self._set_selector_events_mask(&#34;r&#34;)
+            # self._set_selector_events_mask(&#34;rw&#34;)
+            pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="messageClient.decrypt" href="#messageClient.decrypt">decrypt</a></code></li>
+<li><code><a title="messageClient.encrypt" href="#messageClient.encrypt">encrypt</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="messageClient.Message" href="#messageClient.Message">Message</a></code></h4>
+<ul class="two-column">
+<li><code><a title="messageClient.Message.close" href="#messageClient.Message.close">close</a></code></li>
+<li><code><a title="messageClient.Message.process_events" href="#messageClient.Message.process_events">process_events</a></code></li>
+<li><code><a title="messageClient.Message.process_jsonheader" href="#messageClient.Message.process_jsonheader">process_jsonheader</a></code></li>
+<li><code><a title="messageClient.Message.process_protoheader" href="#messageClient.Message.process_protoheader">process_protoheader</a></code></li>
+<li><code><a title="messageClient.Message.process_response" href="#messageClient.Message.process_response">process_response</a></code></li>
+<li><code><a title="messageClient.Message.queue_request" href="#messageClient.Message.queue_request">queue_request</a></code></li>
+<li><code><a title="messageClient.Message.read" href="#messageClient.Message.read">read</a></code></li>
+<li><code><a title="messageClient.Message.setRequest" href="#messageClient.Message.setRequest">setRequest</a></code></li>
+<li><code><a title="messageClient.Message.updateAccessToGUI" href="#messageClient.Message.updateAccessToGUI">updateAccessToGUI</a></code></li>
+<li><code><a title="messageClient.Message.write" href="#messageClient.Message.write">write</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
