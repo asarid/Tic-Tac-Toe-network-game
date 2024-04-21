@@ -960,7 +960,7 @@ class GamePage(tk.Frame):
             row (int): row of the button clicked
             col (int): column of the button clicked
         """
-        if self.yourTurn  and  self.board[row][col] == ' ':
+        if self.yourTurn  and  self.buttons[row][col].cget('text') == ' ':
                 self.buttons[row][col]['text'] = self.symbol_player
                 self.yourTurn = False # not your turn anymore
 

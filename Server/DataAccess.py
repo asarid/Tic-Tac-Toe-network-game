@@ -379,11 +379,13 @@ class JSON_db_access(DataAccessInterface):
         try:
             with open(self.users_full) as usersFile:
                 dictUsersFull = json.load(usersFile)
-            
+            print(dictUsersFull)
+
             for user in users_list:
-                dictUsersFull.pop(user.token, None)     
-                dictUsersFull[user.token] = user
-            
+                dictUsersFull.pop(str(user.token), None)     
+                dictUsersFull[str(user.token)] = user
+            print(dictUsersFull)
+
             with open(self.users_full, 'w') as usersFile:
                 json.dump(dictUsersFull, usersFile, indent=4, separators=(',',': '), cls=UserEncoderJSON)    
         

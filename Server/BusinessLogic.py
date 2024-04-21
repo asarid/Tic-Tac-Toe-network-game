@@ -445,6 +445,7 @@ def gameHasFinished(game_ID: str, result: int, squareChanged: tuple, lastPlayer:
     
     activeGames.pop(game_ID, None)
 
+
 def quitInMiddle(game_ID: str, is_spectator: bool, addr: tuple):
     """some player quitted (but he didn't exit the app) in the middle of a game
 
