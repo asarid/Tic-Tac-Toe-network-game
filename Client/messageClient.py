@@ -3,7 +3,6 @@ import json
 import io
 import struct
 import socket as sckt
-# import os
 from tkinter import messagebox
 
 from cryptography.hazmat.backends import default_backend
@@ -16,8 +15,15 @@ key = b'\x04\x03|\xeb\x8dSh\xe0\xc5\xae\xe5\xe1l9\x0co\xca\xb1"\r-Oo\xbaiYa\x1e\
 iv = b'#\xb59\xee\xa7\xc4@n\xe5r\xac\x97lV\xff\xf1'
 backend1 = default_backend()
 
-# Function to encrypt plaintext using AES-CBC
-def encrypt(plaintext):
+def encrypt(plaintext: bytes):
+    """function to encrypt plaintext using AES-CBC
+
+    Args:
+        plaintext (bytes): the bytes to encrypt
+
+    Returns:
+        bytes: the bytes after encryption
+    """
     padder = padding.PKCS7(128).padder()
     padded_data = padder.update(plaintext) + padder.finalize()
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
@@ -25,19 +31,20 @@ def encrypt(plaintext):
     ciphertext = encryptor.update(padded_data) + encryptor.finalize()
     return ciphertext
 
-# Function to decrypt ciphertext using AES-CBC
-def decrypt(ciphertext):
-    print("inside decrypt 1")
+def decrypt(ciphertext: bytes):
+    """ function to decrypt ciphertext using AES-CBC
+
+    Args:
+        ciphertext (bytes): the bytes to decrypt
+
+    Returns:
+        bytes: the bytes after decryption
+    """
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend1)
-    print("inside decrypt 2")
     decryptor = cipher.decryptor()
-    print("inside decrypt 3")
     decrypted_padded_data = decryptor.update(ciphertext) + decryptor.finalize()
-    print("inside decrypt 4")
     unpadder = padding.PKCS7(128).unpadder()
-    print("inside decrypt 5")
     decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
-    print("inside decrypt 6")
     return decrypted_data
 
 
@@ -492,7 +499,7 @@ class Message:
                 result = messagebox.showerror("error", "the server is not connected, try and come back later  )-:")
                 while (result == None):
                     pass
-            print(f"Closing connection to {self.addr}")
+            print(f"\nClosing connection to {self.addr}\n")
 
             self.sock.close()
         except OSError as e:

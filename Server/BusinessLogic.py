@@ -84,7 +84,7 @@ def signInUser(token: str, addr: tuple, sock: socket):
     user = db_access.fetch_user_by_ID(token)
     if (isinstance(user, BE.User)):
         for key, _user in registeredUsers.items(): # check if this user is already connected to the server
-            if _user[0].token == token:
+            if str(_user[0].token) == token:
                 return -2
         registeredUsers[addr] = [user, sock]
         return user.nikName
